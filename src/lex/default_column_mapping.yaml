@@ -1,0 +1,164 @@
+# default_column_mapping.yaml — maps provider spreadsheet columns to engine Claim fields.
+# The parser uses this to construct Claim objects from flat tabular data.
+
+mapping_version: 1
+target_engine_version: "0.1.0"
+
+# What each row in the uploaded file represents.
+# "activity" = one row per line item (most common RCM export)
+# "encounter" = one row per encounter (activities in sub-columns or second sheet)
+row_granularity: activity
+
+# Grouping keys — rows sharing these values are merged into one Claim/Encounter.
+group_by:
+  claim: claim_id           # column mapped to Claim.id
+  encounter: encounter_key  # column mapped to a synthetic encounter grouping key
+
+# Column-to-field mapping. Keys are canonical engine field names (dot-path).
+# Values are either a column header string or a transform object.
+fields:
+  # --- Claim-level (one value per claim group) ---
+  claim.id:             { column: "Claim ID" }
+  claim.id_payer:       { column: "Payer Claim Ref", default: "" }
+  claim.member_id:      { column: "Member ID" }
+  claim.payer_id:       { column: "Payer Code" }
+  claim.provider_id:    { column: "Facility License" }
+  claim.emirates_id:    { column: "Emirates ID" }
+  claim.gross:          { column: "Gross Amount" }
+  claim.patient_share:  { column: "Patient Share" }
+  claim.net:            { column: "Net Amount" }
+
+  # --- Contract config (optional — defaults from ContractConfig if absent) ---
+  claim.contract.base_rate_aed:  { column: "Base Rate", default: 8500 }
+  claim.contract.gap_aed:        { column: "GAP Threshold", default: 25000 }
+  claim.contract.marginal_pct:   { column: "Marginal %", default: 0.60 }
+  claim.contract.product_name:   { column: "Product", default: "Basic" }
+  claim.contract.lama_mode:      { column: "LAMA Mode", default: "advisory" }
+
+  # --- Encounter-level (one value per encounter group) ---
+  encounter.type:
+    column: "Encounter Type"
+    value_map:
+      "Inpatient": 3
+      "Inpatient No ER": 3
+      "Inpatient With ER": 4
+      "IP": 3
+      "IP-ER": 4
+      "3": 3
+      "4": 4
+
+  encounter.facility_id:       { column: "Facility ID", default: "" }
+  encounter.patient_id:        { column: "MRN", default: "" }
+  encounter.start:             { column: "Admission Date", format: "%d/%m/%Y %H:%M" }
+  encounter.end:               { column: "Discharge Date", format: "%d/%m/%Y %H:%M" }
+  encounter.start_type:        { column: "Admission Source", default: 0 }
+
+  encounter.end_type:
+    column: "Discharge Status"
+    default: 0
+    value_map:
+      "Discharged": 1
+      "LAMA": 2
+      "Discharged Against Advice": 2
+      "AWOL": 3
+      "Absent Without Leave": 3
+      "Transferred": 4
+      "Deceased": 5
+      "1": 1
+      "2": 2
+      "3": 3
+      "4": 4
+      "5": 5
+
+  encounter.transfer_source:       { column: "Transfer Source", default: "" }
+  encounter.transfer_destination:  { column: "Transfer Destination", default: "" }
+  encounter.patient_age_years:     { column: "Patient Age" }
+
+  encounter.patient_gender:
+    column: "Gender"
+    value_map:
+      "Male": "M"
+      "Female": "F"
+      "M": "M"
+      "F": "F"
+
+  encounter.patient_date_of_birth: { column: "DOB", format: "%d/%m/%Y" }
+  encounter.actual_los:            { column: "Actual LOS", default: null }
+  encounter.regrouped_drg:         { column: "Regrouped DRG", default: null }
+
+  # --- Reported values (provider's DRG/payment assertions) ---
+  encounter.reported.drg_code:          { column: "DRG Code" }
+  encounter.reported.drg_base_payment:  { column: "DRG Base Payment" }
+  encounter.reported.outlier_payment:   { column: "Outlier Payment", default: null }
+  encounter.reported.lama_payment:      { column: "LAMA Payment", default: null }
+  encounter.reported.cahms_adjustor:    { column: "CAHMS Adjustor", default: null }
+  encounter.reported.total_claim_net:   { column: "Total Claim Net", default: null }
+
+  # --- Split payer (optional) ---
+  encounter.split_payer.payer_1_days:  { column: "Split Payer 1 Days", default: null }
+  encounter.split_payer.total_days:    { column: "Split Total Days", default: null }
+  encounter.split_payer.payer_1_id:    { column: "Split Payer 1 ID", default: "" }
+  encounter.split_payer.payer_2_id:    { column: "Split Payer 2 ID", default: "" }
+
+  # --- Diagnosis (repeated; parser collects all diagnosis columns per encounter) ---
+  encounter.diagnoses:
+    mode: repeated_columns
+    principal:
+      code: { column: "Principal Dx" }
+      poa:  { column: "Principal Dx POA", default: "" }
+    admitting:
+      code: { column: "Admitting Dx", default: null }
+      poa:  { column: "Admitting Dx POA", default: "" }
+    secondary:
+      code_pattern: "Secondary Dx {n}"
+      poa_pattern:  "Secondary Dx {n} POA"
+      max_n: 20
+
+  # --- Activity (one per row when row_granularity=activity) ---
+  activity.id:                       { column: "Activity ID" }
+  activity.start:                    { column: "Service Date", format: "%d/%m/%Y %H:%M" }
+
+  activity.type:
+    column: "Activity Type"
+    value_map:
+      "CPT": 3
+      "HCPCS": 4
+      "Drug": 5
+      "Dental": 6
+      "Service Code": 8
+      "DRG": 9
+      "Scientific Code": 10
+      "3": 3
+      "4": 4
+      "5": 5
+      "6": 6
+      "8": 8
+      "9": 9
+      "10": 10
+
+  activity.code:                     { column: "Activity Code" }
+  activity.quantity:                 { column: "Qty", default: 1 }
+  activity.net:                      { column: "Activity Net" }
+  activity.clinician:                { column: "Clinician License", default: "" }
+  activity.ordering_clinician:       { column: "Ordering Clinician", default: "" }
+  activity.prior_authorization_id:   { column: "Auth Number", default: "" }
+
+  # --- Observations on activities (pattern-matched columns) ---
+  activity.observations:
+    mode: paired_columns
+    entries:
+      - type: "Tooth"
+        code_column: "Tooth Number"
+        value_column: null
+      - type: "ActivityCost"
+        code_column: "Activity Cost"
+        value_column: null
+      - type: "DRG-NotCovered"
+        code_column: "DRG Not Covered"
+        value_column: null
+      - type: "Weight"
+        code_column: "Observation Code"
+        value_column: "Observation Value"
+      - type: "Modifier"
+        code_pattern: "Modifier {n}"
+        max_n: 4

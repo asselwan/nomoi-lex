@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lex"
+version = "0.1.0"
+description = "Streamlit frontend for UAE claim pre-submission validation"
+requires-python = ">=3.12"
+dependencies = [
+    "streamlit>=1.45,<2.0",
+    "validator",
+    "pyyaml>=6.0,<7.0",
+    "openpyxl>=3.1,<4.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lex"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0,<9.0",
+    "pytest-cov>=6.0,<7.0",
+]
