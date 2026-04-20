@@ -1,4 +1,4 @@
-"""Lex — UAE Claim Pre-Submission Validation UI.
+"""Lex — UAE Claim Presubmission Validation UI.
 
 Single-page Streamlit app: upload → validate → results table → drill-down.
 Entry point: `streamlit run app.py`
@@ -20,7 +20,7 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("Lex — Pre-Submission Claim Validation")
+st.title("Lex — Presubmission Claim Validation")
 
 if is_dev():
     st.caption(f"Environment: {get_env()}")
@@ -34,7 +34,12 @@ def main():
 
     if file_content is None:
         if not state.claims:
-            st.info("Upload an Excel or CSV file to begin validation.")
+            st.markdown(
+                '<div style="padding:1rem;border-radius:0.5rem;'
+                'background-color:#e8f4f2;color:#2a5c56;">'
+                "Upload an Excel or CSV file to begin validation.</div>",
+                unsafe_allow_html=True,
+            )
         else:
             # Re-render results from session state
             _render_results(state)
