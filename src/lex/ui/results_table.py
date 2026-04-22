@@ -51,8 +51,6 @@ def render_results_table(
     if selected_rows:
         idx = selected_rows[0]
         state.selected_claim_index = idx
-        selected_hash = df.iloc[idx]["Claim ID"]
-        st.info(f"Selected claim: {selected_hash} — drill-down pending Stop 4.")
     else:
         state.selected_claim_index = None
 

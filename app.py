@@ -13,6 +13,9 @@ from lex.session.state import clear_state, get_state, should_reprocess
 from lex.session.env import get_env, is_dev
 from lex.ui.upload import render_upload
 from lex.ui.results_table import render_results_table
+from lex.ui.results_detail import render_results_detail
+from lex.ui.export import build_annotated_csv, export_csv_filename
+from lex.reports.renderer import render_pdf
 
 st.set_page_config(
     page_title="Lex — Claim Validator",
@@ -114,12 +117,40 @@ def _process_file(file_content: bytes, state) -> None:
 
 
 def _render_results(state) -> None:
-    """Render the results table from session state."""
+    """Render the results table, export buttons, and detail panel."""
     if not state.claims or not state.reports:
         return
 
     claim_ids = [c.id for c in state.claims]
     render_results_table(claim_ids, state.reports)
+
+    # --- Export buttons ---
+    col1, col2, _ = st.columns([1, 1, 4])
+
+    with col1:
+        csv_data = build_annotated_csv(state.claims, state.reports)
+        original_name = getattr(state, "original_filename", "export")
+        st.download_button(
+            label="Download CSV",
+            data=csv_data,
+            file_name=export_csv_filename(original_name),
+            mime="text/csv",
+        )
+
+    with col2:
+        pdf_data = render_pdf(state.claims, state.reports)
+        st.download_button(
+            label="Download PDF",
+            data=pdf_data,
+            file_name=export_csv_filename("report").replace(".csv", ".pdf"),
+            mime="application/pdf",
+        )
+
+    # --- Drill-down detail panel ---
+    if state.selected_claim_index is not None:
+        idx = state.selected_claim_index
+        if 0 <= idx < len(state.claims):
+            render_results_detail(claim_ids[idx], state.reports[idx])
 
 
 def _rehash(content: bytes) -> str:
