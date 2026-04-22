@@ -1,0 +1,27 @@
+<div class="cover">
+    <h1>Lex Validation Report</h1>
+    <p class="subtitle">Presubmission Claim Validation</p>
+
+    <div class="run-summary">
+        <dl>
+            <dt>Run Timestamp</dt>
+            <dd>{{ run_timestamp }}</dd>
+
+            <dt>Total Claims</dt>
+            <dd>{{ claim_count }}</dd>
+
+            <dt>Severity Breakdown</dt>
+            <dd>
+                <span class="badge badge-error">{{ error_count }} Errors</span>
+                <span class="badge badge-warning">{{ warning_count }} Warnings</span>
+                <span class="badge badge-info">{{ info_count }} Info</span>
+            </dd>
+
+            <dt>Blocked Claims</dt>
+            <dd>{{ blocked_count }}</dd>
+
+            <dt>Total Estimated Impact</dt>
+            <dd>AED {{ total_impact }}</dd>
+        </dl>
+    </div>
+</div>

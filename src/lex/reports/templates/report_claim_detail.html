@@ -1,0 +1,36 @@
+<div class="claim-page">
+    <div class="claim-header">
+        <h2>Claim {{ claim_id_hash }}</h2>
+        <p>
+            <strong>Status:</strong>
+            <span class="status-{{ status_class }}">{{ status }}</span>
+            &nbsp;|&nbsp;
+            <strong>DRG:</strong> {{ drg_code }}
+            &nbsp;|&nbsp;
+            <strong>Encounter:</strong> {{ encounter_type }}
+        </p>
+    </div>
+
+    {% for severity_label, results in grouped_results %}
+    {% if results %}
+    <h3>
+        <span class="badge badge-{{ severity_label|lower }}">{{ severity_label }}</span>
+        ({{ results|length }})
+    </h3>
+
+    {% for r in results %}
+    <div class="result-card">
+        <span class="rule-id">{{ r.rule_id }}</span>
+        <span class="badge badge-{{ r.severity.value|lower }}">{{ r.severity.value }}</span>
+        <div class="message">{{ r.message }}</div>
+        <div class="meta">
+            Engine: {{ r.engine }}
+            {% if r.field %} | Field: {{ r.field }}{% endif %}
+            {% if r.expected %} | Expected: {{ r.expected }}{% endif %}
+            {% if r.actual %} | Actual: {{ r.actual }}{% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+</div>

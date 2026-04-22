@@ -1,0 +1,201 @@
+/* Lex report stylesheet — shared by Streamlit theme and PDF output.
+   Fonts: Instrument Serif (headings), DM Mono (data/code). */
+
+@font-face {
+    font-family: "Instrument Serif";
+    src: url("fonts/InstrumentSerif-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Instrument Serif";
+    src: url("fonts/InstrumentSerif-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "DM Mono";
+    src: url("fonts/DMMono-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "DM Mono";
+    src: url("fonts/DMMono-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* --- Page setup --- */
+@page {
+    size: A4;
+    margin: 2cm 1.5cm;
+
+    @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
+        font-family: "DM Mono", monospace;
+        font-size: 8pt;
+        color: #666;
+    }
+}
+
+/* --- Base --- */
+body {
+    font-family: "DM Mono", "Courier New", monospace;
+    font-size: 10pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4 {
+    font-family: "Instrument Serif", Georgia, serif;
+    color: #2a5c56;
+    margin-top: 0.5em;
+    margin-bottom: 0.3em;
+}
+
+h1 { font-size: 24pt; }
+h2 { font-size: 18pt; }
+h3 { font-size: 14pt; }
+h4 { font-size: 12pt; }
+
+/* --- Cover page --- */
+.cover {
+    page-break-after: always;
+    text-align: center;
+    padding-top: 6cm;
+}
+
+.cover h1 {
+    font-size: 32pt;
+    margin-bottom: 0.2em;
+}
+
+.cover .subtitle {
+    font-size: 14pt;
+    color: #555;
+    margin-bottom: 2em;
+}
+
+.cover .run-summary {
+    text-align: left;
+    max-width: 400px;
+    margin: 2em auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1.5em;
+    background: #f8faf9;
+}
+
+.cover .run-summary dt {
+    font-weight: 500;
+    color: #2a5c56;
+    margin-top: 0.5em;
+}
+
+.cover .run-summary dd {
+    margin-left: 0;
+    margin-bottom: 0.3em;
+}
+
+/* --- Severity badges --- */
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 9pt;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.badge-error   { background: #d32f2f; }
+.badge-warning { background: #ed6c02; }
+.badge-info    { background: #0288d1; }
+
+/* --- Status labels --- */
+.status-blocked { color: #d32f2f; font-weight: 500; }
+.status-review  { color: #ed6c02; font-weight: 500; }
+.status-ready   { color: #2e7d32; font-weight: 500; }
+
+/* --- Tables --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+    font-size: 9pt;
+}
+
+th {
+    background: #2a5c56;
+    color: #fff;
+    padding: 6px 8px;
+    text-align: left;
+    font-weight: 500;
+}
+
+td {
+    padding: 5px 8px;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: top;
+}
+
+tr:nth-child(even) td {
+    background: #f8faf9;
+}
+
+/* --- Claim detail page --- */
+.claim-page {
+    page-break-before: always;
+}
+
+.claim-header {
+    border-bottom: 2px solid #2a5c56;
+    padding-bottom: 0.3em;
+    margin-bottom: 1em;
+}
+
+.result-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 0.8em;
+    margin-bottom: 0.8em;
+    background: #fafafa;
+}
+
+.result-card .rule-id {
+    font-weight: 500;
+    color: #2a5c56;
+}
+
+.result-card .message {
+    margin-top: 0.3em;
+}
+
+.result-card .meta {
+    font-size: 8.5pt;
+    color: #666;
+    margin-top: 0.3em;
+}
+
+/* --- Appendix --- */
+.appendix {
+    page-break-before: always;
+}
+
+.appendix table {
+    font-size: 9pt;
+}
+
+/* --- Muted teal panel (matches Streamlit theme) --- */
+.teal-panel {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #e8f4f2;
+    color: #2a5c56;
+}
