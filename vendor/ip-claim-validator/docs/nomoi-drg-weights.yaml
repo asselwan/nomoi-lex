@@ -1,0 +1,5556 @@
+# UAE DoH Inpatient DRG Relative Weights
+# Source: Mandatory Tariff v2012, Inpatient Relative Weights Update, effective 1 November 2025
+# Scope: IP (inpatient procedure) and IM (inpatient medical) DRGs only
+# Excludes: Mental Health DRGs (not present in source file per filename)
+#          Ambulatory (AP/AM) DRGs (out of scope for v1)
+# Extracted: 2026-04-15 (792 DRGs)
+# Note: ALOS, high_trim, low_trim are NOT in this source. Required for LAMA and
+#       mental-health outlier math. Must be sourced from 3M IR-DRG reference tables.
+
+version: "v2012-2025-11-01"
+effective_from: "2025-11-01"
+drgs:
+  - code: "011011"
+    category: IP
+    description: "INTRACRANIAL VASCULAR PROCEDURES"
+    price_aed: 32861
+    relative_weight: 3.866
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011012"
+    category: IP
+    description: "INTRACRANIAL VASCULAR PROCEDURES W/CC"
+    price_aed: 36094
+    relative_weight: 4.2463
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011013"
+    category: IP
+    description: "INTRACRANIAL VASCULAR PROCEDURES W/MCC"
+    price_aed: 78328
+    relative_weight: 9.2151
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011101"
+    category: IP
+    description: "CRANIOTOMY"
+    price_aed: 17430
+    relative_weight: 2.0506
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011102"
+    category: IP
+    description: "CRANIOTOMY W/CC"
+    price_aed: 27778
+    relative_weight: 3.268
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011103"
+    category: IP
+    description: "CRANIOTOMY W/MCC"
+    price_aed: 43701
+    relative_weight: 5.1413
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011111"
+    category: IP
+    description: "VENTRICULAR SHUNT PROCEDURES"
+    price_aed: 12804
+    relative_weight: 1.5064
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011112"
+    category: IP
+    description: "VENTRICULAR SHUNT PROCEDURES W/CC"
+    price_aed: 16482
+    relative_weight: 1.9391
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011113"
+    category: IP
+    description: "VENTRICULAR SHUNT PROCEDURES W/MCC"
+    price_aed: 38956
+    relative_weight: 4.583
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011121"
+    category: IP
+    description: "EXTRACRANIAL VASCULAR PROCEDURES"
+    price_aed: 19159
+    relative_weight: 2.254
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011122"
+    category: IP
+    description: "EXTRACRANIAL VASCULAR PROCEDURES W/CC"
+    price_aed: 22624
+    relative_weight: 2.6617
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011123"
+    category: IP
+    description: "EXTRACRANIAL VASCULAR PROCEDURES W/MCC"
+    price_aed: 46345
+    relative_weight: 5.4523
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011131"
+    category: IP
+    description: "CARPAL TUNNEL RELEASE"
+    price_aed: 4402
+    relative_weight: 0.5179
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011132"
+    category: IP
+    description: "CARPAL TUNNEL RELEASE W/CC"
+    price_aed: 5442
+    relative_weight: 0.6402
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011133"
+    category: IP
+    description: "CARPAL TUNNEL RELEASE W/MCC"
+    price_aed: 12208
+    relative_weight: 1.4362
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011201"
+    category: IP
+    description: "CRANIAL & PERIPHERAL NERVE PROCEDURES"
+    price_aed: 10319
+    relative_weight: 1.214
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011202"
+    category: IP
+    description: "CRANIAL & PERIPHERAL NERVE PROCEDURES W/CC"
+    price_aed: 16459
+    relative_weight: 1.9364
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011203"
+    category: IP
+    description: "CRANIAL & PERIPHERAL NERVE PROCEDURES W/MCC"
+    price_aed: 31770
+    relative_weight: 3.7376
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011301"
+    category: IP
+    description: "SPINE PROCEDURES"
+    price_aed: 10253
+    relative_weight: 1.2062
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011302"
+    category: IP
+    description: "SPINE PROCEDURES W/CC"
+    price_aed: 12515
+    relative_weight: 1.4724
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "011303"
+    category: IP
+    description: "SPINE PROCEDURES W/MCC"
+    price_aed: 20330
+    relative_weight: 2.3918
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014101"
+    category: IM
+    description: "SPINAL DISORDERS & INJURIES"
+    price_aed: 10276
+    relative_weight: 1.2089
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014102"
+    category: IM
+    description: "SPINAL DISORDERS & INJURIES W/CC"
+    price_aed: 22119
+    relative_weight: 2.6022
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014103"
+    category: IM
+    description: "SPINAL DISORDERS & INJURIES W/MCC"
+    price_aed: 35312
+    relative_weight: 4.1543
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014111"
+    category: IM
+    description: "NERVOUS SYSTEM MALIGNANCY & DEGENERATIVE DISORDERS"
+    price_aed: 15822
+    relative_weight: 1.8614
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014112"
+    category: IM
+    description: "NERVOUS SYSTEM MALIGNANCY & DEGENERATIVE DISORDERS W/CC"
+    price_aed: 17036
+    relative_weight: 2.0042
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014113"
+    category: IM
+    description: "NERVOUS SYSTEM MALIGNANCY & DEGENERATIVE DISORDERS W/MCC"
+    price_aed: 33051
+    relative_weight: 3.8884
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014121"
+    category: IM
+    description: "MULTIPLE SCLEROSIS & CEREBELLAR ATAXIA"
+    price_aed: 7089
+    relative_weight: 0.834
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014122"
+    category: IM
+    description: "MULTIPLE SCLEROSIS & CEREBELLAR ATAXIA W/CC"
+    price_aed: 10072
+    relative_weight: 1.1849
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014123"
+    category: IM
+    description: "MULTIPLE SCLEROSIS & CEREBELLAR ATAXIA W/MCC"
+    price_aed: 24717
+    relative_weight: 2.9079
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014131"
+    category: IM
+    description: "NON-TRAUMATIC INTRACRANIAL HEMORRHAGE"
+    price_aed: 15738
+    relative_weight: 1.8515
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014132"
+    category: IM
+    description: "NON-TRAUMATIC INTRACRANIAL HEMORRHAGE W/CC"
+    price_aed: 18888
+    relative_weight: 2.2221
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014133"
+    category: IM
+    description: "NON-TRAUMATIC INTRACRANIAL HEMORRHAGE W/MCC"
+    price_aed: 59814
+    relative_weight: 7.0369
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014141"
+    category: IM
+    description: "CEREBROVASCULAR ACCIDENT WITH INFARCT"
+    price_aed: 6831
+    relative_weight: 0.8037
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014142"
+    category: IM
+    description: "CEREBROVASCULAR ACCIDENT WITH INFARCT W/CC"
+    price_aed: 11256
+    relative_weight: 1.3242
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014143"
+    category: IM
+    description: "CEREBROVASCULAR ACCIDENT WITH INFARCT W/MCC"
+    price_aed: 30274
+    relative_weight: 3.5616
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014151"
+    category: IM
+    description: "NON-SPECIFIC CVA & PRE-CEREBRAL OCCLUSION WITHOUT INFARCT"
+    price_aed: 5059
+    relative_weight: 0.5952
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014152"
+    category: IM
+    description: "NON-SPECIFIC CVA & PRE-CEREBRAL OCCLUSION WITHOUT INFARCT W/CC"
+    price_aed: 9039
+    relative_weight: 1.0634
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014153"
+    category: IM
+    description: "NON-SPECIFIC CVA & PRE-CEREBRAL OCCLUSION WITHOUT INFARCT W/MCC"
+    price_aed: 25075
+    relative_weight: 2.95
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014161"
+    category: IM
+    description: "TRANSIENT ISCHEMIA"
+    price_aed: 4990
+    relative_weight: 0.587
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014162"
+    category: IM
+    description: "TRANSIENT ISCHEMIA W/CC"
+    price_aed: 7115
+    relative_weight: 0.837
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014163"
+    category: IM
+    description: "TRANSIENT ISCHEMIA W/MCC"
+    price_aed: 10488
+    relative_weight: 1.2339
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014171"
+    category: IM
+    description: "CRANIAL & PERIPHERAL NERVE DISORDERS"
+    price_aed: 11022
+    relative_weight: 1.2967
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014172"
+    category: IM
+    description: "CRANIAL & PERIPHERAL NERVE DISORDERS W/CC"
+    price_aed: 17968
+    relative_weight: 2.1139
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014173"
+    category: IM
+    description: "CRANIAL & PERIPHERAL NERVE DISORDERS W/MCC"
+    price_aed: 18329
+    relative_weight: 2.1564
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014181"
+    category: IM
+    description: "BACTERIAL & TUBERCULOUS INFECTIONS OF NERVOUS SYSTEM"
+    price_aed: 10490
+    relative_weight: 1.2341
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014182"
+    category: IM
+    description: "BACTERIAL & TUBERCULOUS INFECTIONS OF NERVOUS SYSTEM W/CC"
+    price_aed: 18695
+    relative_weight: 2.1994
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014183"
+    category: IM
+    description: "BACTERIAL & TUBERCULOUS INFECTIONS OF NERVOUS SYSTEM W/MCC"
+    price_aed: 34271
+    relative_weight: 4.0319
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014191"
+    category: IM
+    description: "NON-BACTERIAL INFECTIONS OF NERVOUS SYSTEM EXCEPT VIRAL MENINGITIS"
+    price_aed: 21814
+    relative_weight: 2.5663
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014192"
+    category: IM
+    description: "NON-BACTERIAL INFECTIONS OF NERVOUS SYSTEM EXCEPT VIRAL MENINGITIS W/CC"
+    price_aed: 31710
+    relative_weight: 3.7306
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014193"
+    category: IM
+    description: "NON-BACTERIAL INFECTIONS OF NERVOUS SYSTEM EXCEPT VIRAL MENINGITIS W/MCC"
+    price_aed: 55024
+    relative_weight: 6.4734
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014201"
+    category: IM
+    description: "VIRAL MENINGITIS"
+    price_aed: 6195
+    relative_weight: 0.7288
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014202"
+    category: IM
+    description: "VIRAL MENINGITIS W/CC"
+    price_aed: 7196
+    relative_weight: 0.8466
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014203"
+    category: IM
+    description: "VIRAL MENINGITIS W/MCC"
+    price_aed: 15630
+    relative_weight: 1.8388
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014211"
+    category: IM
+    description: "NON-TRAUMATIC STUPOR & COMA"
+    price_aed: 3787
+    relative_weight: 0.4455
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014212"
+    category: IM
+    description: "NON-TRAUMATIC STUPOR & COMA W/CC"
+    price_aed: 8226
+    relative_weight: 0.9678
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014213"
+    category: IM
+    description: "NON-TRAUMATIC STUPOR & COMA W/MCC"
+    price_aed: 46325
+    relative_weight: 5.45
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014221"
+    category: IM
+    description: "SEIZURE"
+    price_aed: 2822
+    relative_weight: 0.332
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014222"
+    category: IM
+    description: "SEIZURE W/CC"
+    price_aed: 5141
+    relative_weight: 0.6048
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014223"
+    category: IM
+    description: "SEIZURE W/MCC"
+    price_aed: 11628
+    relative_weight: 1.368
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014231"
+    category: IM
+    description: "MIGRAINE & OTHER HEADACHES"
+    price_aed: 3148
+    relative_weight: 0.3703
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014232"
+    category: IM
+    description: "MIGRAINE & OTHER HEADACHES W/CC"
+    price_aed: 5308
+    relative_weight: 0.6245
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014233"
+    category: IM
+    description: "MIGRAINE & OTHER HEADACHES W/MCC"
+    price_aed: 10601
+    relative_weight: 1.2472
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014241"
+    category: IM
+    description: "HEAD TRAUMA"
+    price_aed: 3881
+    relative_weight: 0.4566
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014242"
+    category: IM
+    description: "HEAD TRAUMA W/CC"
+    price_aed: 12791
+    relative_weight: 1.5048
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014243"
+    category: IM
+    description: "HEAD TRAUMA W/MCC"
+    price_aed: 45013
+    relative_weight: 5.2956
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014251"
+    category: IM
+    description: "CONCUSSION"
+    price_aed: 2822
+    relative_weight: 0.332
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014252"
+    category: IM
+    description: "CONCUSSION W/CC"
+    price_aed: 5456
+    relative_weight: 0.6419
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014253"
+    category: IM
+    description: "CONCUSSION W/MCC"
+    price_aed: 16486
+    relative_weight: 1.9395
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014261"
+    category: IM
+    description: "OTHER NERVOUS SYSTEM DISORDERS"
+    price_aed: 4627
+    relative_weight: 0.5444
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014262"
+    category: IM
+    description: "OTHER NERVOUS SYSTEM DISORDERS W/CC"
+    price_aed: 8066
+    relative_weight: 0.9489
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "014263"
+    category: IM
+    description: "OTHER NERVOUS SYSTEM DISORDERS W/MCC"
+    price_aed: 19802
+    relative_weight: 2.3297
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "021201"
+    category: IP
+    description: "ORBITAL & EXTRAOCULAR PROCEDURES"
+    price_aed: 4254
+    relative_weight: 0.5005
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "021202"
+    category: IP
+    description: "ORBITAL & EXTRAOCULAR PROCEDURES W/CC"
+    price_aed: 5578
+    relative_weight: 0.6562
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "021203"
+    category: IP
+    description: "ORBITAL & EXTRAOCULAR PROCEDURES W/MCC"
+    price_aed: 10877
+    relative_weight: 1.2796
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "021301"
+    category: IP
+    description: "INTRAOCULAR & LENS PROCEDURES"
+    price_aed: 6112
+    relative_weight: 0.719
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "021302"
+    category: IP
+    description: "INTRAOCULAR & LENS PROCEDURES W/CC"
+    price_aed: 9530
+    relative_weight: 1.1212
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "021303"
+    category: IP
+    description: "INTRAOCULAR & LENS PROCEDURES W/MCC"
+    price_aed: 12395
+    relative_weight: 1.4582
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "024101"
+    category: IM
+    description: "ACUTE MAJOR EYE INFECTIONS"
+    price_aed: 4796
+    relative_weight: 0.5642
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "024102"
+    category: IM
+    description: "ACUTE MAJOR EYE INFECTIONS W/CC"
+    price_aed: 6630
+    relative_weight: 0.78
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "024103"
+    category: IM
+    description: "ACUTE MAJOR EYE INFECTIONS W/MCC"
+    price_aed: 12946
+    relative_weight: 1.523
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "024111"
+    category: IM
+    description: "NEUROLOGICAL EYE DISORDERS"
+    price_aed: 6877
+    relative_weight: 0.809
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "024112"
+    category: IM
+    description: "NEUROLOGICAL EYE DISORDERS W/CC"
+    price_aed: 7644
+    relative_weight: 0.8993
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "024113"
+    category: IM
+    description: "NEUROLOGICAL EYE DISORDERS W/MCC"
+    price_aed: 8543
+    relative_weight: 1.0051
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "024121"
+    category: IM
+    description: "OTHER EYE DISORDERS"
+    price_aed: 3162
+    relative_weight: 0.372
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "024122"
+    category: IM
+    description: "OTHER EYE DISORDERS W/CC"
+    price_aed: 4084
+    relative_weight: 0.4805
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "024123"
+    category: IM
+    description: "OTHER EYE DISORDERS W/MCC"
+    price_aed: 12015
+    relative_weight: 1.4135
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031101"
+    category: IP
+    description: "COMPLEX LARYNX PROCEDURES"
+    price_aed: 17837
+    relative_weight: 2.0985
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031102"
+    category: IP
+    description: "COMPLEX LARYNX PROCEDURES W/CC"
+    price_aed: 26463
+    relative_weight: 3.1133
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031103"
+    category: IP
+    description: "COMPLEX LARYNX PROCEDURES W/MCC"
+    price_aed: 32323
+    relative_weight: 3.8027
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031111"
+    category: IP
+    description: "OTHER COMPLEX HEAD & NECK PROCEDURES"
+    price_aed: 131998
+    relative_weight: 15.5292
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031112"
+    category: IP
+    description: "OTHER COMPLEX HEAD & NECK PROCEDURES W/CC"
+    price_aed: 144830
+    relative_weight: 17.0388
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031113"
+    category: IP
+    description: "OTHER COMPLEX HEAD & NECK PROCEDURES W/MCC"
+    price_aed: 158440
+    relative_weight: 18.64
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031121"
+    category: IP
+    description: "SINUS & MASTOID PROCEDURES"
+    price_aed: 7787
+    relative_weight: 0.9161
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031122"
+    category: IP
+    description: "SINUS & MASTOID PROCEDURES W/CC"
+    price_aed: 9932
+    relative_weight: 1.1685
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031123"
+    category: IP
+    description: "SINUS & MASTOID PROCEDURES W/MCC"
+    price_aed: 19989
+    relative_weight: 2.3517
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031131"
+    category: IP
+    description: "SALIVARY GLAND PROCEDURES"
+    price_aed: 5528
+    relative_weight: 0.6503
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031132"
+    category: IP
+    description: "SALIVARY GLAND PROCEDURES W/CC"
+    price_aed: 8120
+    relative_weight: 0.9553
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031133"
+    category: IP
+    description: "SALIVARY GLAND PROCEDURES W/MCC"
+    price_aed: 16368
+    relative_weight: 1.9257
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031141"
+    category: IP
+    description: "CLEFT LIP & PALATE REPAIR"
+    price_aed: 5687
+    relative_weight: 0.669
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031142"
+    category: IP
+    description: "CLEFT LIP & PALATE REPAIR W/CC"
+    price_aed: 6636
+    relative_weight: 0.7807
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031143"
+    category: IP
+    description: "CLEFT LIP & PALATE REPAIR W/MCC"
+    price_aed: 13206
+    relative_weight: 1.5536
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031151"
+    category: IP
+    description: "TONSIL & ADENOID PROCEDURES"
+    price_aed: 3465
+    relative_weight: 0.4076
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031152"
+    category: IP
+    description: "TONSIL & ADENOID PROCEDURES W/CC"
+    price_aed: 3485
+    relative_weight: 0.41
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031153"
+    category: IP
+    description: "TONSIL & ADENOID PROCEDURES W/MCC"
+    price_aed: 7688
+    relative_weight: 0.9045
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031201"
+    category: IP
+    description: "OTHER EAR, NOSE, MOUTH & THROAT PROCEDURES"
+    price_aed: 6795
+    relative_weight: 0.7994
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031202"
+    category: IP
+    description: "OTHER EAR, NOSE, MOUTH & THROAT PROCEDURES W/CC"
+    price_aed: 9433
+    relative_weight: 1.1098
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031203"
+    category: IP
+    description: "OTHER EAR, NOSE, MOUTH & THROAT PROCEDURES W/MCC"
+    price_aed: 56569
+    relative_weight: 6.6552
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031301"
+    category: IP
+    description: "MOUTH PROCEDURES"
+    price_aed: 4627
+    relative_weight: 0.5444
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031302"
+    category: IP
+    description: "MOUTH PROCEDURES W/CC"
+    price_aed: 7507
+    relative_weight: 0.8832
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "031303"
+    category: IP
+    description: "MOUTH PROCEDURES W/MCC"
+    price_aed: 16498
+    relative_weight: 1.9409
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034101"
+    category: IM
+    description: "EAR, NOSE, MOUTH & THROAT MALIGNANCY"
+    price_aed: 12311
+    relative_weight: 1.4483
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034102"
+    category: IM
+    description: "EAR, NOSE, MOUTH & THROAT MALIGNANCY W/CC"
+    price_aed: 27670
+    relative_weight: 3.2553
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034103"
+    category: IM
+    description: "EAR, NOSE, MOUTH & THROAT MALIGNANCY W/MCC"
+    price_aed: 33721
+    relative_weight: 3.9672
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034111"
+    category: IM
+    description: "DYSEQUILIBRIUM"
+    price_aed: 3525
+    relative_weight: 0.4147
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034112"
+    category: IM
+    description: "DYSEQUILIBRIUM W/CC"
+    price_aed: 5156
+    relative_weight: 0.6066
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034113"
+    category: IM
+    description: "DYSEQUILIBRIUM W/MCC"
+    price_aed: 6751
+    relative_weight: 0.7942
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034121"
+    category: IM
+    description: "EPISTAXIS"
+    price_aed: 3681
+    relative_weight: 0.433
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034122"
+    category: IM
+    description: "EPISTAXIS W/CC"
+    price_aed: 7927
+    relative_weight: 0.9326
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034123"
+    category: IM
+    description: "EPISTAXIS W/MCC"
+    price_aed: 15965
+    relative_weight: 1.8782
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034131"
+    category: IM
+    description: "EPIGLOTTITIS, OTITIS MEDIA, UPPER RESPIRATORY TRACT INFECTION & LARYNGOTRACHEITIS"
+    price_aed: 2443
+    relative_weight: 0.2874
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034132"
+    category: IM
+    description: "EPIGLOTTITIS, OTITIS MEDIA, UPPER RESPIRATORY TRACT INFECTION & LARYNGOTRACHEITIS W/CC"
+    price_aed: 3209
+    relative_weight: 0.3775
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034133"
+    category: IM
+    description: "EPIGLOTTITIS, OTITIS MEDIA, UPPER RESPIRATORY TRACT INFECTION & LARYNGOTRACHEITIS W/MCC"
+    price_aed: 3720
+    relative_weight: 0.4377
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034141"
+    category: IM
+    description: "DENTAL & ORAL DISEASE"
+    price_aed: 3567
+    relative_weight: 0.4196
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034142"
+    category: IM
+    description: "DENTAL & ORAL DISEASE W/CC"
+    price_aed: 4774
+    relative_weight: 0.5616
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034143"
+    category: IM
+    description: "DENTAL & ORAL DISEASE W/MCC"
+    price_aed: 15470
+    relative_weight: 1.82
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034151"
+    category: IM
+    description: "OTHER EAR, NOSE, MOUTH & THROAT DIAGNOSES"
+    price_aed: 3956
+    relative_weight: 0.4654
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034152"
+    category: IM
+    description: "OTHER EAR, NOSE, MOUTH & THROAT DIAGNOSES W/CC"
+    price_aed: 6080
+    relative_weight: 0.7153
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "034153"
+    category: IM
+    description: "OTHER EAR, NOSE, MOUTH & THROAT DIAGNOSES W/MCC"
+    price_aed: 16293
+    relative_weight: 1.9168
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "041011"
+    category: IP
+    description: "ECMO OR LONG TERM MECHANICAL VENTILATION WITH TRACHEOSTOMY"
+    price_aed: 61087
+    relative_weight: 7.1867
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "041012"
+    category: IP
+    description: "ECMO OR LONG TERM MECHANICAL VENTILATION WITH TRACHEOSTOMY W/CC"
+    price_aed: 70067
+    relative_weight: 8.2432
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "041013"
+    category: IP
+    description: "ECMO OR LONG TERM MECHANICAL VENTILATION WITH TRACHEOSTOMY W/MCC"
+    price_aed: 140934
+    relative_weight: 16.5805
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "041021"
+    category: IP
+    description: "LONG TERM MECHANICAL VENTILATION WITHOUT TRACHEOSTOMY"
+    price_aed: 44060
+    relative_weight: 5.1835
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "041022"
+    category: IP
+    description: "LONG TERM MECHANICAL VENTILATION WITHOUT TRACHEOSTOMY W/CC"
+    price_aed: 47200
+    relative_weight: 5.5529
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "041023"
+    category: IP
+    description: "LONG TERM MECHANICAL VENTILATION WITHOUT TRACHEOSTOMY W/MCC"
+    price_aed: 60408
+    relative_weight: 7.1068
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "041101"
+    category: IP
+    description: "COMPLEX RESPIRATORY SYSTEM PROCEDURES"
+    price_aed: 15918
+    relative_weight: 1.8727
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "041102"
+    category: IP
+    description: "COMPLEX RESPIRATORY SYSTEM PROCEDURES W/CC"
+    price_aed: 19397
+    relative_weight: 2.282
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "041103"
+    category: IP
+    description: "COMPLEX RESPIRATORY SYSTEM PROCEDURES W/MCC"
+    price_aed: 36195
+    relative_weight: 4.2582
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "041201"
+    category: IP
+    description: "NON-COMPLEX RESPIRATORY SYSTEM PROCEDURES"
+    price_aed: 11459
+    relative_weight: 1.3481
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "041202"
+    category: IP
+    description: "NON-COMPLEX RESPIRATORY SYSTEM PROCEDURES W/CC"
+    price_aed: 20033
+    relative_weight: 2.3568
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "041203"
+    category: IP
+    description: "NON-COMPLEX RESPIRATORY SYSTEM PROCEDURES W/MCC"
+    price_aed: 33380
+    relative_weight: 3.927
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "041301"
+    category: IP
+    description: "MODERATELY COMPLEX RESPIRATORY SYSTEM PROCEDURES"
+    price_aed: 10560
+    relative_weight: 1.2423
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "041302"
+    category: IP
+    description: "MODERATELY COMPLEX RESPIRATORY SYSTEM PROCEDURES W/CC"
+    price_aed: 21818
+    relative_weight: 2.5668
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "041303"
+    category: IP
+    description: "MODERATELY COMPLEX RESPIRATORY SYSTEM PROCEDURES W/MCC"
+    price_aed: 41177
+    relative_weight: 4.8443
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044101"
+    category: IM
+    description: "CYSTIC FIBROSIS"
+    price_aed: 12211
+    relative_weight: 1.4366
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044102"
+    category: IM
+    description: "CYSTIC FIBROSIS W/CC"
+    price_aed: 14949
+    relative_weight: 1.7587
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044103"
+    category: IM
+    description: "CYSTIC FIBROSIS W/MCC"
+    price_aed: 22327
+    relative_weight: 2.6267
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044111"
+    category: IM
+    description: "RESPIRATORY FAILURE"
+    price_aed: 12245
+    relative_weight: 1.4406
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044112"
+    category: IM
+    description: "RESPIRATORY FAILURE W/CC"
+    price_aed: 17048
+    relative_weight: 2.0057
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044113"
+    category: IM
+    description: "RESPIRATORY FAILURE W/MCC"
+    price_aed: 25322
+    relative_weight: 2.979
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044121"
+    category: IM
+    description: "PULMONARY EMBOLISM"
+    price_aed: 8743
+    relative_weight: 1.0286
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044122"
+    category: IM
+    description: "PULMONARY EMBOLISM W/CC"
+    price_aed: 10571
+    relative_weight: 1.2437
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044123"
+    category: IM
+    description: "PULMONARY EMBOLISM W/MCC"
+    price_aed: 16512
+    relative_weight: 1.9426
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044131"
+    category: IM
+    description: "MAJOR CHEST TRAUMA"
+    price_aed: 4669
+    relative_weight: 0.5493
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044132"
+    category: IM
+    description: "MAJOR CHEST TRAUMA W/CC"
+    price_aed: 6079
+    relative_weight: 0.7152
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044133"
+    category: IM
+    description: "MAJOR CHEST TRAUMA W/MCC"
+    price_aed: 16851
+    relative_weight: 1.9825
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044141"
+    category: IM
+    description: "RESPIRATORY MALIGNANCY"
+    price_aed: 13590
+    relative_weight: 1.5988
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044142"
+    category: IM
+    description: "RESPIRATORY MALIGNANCY W/CC"
+    price_aed: 19848
+    relative_weight: 2.335
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044143"
+    category: IM
+    description: "RESPIRATORY MALIGNANCY W/MCC"
+    price_aed: 27928
+    relative_weight: 3.2857
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044151"
+    category: IM
+    description: "RESPIRATORY INFECTIONS & INFLAMMATIONS"
+    price_aed: 13800
+    relative_weight: 1.6235
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044152"
+    category: IM
+    description: "RESPIRATORY INFECTIONS & INFLAMMATIONS W/CC"
+    price_aed: 15480
+    relative_weight: 1.8212
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044153"
+    category: IM
+    description: "RESPIRATORY INFECTIONS & INFLAMMATIONS W/MCC"
+    price_aed: 25303
+    relative_weight: 2.9768
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044161"
+    category: IM
+    description: "SIMPLE PNEUMONIA & WHOOPING COUGH"
+    price_aed: 3699
+    relative_weight: 0.4352
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044162"
+    category: IM
+    description: "SIMPLE PNEUMONIA & WHOOPING COUGH W/CC"
+    price_aed: 5194
+    relative_weight: 0.611
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044163"
+    category: IM
+    description: "SIMPLE PNEUMONIA & WHOOPING COUGH W/MCC"
+    price_aed: 11976
+    relative_weight: 1.4089
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044171"
+    category: IM
+    description: "CHRONIC OBSTRUCTIVE PULMONARY DISEASE"
+    price_aed: 5970
+    relative_weight: 0.7023
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044172"
+    category: IM
+    description: "CHRONIC OBSTRUCTIVE PULMONARY DISEASE W/CC"
+    price_aed: 8560
+    relative_weight: 1.0071
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044173"
+    category: IM
+    description: "CHRONIC OBSTRUCTIVE PULMONARY DISEASE W/MCC"
+    price_aed: 11899
+    relative_weight: 1.3999
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044181"
+    category: IM
+    description: "ASTHMA & BRONCHIOLITIS"
+    price_aed: 2868
+    relative_weight: 0.3374
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044182"
+    category: IM
+    description: "ASTHMA & BRONCHIOLITIS W/CC"
+    price_aed: 4514
+    relative_weight: 0.531
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044183"
+    category: IM
+    description: "ASTHMA & BRONCHIOLITIS W/MCC"
+    price_aed: 4763
+    relative_weight: 0.5604
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044191"
+    category: IM
+    description: "INTERSTITIAL LUNG DISEASE"
+    price_aed: 6098
+    relative_weight: 0.7174
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044192"
+    category: IM
+    description: "INTERSTITIAL LUNG DISEASE W/CC"
+    price_aed: 9492
+    relative_weight: 1.1167
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044193"
+    category: IM
+    description: "INTERSTITIAL LUNG DISEASE W/MCC"
+    price_aed: 20299
+    relative_weight: 2.3881
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044201"
+    category: IM
+    description: "PNEUMOTHORAX & PLEURAL EFFUSION"
+    price_aed: 6087
+    relative_weight: 0.7161
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044202"
+    category: IM
+    description: "PNEUMOTHORAX & PLEURAL EFFUSION W/CC"
+    price_aed: 11308
+    relative_weight: 1.3303
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044203"
+    category: IM
+    description: "PNEUMOTHORAX & PLEURAL EFFUSION W/MCC"
+    price_aed: 15849
+    relative_weight: 1.8646
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044211"
+    category: IM
+    description: "RESPIRATORY SYSTEM SIGNS, SYMPTOMS & OTHER DIAGNOSES"
+    price_aed: 3214
+    relative_weight: 0.3781
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044212"
+    category: IM
+    description: "RESPIRATORY SYSTEM SIGNS, SYMPTOMS & OTHER DIAGNOSES W/CC"
+    price_aed: 4911
+    relative_weight: 0.5778
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "044213"
+    category: IM
+    description: "RESPIRATORY SYSTEM SIGNS, SYMPTOMS & OTHER DIAGNOSES W/MCC"
+    price_aed: 9440
+    relative_weight: 1.1106
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051011"
+    category: IP
+    description: "HEART &/OR LUNG TRANSPLANTATION"
+    price_aed: 123846
+    relative_weight: 14.5701
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051012"
+    category: IP
+    description: "HEART &/OR LUNG TRANSPLANTATION W/CC"
+    price_aed: 126570
+    relative_weight: 14.8906
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051013"
+    category: IP
+    description: "HEART &/OR LUNG TRANSPLANTATION W/MCC"
+    price_aed: 190766
+    relative_weight: 22.443
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051021"
+    category: IP
+    description: "CARDIAC VALVE PROCEDURES WITH CARDIAC CATHETERIZATION"
+    price_aed: 45379
+    relative_weight: 5.3387
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051022"
+    category: IP
+    description: "CARDIAC VALVE PROCEDURES WITH CARDIAC CATHETERIZATION W/CC"
+    price_aed: 77499
+    relative_weight: 9.1175
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051023"
+    category: IP
+    description: "CARDIAC VALVE PROCEDURES WITH CARDIAC CATHETERIZATION W/MCC"
+    price_aed: 92628
+    relative_weight: 10.8974
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051031"
+    category: IP
+    description: "COMPLEX CARDIOTHORACIC REPAIR OF HEART ANOMALY"
+    price_aed: 27146
+    relative_weight: 3.1937
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051032"
+    category: IP
+    description: "COMPLEX CARDIOTHORACIC REPAIR OF HEART ANOMALY W/CC"
+    price_aed: 49098
+    relative_weight: 5.7762
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051033"
+    category: IP
+    description: "COMPLEX CARDIOTHORACIC REPAIR OF HEART ANOMALY W/MCC"
+    price_aed: 112170
+    relative_weight: 13.1965
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051041"
+    category: IP
+    description: "CARDIAC VALVE PROCEDURES WITHOUT CARDIAC CATHETERIZATION"
+    price_aed: 36372
+    relative_weight: 4.279
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051042"
+    category: IP
+    description: "CARDIAC VALVE PROCEDURES WITHOUT CARDIAC CATHETERIZATION W/CC"
+    price_aed: 46669
+    relative_weight: 5.4905
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051043"
+    category: IP
+    description: "CARDIAC VALVE PROCEDURES WITHOUT CARDIAC CATHETERIZATION W/MCC"
+    price_aed: 78749
+    relative_weight: 9.2646
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051051"
+    category: IP
+    description: "CORONARY BYPASS WITH CARDIAC CATHETERIZATION"
+    price_aed: 39898
+    relative_weight: 4.6939
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051052"
+    category: IP
+    description: "CORONARY BYPASS WITH CARDIAC CATHETERIZATION W/CC"
+    price_aed: 63087
+    relative_weight: 7.422
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051053"
+    category: IP
+    description: "CORONARY BYPASS WITH CARDIAC CATHETERIZATION W/MCC"
+    price_aed: 66388
+    relative_weight: 7.8104
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051061"
+    category: IP
+    description: "OTHER CARDIOTHORACIC PROCEDURES"
+    price_aed: 22145
+    relative_weight: 2.6053
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051062"
+    category: IP
+    description: "OTHER CARDIOTHORACIC PROCEDURES W/CC"
+    price_aed: 31639
+    relative_weight: 3.7222
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051063"
+    category: IP
+    description: "OTHER CARDIOTHORACIC PROCEDURES W/MCC"
+    price_aed: 49614
+    relative_weight: 5.8369
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051071"
+    category: IP
+    description: "CORONARY BYPASS WITHOUT CARDIAC CATHETERIZATION"
+    price_aed: 36672
+    relative_weight: 4.3143
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051072"
+    category: IP
+    description: "CORONARY BYPASS WITHOUT CARDIAC CATHETERIZATION W/CC"
+    price_aed: 41608
+    relative_weight: 4.895
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051073"
+    category: IP
+    description: "CORONARY BYPASS WITHOUT CARDIAC CATHETERIZATION W/MCC"
+    price_aed: 58998
+    relative_weight: 6.9409
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051111"
+    category: IP
+    description: "CARDIAC DEFIBRILLATOR & HEART ASSIST SYSTEM INSERTION"
+    price_aed: 52564
+    relative_weight: 6.184
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051112"
+    category: IP
+    description: "CARDIAC DEFIBRILLATOR & HEART ASSIST SYSTEM INSERTION W/CC"
+    price_aed: 59141
+    relative_weight: 6.9578
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051113"
+    category: IP
+    description: "CARDIAC DEFIBRILLATOR & HEART ASSIST SYSTEM INSERTION W/MCC"
+    price_aed: 78882
+    relative_weight: 9.2802
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051121"
+    category: IP
+    description: "COMPLEX THORACIC VASCULAR PROCEDURES"
+    price_aed: 16809
+    relative_weight: 1.9775
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051122"
+    category: IP
+    description: "COMPLEX THORACIC VASCULAR PROCEDURES W/CC"
+    price_aed: 19346
+    relative_weight: 2.276
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051123"
+    category: IP
+    description: "COMPLEX THORACIC VASCULAR PROCEDURES W/MCC"
+    price_aed: 34235
+    relative_weight: 4.0277
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051131"
+    category: IP
+    description: "COMPLEX ABDOMINAL VASCULAR PROCEDURES"
+    price_aed: 20800
+    relative_weight: 2.4471
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051132"
+    category: IP
+    description: "COMPLEX ABDOMINAL VASCULAR PROCEDURES W/CC"
+    price_aed: 30067
+    relative_weight: 3.5373
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051133"
+    category: IP
+    description: "COMPLEX ABDOMINAL VASCULAR PROCEDURES W/MCC"
+    price_aed: 51352
+    relative_weight: 6.0414
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051141"
+    category: IP
+    description: "PERMANENT CARDIAC PACEMAKER INSERTION"
+    price_aed: 29278
+    relative_weight: 3.4445
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051142"
+    category: IP
+    description: "PERMANENT CARDIAC PACEMAKER INSERTION W/CC"
+    price_aed: 35652
+    relative_weight: 4.1943
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051143"
+    category: IP
+    description: "PERMANENT CARDIAC PACEMAKER INSERTION W/MCC"
+    price_aed: 42100
+    relative_weight: 4.9529
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051151"
+    category: IP
+    description: "CARDIAC CATHETERIZATION"
+    price_aed: 8314
+    relative_weight: 0.9781
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051152"
+    category: IP
+    description: "CARDIAC CATHETERIZATION W/CC"
+    price_aed: 10413
+    relative_weight: 1.2251
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051153"
+    category: IP
+    description: "CARDIAC CATHETERIZATION W/MCC"
+    price_aed: 11798
+    relative_weight: 1.388
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051161"
+    category: IP
+    description: "CARDIAC PACEMAKER & DEFIBRILLATOR REVISION EXCEPT DEVICE REPLACEMENT"
+    price_aed: 11560
+    relative_weight: 1.36
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051162"
+    category: IP
+    description: "CARDIAC PACEMAKER & DEFIBRILLATOR REVISION EXCEPT DEVICE REPLACEMENT W/CC"
+    price_aed: 16351
+    relative_weight: 1.9236
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051163"
+    category: IP
+    description: "CARDIAC PACEMAKER & DEFIBRILLATOR REVISION EXCEPT DEVICE REPLACEMENT W/MCC"
+    price_aed: 39702
+    relative_weight: 4.6708
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051171"
+    category: IP
+    description: "VEIN LIGATION & STRIPPING"
+    price_aed: 5934
+    relative_weight: 0.6981
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051172"
+    category: IP
+    description: "VEIN LIGATION & STRIPPING W/CC"
+    price_aed: 7713
+    relative_weight: 0.9074
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051173"
+    category: IP
+    description: "VEIN LIGATION & STRIPPING W/MCC"
+    price_aed: 15170
+    relative_weight: 1.7847
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051201"
+    category: IP
+    description: "OTHER CIRCULATORY SYSTEM PROCEDURES"
+    price_aed: 16697
+    relative_weight: 1.9643
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051202"
+    category: IP
+    description: "OTHER CIRCULATORY SYSTEM PROCEDURES W/CC"
+    price_aed: 23966
+    relative_weight: 2.8195
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051203"
+    category: IP
+    description: "OTHER CIRCULATORY SYSTEM PROCEDURES W/MCC"
+    price_aed: 36512
+    relative_weight: 4.2955
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051301"
+    category: IP
+    description: "CARDIAC PACEMAKER & DEFIBRILLATOR DEVICE REPLACEMENT"
+    price_aed: 19354
+    relative_weight: 2.2769
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051302"
+    category: IP
+    description: "CARDIAC PACEMAKER & DEFIBRILLATOR DEVICE REPLACEMENT W/CC"
+    price_aed: 45179
+    relative_weight: 5.3152
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051303"
+    category: IP
+    description: "CARDIAC PACEMAKER & DEFIBRILLATOR DEVICE REPLACEMENT W/MCC"
+    price_aed: 46134
+    relative_weight: 5.4275
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051401"
+    category: IP
+    description: "PERCUTANEOUS CARDIOVASCULAR PROCEDURES"
+    price_aed: 20985
+    relative_weight: 2.4688
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051402"
+    category: IP
+    description: "PERCUTANEOUS CARDIOVASCULAR PROCEDURES W/CC"
+    price_aed: 22788
+    relative_weight: 2.6809
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "051403"
+    category: IP
+    description: "PERCUTANEOUS CARDIOVASCULAR PROCEDURES W/MCC"
+    price_aed: 26962
+    relative_weight: 3.172
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054101"
+    category: IM
+    description: "ACUTE MYOCARDIAL INFARCTION"
+    price_aed: 14787
+    relative_weight: 1.7396
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054102"
+    category: IM
+    description: "ACUTE MYOCARDIAL INFARCTION W/CC"
+    price_aed: 18781
+    relative_weight: 2.2095
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054103"
+    category: IM
+    description: "ACUTE MYOCARDIAL INFARCTION W/MCC"
+    price_aed: 29231
+    relative_weight: 3.4389
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054111"
+    category: IM
+    description: "ACUTE & SUBACUTE ENDOCARDITIS"
+    price_aed: 12130
+    relative_weight: 1.427
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054112"
+    category: IM
+    description: "ACUTE & SUBACUTE ENDOCARDITIS W/CC"
+    price_aed: 15108
+    relative_weight: 1.7774
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054113"
+    category: IM
+    description: "ACUTE & SUBACUTE ENDOCARDITIS W/MCC"
+    price_aed: 36296
+    relative_weight: 4.2701
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054121"
+    category: IM
+    description: "HEART FAILURE"
+    price_aed: 6042
+    relative_weight: 0.7108
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054122"
+    category: IM
+    description: "HEART FAILURE W/CC"
+    price_aed: 7360
+    relative_weight: 0.8659
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054123"
+    category: IM
+    description: "HEART FAILURE W/MCC"
+    price_aed: 13892
+    relative_weight: 1.6343
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054131"
+    category: IM
+    description: "DEEP VEIN THROMBOPHLEBITIS"
+    price_aed: 5495
+    relative_weight: 0.6465
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054132"
+    category: IM
+    description: "DEEP VEIN THROMBOPHLEBITIS W/CC"
+    price_aed: 6694
+    relative_weight: 0.7875
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054133"
+    category: IM
+    description: "DEEP VEIN THROMBOPHLEBITIS W/MCC"
+    price_aed: 9211
+    relative_weight: 1.0836
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054141"
+    category: IM
+    description: "CARDIAC ARREST, UNEXPLAINED"
+    price_aed: 14940
+    relative_weight: 1.7576
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054142"
+    category: IM
+    description: "CARDIAC ARREST, UNEXPLAINED W/CC"
+    price_aed: 17890
+    relative_weight: 2.1047
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054143"
+    category: IM
+    description: "CARDIAC ARREST, UNEXPLAINED W/MCC"
+    price_aed: 28195
+    relative_weight: 3.3171
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054151"
+    category: IM
+    description: "PERIPHERAL & OTHER VASCULAR DISORDERS"
+    price_aed: 6030
+    relative_weight: 0.7094
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054152"
+    category: IM
+    description: "PERIPHERAL & OTHER VASCULAR DISORDERS W/CC"
+    price_aed: 11387
+    relative_weight: 1.3396
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054153"
+    category: IM
+    description: "PERIPHERAL & OTHER VASCULAR DISORDERS W/MCC"
+    price_aed: 26217
+    relative_weight: 3.0843
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054161"
+    category: IM
+    description: "ATHEROSCLEROSIS"
+    price_aed: 8662
+    relative_weight: 1.0191
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054162"
+    category: IM
+    description: "ATHEROSCLEROSIS W/CC"
+    price_aed: 13930
+    relative_weight: 1.6388
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054163"
+    category: IM
+    description: "ATHEROSCLEROSIS W/MCC"
+    price_aed: 22171
+    relative_weight: 2.6084
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054171"
+    category: IM
+    description: "HYPERTENSION"
+    price_aed: 4067
+    relative_weight: 0.4785
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054172"
+    category: IM
+    description: "HYPERTENSION W/CC"
+    price_aed: 5528
+    relative_weight: 0.6504
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054173"
+    category: IM
+    description: "HYPERTENSION W/MCC"
+    price_aed: 7410
+    relative_weight: 0.8718
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054181"
+    category: IM
+    description: "CARDIAC CONGENITAL & VALVULAR DISORDERS"
+    price_aed: 8414
+    relative_weight: 0.9899
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054182"
+    category: IM
+    description: "CARDIAC CONGENITAL & VALVULAR DISORDERS W/CC"
+    price_aed: 18300
+    relative_weight: 2.1529
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054183"
+    category: IM
+    description: "CARDIAC CONGENITAL & VALVULAR DISORDERS W/MCC"
+    price_aed: 35111
+    relative_weight: 4.1307
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054191"
+    category: IM
+    description: "CARDIAC ARRHYTHMIA & CONDUCTION DISORDERS"
+    price_aed: 4377
+    relative_weight: 0.5149
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054192"
+    category: IM
+    description: "CARDIAC ARRHYTHMIA & CONDUCTION DISORDERS W/CC"
+    price_aed: 6257
+    relative_weight: 0.7361
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054193"
+    category: IM
+    description: "CARDIAC ARRHYTHMIA & CONDUCTION DISORDERS W/MCC"
+    price_aed: 12800
+    relative_weight: 1.5059
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054201"
+    category: IM
+    description: "ANGINA PECTORIS & CHEST PAIN"
+    price_aed: 4660
+    relative_weight: 0.5482
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054202"
+    category: IM
+    description: "ANGINA PECTORIS & CHEST PAIN W/CC"
+    price_aed: 5368
+    relative_weight: 0.6315
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054203"
+    category: IM
+    description: "ANGINA PECTORIS & CHEST PAIN W/MCC"
+    price_aed: 6592
+    relative_weight: 0.7755
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054211"
+    category: IM
+    description: "SYNCOPE & COLLAPSE"
+    price_aed: 3889
+    relative_weight: 0.4575
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054212"
+    category: IM
+    description: "SYNCOPE & COLLAPSE W/CC"
+    price_aed: 4871
+    relative_weight: 0.5731
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054213"
+    category: IM
+    description: "SYNCOPE & COLLAPSE W/MCC"
+    price_aed: 6582
+    relative_weight: 0.7743
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054221"
+    category: IM
+    description: "CARDIOMYOPATHY"
+    price_aed: 4623
+    relative_weight: 0.5439
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054222"
+    category: IM
+    description: "CARDIOMYOPATHY W/CC"
+    price_aed: 6707
+    relative_weight: 0.789
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054223"
+    category: IM
+    description: "CARDIOMYOPATHY W/MCC"
+    price_aed: 27525
+    relative_weight: 3.2382
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054231"
+    category: IM
+    description: "MALFUNCTION, REACTION & COMPLICATION OF CARDIAOVASCOLAR DEVICE OR PROCEDURE"
+    price_aed: 5422
+    relative_weight: 0.6379
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054232"
+    category: IM
+    description: "MALFUNCTION, REACTION & COMPLICATION OF CARDIAOVASCOLAR DEVICE OR PROCEDURE W/CC"
+    price_aed: 7113
+    relative_weight: 0.8368
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054233"
+    category: IM
+    description: "MALFUNCTION, REACTION & COMPLICATION OF CARDIAOVASCOLAR DEVICE OR PROCEDURE W/MCC"
+    price_aed: 13809
+    relative_weight: 1.6246
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054241"
+    category: IM
+    description: "OTHER CIRCULATORY SYSTEM DIAGNOSES"
+    price_aed: 8062
+    relative_weight: 0.9485
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054242"
+    category: IM
+    description: "OTHER CIRCULATORY SYSTEM DIAGNOSES W/CC"
+    price_aed: 10944
+    relative_weight: 1.2875
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "054243"
+    category: IM
+    description: "OTHER CIRCULATORY SYSTEM DIAGNOSES W/MCC"
+    price_aed: 17859
+    relative_weight: 2.101
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061101"
+    category: IP
+    description: "NON-COMPLEX SMALL & LARGE BOWEL PROCEDURES"
+    price_aed: 9239
+    relative_weight: 1.0869
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061102"
+    category: IP
+    description: "NON-COMPLEX SMALL & LARGE BOWEL PROCEDURES W/CC"
+    price_aed: 14966
+    relative_weight: 1.7607
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061103"
+    category: IP
+    description: "NON-COMPLEX SMALL & LARGE BOWEL PROCEDURES W/MCC"
+    price_aed: 39288
+    relative_weight: 4.6221
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061111"
+    category: IP
+    description: "PERITONEAL ADHESIOLYSIS"
+    price_aed: 12778
+    relative_weight: 1.5033
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061112"
+    category: IP
+    description: "PERITONEAL ADHESIOLYSIS W/CC"
+    price_aed: 13310
+    relative_weight: 1.5659
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061113"
+    category: IP
+    description: "PERITONEAL ADHESIOLYSIS W/MCC"
+    price_aed: 28732
+    relative_weight: 3.3802
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061121"
+    category: IP
+    description: "HERNIA PROCEDURES EXCEPT INGUINAL & FEMORAL"
+    price_aed: 5700
+    relative_weight: 0.6706
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061122"
+    category: IP
+    description: "HERNIA PROCEDURES EXCEPT INGUINAL & FEMORAL W/CC"
+    price_aed: 7551
+    relative_weight: 0.8884
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061123"
+    category: IP
+    description: "HERNIA PROCEDURES EXCEPT INGUINAL & FEMORAL W/MCC"
+    price_aed: 16285
+    relative_weight: 1.9159
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061131"
+    category: IP
+    description: "APPENDICEAL PROCEDURES"
+    price_aed: 5924
+    relative_weight: 0.6969
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061132"
+    category: IP
+    description: "APPENDICEAL PROCEDURES W/CC"
+    price_aed: 8146
+    relative_weight: 0.9583
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061133"
+    category: IP
+    description: "APPENDICEAL PROCEDURES W/MCC"
+    price_aed: 14123
+    relative_weight: 1.6615
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061141"
+    category: IP
+    description: "INGUINAL & FEMORAL HERNIA PROCEDURES"
+    price_aed: 4622
+    relative_weight: 0.5438
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061142"
+    category: IP
+    description: "INGUINAL & FEMORAL HERNIA PROCEDURES W/CC"
+    price_aed: 5243
+    relative_weight: 0.6168
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061143"
+    category: IP
+    description: "INGUINAL & FEMORAL HERNIA PROCEDURES W/MCC"
+    price_aed: 10982
+    relative_weight: 1.292
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061201"
+    category: IP
+    description: "COMPLEX DIGESTIVE TRACT PROCEDURES"
+    price_aed: 9778
+    relative_weight: 1.1504
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061202"
+    category: IP
+    description: "COMPLEX DIGESTIVE TRACT PROCEDURES W/CC"
+    price_aed: 13067
+    relative_weight: 1.5373
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061203"
+    category: IP
+    description: "COMPLEX DIGESTIVE TRACT PROCEDURES W/MCC"
+    price_aed: 25815
+    relative_weight: 3.037
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061301"
+    category: IP
+    description: "NON-COMPLEX STOMACH, ESOPHAGEAL & DUODENAL PROCEDURES"
+    price_aed: 5834
+    relative_weight: 0.6863
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061302"
+    category: IP
+    description: "NON-COMPLEX STOMACH, ESOPHAGEAL & DUODENAL PROCEDURES W/CC"
+    price_aed: 16955
+    relative_weight: 1.9947
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061303"
+    category: IP
+    description: "NON-COMPLEX STOMACH, ESOPHAGEAL & DUODENAL PROCEDURES W/MCC"
+    price_aed: 45833
+    relative_weight: 5.3921
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061401"
+    category: IP
+    description: "OTHER DIGESTIVE SYSTEM PROCEDURES"
+    price_aed: 7709
+    relative_weight: 0.9069
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061402"
+    category: IP
+    description: "OTHER DIGESTIVE SYSTEM PROCEDURES W/CC"
+    price_aed: 16545
+    relative_weight: 1.9465
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061403"
+    category: IP
+    description: "OTHER DIGESTIVE SYSTEM PROCEDURES W/MCC"
+    price_aed: 23531
+    relative_weight: 2.7684
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061501"
+    category: IP
+    description: "ANAL PROCEDURES"
+    price_aed: 4322
+    relative_weight: 0.5085
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061502"
+    category: IP
+    description: "ANAL PROCEDURES W/CC"
+    price_aed: 5214
+    relative_weight: 0.6134
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "061503"
+    category: IP
+    description: "ANAL PROCEDURES W/MCC"
+    price_aed: 8021
+    relative_weight: 0.9436
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064101"
+    category: IM
+    description: "DIGESTIVE MALIGNANCY"
+    price_aed: 10021
+    relative_weight: 1.1789
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064102"
+    category: IM
+    description: "DIGESTIVE MALIGNANCY W/CC"
+    price_aed: 19669
+    relative_weight: 2.314
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064103"
+    category: IM
+    description: "DIGESTIVE MALIGNANCY W/MCC"
+    price_aed: 34299
+    relative_weight: 4.0352
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064111"
+    category: IM
+    description: "PEPTIC ULCER & GASTRITIS"
+    price_aed: 3033
+    relative_weight: 0.3568
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064112"
+    category: IM
+    description: "PEPTIC ULCER & GASTRITIS W/CC"
+    price_aed: 5759
+    relative_weight: 0.6775
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064113"
+    category: IM
+    description: "PEPTIC ULCER & GASTRITIS W/MCC"
+    price_aed: 8996
+    relative_weight: 1.0584
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064121"
+    category: IM
+    description: "ESOPHAGEAL DISORDERS"
+    price_aed: 2876
+    relative_weight: 0.3384
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064122"
+    category: IM
+    description: "ESOPHAGEAL DISORDERS W/CC"
+    price_aed: 5540
+    relative_weight: 0.6518
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064123"
+    category: IM
+    description: "ESOPHAGEAL DISORDERS W/MCC"
+    price_aed: 9483
+    relative_weight: 1.1157
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064131"
+    category: IM
+    description: "DIVERTICULITIS, DIVERTICULOSIS & INFLAMMATORY BOWEL DISEASE"
+    price_aed: 5626
+    relative_weight: 0.6619
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064132"
+    category: IM
+    description: "DIVERTICULITIS, DIVERTICULOSIS & INFLAMMATORY BOWEL DISEASE W/CC"
+    price_aed: 8930
+    relative_weight: 1.0506
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064133"
+    category: IM
+    description: "DIVERTICULITIS, DIVERTICULOSIS & INFLAMMATORY BOWEL DISEASE W/MCC"
+    price_aed: 12729
+    relative_weight: 1.4975
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064141"
+    category: IM
+    description: "GASTROINTESTINAL VASCULAR INSUFFICIENCY"
+    price_aed: 2544
+    relative_weight: 0.2993
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064142"
+    category: IM
+    description: "GASTROINTESTINAL VASCULAR INSUFFICIENCY W/CC"
+    price_aed: 13387
+    relative_weight: 1.5749
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064143"
+    category: IM
+    description: "GASTROINTESTINAL VASCULAR INSUFFICIENCY W/MCC"
+    price_aed: 67687
+    relative_weight: 7.9632
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064151"
+    category: IM
+    description: "GASTROINTESTINAL OBSTRUCTION"
+    price_aed: 4203
+    relative_weight: 0.4945
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064152"
+    category: IM
+    description: "GASTROINTESTINAL OBSTRUCTION W/CC"
+    price_aed: 8093
+    relative_weight: 0.9521
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064153"
+    category: IM
+    description: "GASTROINTESTINAL OBSTRUCTION W/MCC"
+    price_aed: 25769
+    relative_weight: 3.0316
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064161"
+    category: IM
+    description: "MAJOR GASTROINTESTINAL INFECTIONS"
+    price_aed: 8752
+    relative_weight: 1.0297
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064162"
+    category: IM
+    description: "MAJOR GASTROINTESTINAL INFECTIONS W/CC"
+    price_aed: 12171
+    relative_weight: 1.4319
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064163"
+    category: IM
+    description: "MAJOR GASTROINTESTINAL INFECTIONS W/MCC"
+    price_aed: 19820
+    relative_weight: 2.3318
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064171"
+    category: IM
+    description: "OTHER GASTROENTERITIS & ABDOMINAL PAIN"
+    price_aed: 2282
+    relative_weight: 0.2685
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064172"
+    category: IM
+    description: "OTHER GASTROENTERITIS & ABDOMINAL PAIN W/CC"
+    price_aed: 3233
+    relative_weight: 0.3803
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064173"
+    category: IM
+    description: "OTHER GASTROENTERITIS & ABDOMINAL PAIN W/MCC"
+    price_aed: 4144
+    relative_weight: 0.4875
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064181"
+    category: IM
+    description: "OTHER DIGESTIVE SYSTEM DIAGNOSES"
+    price_aed: 2803
+    relative_weight: 0.3298
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064182"
+    category: IM
+    description: "OTHER DIGESTIVE SYSTEM DIAGNOSES W/CC"
+    price_aed: 6097
+    relative_weight: 0.7173
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "064183"
+    category: IM
+    description: "OTHER DIGESTIVE SYSTEM DIAGNOSES W/MCC"
+    price_aed: 15218
+    relative_weight: 1.7904
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071011"
+    category: IP
+    description: "LIVER TRANSPLANTATION"
+    price_aed: 70020
+    relative_weight: 8.2377
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071012"
+    category: IP
+    description: "LIVER TRANSPLANTATION W/CC"
+    price_aed: 76587
+    relative_weight: 9.0102
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071013"
+    category: IP
+    description: "LIVER TRANSPLANTATION W/MCC"
+    price_aed: 156919
+    relative_weight: 18.461
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071101"
+    category: IP
+    description: "PANCREAS & LIVER PROCEDURES"
+    price_aed: 14574
+    relative_weight: 1.7146
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071102"
+    category: IP
+    description: "PANCREAS & LIVER PROCEDURES W/CC"
+    price_aed: 21929
+    relative_weight: 2.5799
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071103"
+    category: IP
+    description: "PANCREAS & LIVER PROCEDURES W/MCC"
+    price_aed: 39745
+    relative_weight: 4.6759
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071111"
+    category: IP
+    description: "COMPLEX BILIARY TRACT PROCEDURES"
+    price_aed: 12623
+    relative_weight: 1.4851
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071112"
+    category: IP
+    description: "COMPLEX BILIARY TRACT PROCEDURES W/CC"
+    price_aed: 21362
+    relative_weight: 2.5132
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071113"
+    category: IP
+    description: "COMPLEX BILIARY TRACT PROCEDURES W/MCC"
+    price_aed: 31418
+    relative_weight: 3.6962
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071121"
+    category: IP
+    description: "CHOLECYSTECTOMY EXCEPT LAPAROSCOPIC"
+    price_aed: 9871
+    relative_weight: 1.1613
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071122"
+    category: IP
+    description: "CHOLECYSTECTOMY EXCEPT LAPAROSCOPIC W/CC"
+    price_aed: 14890
+    relative_weight: 1.7518
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071123"
+    category: IP
+    description: "CHOLECYSTECTOMY EXCEPT LAPAROSCOPIC W/MCC"
+    price_aed: 25607
+    relative_weight: 3.0126
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071131"
+    category: IP
+    description: "OTHER HEPATOBILIARY & PANCREAS PROCEDURES"
+    price_aed: 8131
+    relative_weight: 0.9566
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071132"
+    category: IP
+    description: "OTHER HEPATOBILIARY & PANCREAS PROCEDURES W/CC"
+    price_aed: 19543
+    relative_weight: 2.2992
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071133"
+    category: IP
+    description: "OTHER HEPATOBILIARY & PANCREAS PROCEDURES W/MCC"
+    price_aed: 25645
+    relative_weight: 3.017
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071141"
+    category: IP
+    description: "LAPAROSCOPIC CHOLECYSTECTOMY"
+    price_aed: 6299
+    relative_weight: 0.741
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071142"
+    category: IP
+    description: "LAPAROSCOPIC CHOLECYSTECTOMY W/CC"
+    price_aed: 7193
+    relative_weight: 0.8462
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "071143"
+    category: IP
+    description: "LAPAROSCOPIC CHOLECYSTECTOMY W/MCC"
+    price_aed: 11201
+    relative_weight: 1.3178
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "074101"
+    category: IM
+    description: "CIRRHOSIS & ALCOHOLIC HEPATITIS"
+    price_aed: 5857
+    relative_weight: 0.6891
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "074102"
+    category: IM
+    description: "CIRRHOSIS & ALCOHOLIC HEPATITIS W/CC"
+    price_aed: 10111
+    relative_weight: 1.1895
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "074103"
+    category: IM
+    description: "CIRRHOSIS & ALCOHOLIC HEPATITIS W/MCC"
+    price_aed: 15841
+    relative_weight: 1.8636
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "074111"
+    category: IM
+    description: "MALIGNANCY OF HEPATOBILIARY SYSTEM & PANCREAS"
+    price_aed: 16767
+    relative_weight: 1.9726
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "074112"
+    category: IM
+    description: "MALIGNANCY OF HEPATOBILIARY SYSTEM & PANCREAS W/CC"
+    price_aed: 20436
+    relative_weight: 2.4042
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "074113"
+    category: IM
+    description: "MALIGNANCY OF HEPATOBILIARY SYSTEM & PANCREAS W/MCC"
+    price_aed: 28042
+    relative_weight: 3.2991
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "074121"
+    category: IM
+    description: "PANCREAS DISORDERS EXCEPT MALIGNANCY"
+    price_aed: 5521
+    relative_weight: 0.6495
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "074122"
+    category: IM
+    description: "PANCREAS DISORDERS EXCEPT MALIGNANCY W/CC"
+    price_aed: 8209
+    relative_weight: 0.9658
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "074123"
+    category: IM
+    description: "PANCREAS DISORDERS EXCEPT MALIGNANCY W/MCC"
+    price_aed: 17013
+    relative_weight: 2.0015
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "074131"
+    category: IM
+    description: "LIVER DISORDERS EXCEPT MALIGNANCY, CIRRHOSIS OR ALCOHOLIC HEPATITIS"
+    price_aed: 3499
+    relative_weight: 0.4116
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "074132"
+    category: IM
+    description: "LIVER DISORDERS EXCEPT MALIGNANCY, CIRRHOSIS OR ALCOHOLIC HEPATITIS W/CC"
+    price_aed: 7656
+    relative_weight: 0.9007
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "074133"
+    category: IM
+    description: "LIVER DISORDERS EXCEPT MALIGNANCY, CIRRHOSIS OR ALCOHOLIC HEPATITIS W/MCC"
+    price_aed: 13348
+    relative_weight: 1.5704
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "074141"
+    category: IM
+    description: "OTHER BILIARY TRACT DISORDERS"
+    price_aed: 6038
+    relative_weight: 0.7103
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "074142"
+    category: IM
+    description: "OTHER BILIARY TRACT DISORDERS W/CC"
+    price_aed: 11066
+    relative_weight: 1.3019
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "074143"
+    category: IM
+    description: "OTHER BILIARY TRACT DISORDERS W/MCC"
+    price_aed: 15594
+    relative_weight: 1.8346
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081011"
+    category: IP
+    description: "BILATERAL & MULTIPLE MAJOR LOWER EXTREMITY JOINT PROCEDURES"
+    price_aed: 30665
+    relative_weight: 3.6077
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081012"
+    category: IP
+    description: "BILATERAL & MULTIPLE MAJOR LOWER EXTREMITY JOINT PROCEDURES W/CC"
+    price_aed: 35457
+    relative_weight: 4.1714
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081013"
+    category: IP
+    description: "BILATERAL & MULTIPLE MAJOR LOWER EXTREMITY JOINT PROCEDURES W/MCC"
+    price_aed: 59830
+    relative_weight: 7.0388
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081021"
+    category: IP
+    description: "AMPUTATION"
+    price_aed: 9130
+    relative_weight: 1.0741
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081022"
+    category: IP
+    description: "AMPUTATION W/CC"
+    price_aed: 22630
+    relative_weight: 2.6623
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081023"
+    category: IP
+    description: "AMPUTATION W/MCC"
+    price_aed: 31306
+    relative_weight: 3.683
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081041"
+    category: IP
+    description: "MAJOR LOWER EXTREMITY JOINT & LIMB REATTACHMENT PROCEDURES"
+    price_aed: 18532
+    relative_weight: 2.1802
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081042"
+    category: IP
+    description: "MAJOR LOWER EXTREMITY JOINT & LIMB REATTACHMENT PROCEDURES W/CC"
+    price_aed: 25026
+    relative_weight: 2.9442
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081043"
+    category: IP
+    description: "MAJOR LOWER EXTREMITY JOINT & LIMB REATTACHMENT PROCEDURES W/MCC"
+    price_aed: 36700
+    relative_weight: 4.3177
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081051"
+    category: IP
+    description: "MAJOR UPPER EXTREMITY JOINT & LIMB REATTACHMENT PROCEDURES"
+    price_aed: 16642
+    relative_weight: 1.9579
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081052"
+    category: IP
+    description: "MAJOR UPPER EXTREMITY JOINT & LIMB REATTACHMENT PROCEDURES W/CC"
+    price_aed: 37346
+    relative_weight: 4.3937
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081053"
+    category: IP
+    description: "MAJOR UPPER EXTREMITY JOINT & LIMB REATTACHMENT PROCEDURES W/MCC"
+    price_aed: 52284
+    relative_weight: 6.1511
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081061"
+    category: IP
+    description: "SPINAL FUSION PROCEDURES FOR CURVATURE OF THE BACK"
+    price_aed: 55122
+    relative_weight: 6.4849
+    effective_date: "2024-11-01"
+    expiry_date: null
+  - code: "081062"
+    category: IP
+    description: "SPINAL FUSION PROCEDURES FOR CURVATURE OF THE BACK W/CC"
+    price_aed: 66326
+    relative_weight: 7.8031
+    effective_date: "2024-11-01"
+    expiry_date: null
+  - code: "081063"
+    category: IP
+    description: "SPINAL FUSION PROCEDURES FOR CURVATURE OF THE BACK W/MCC"
+    price_aed: 86563
+    relative_weight: 10.1839
+    effective_date: "2024-11-01"
+    expiry_date: null
+  - code: "081071"
+    category: IP
+    description: "SPINAL FUSION PROCEDURES EXCEPT FOR CURVATURE OF THE BACK"
+    price_aed: 25010
+    relative_weight: 2.9424
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081072"
+    category: IP
+    description: "SPINAL FUSION PROCEDURES EXCEPT FOR CURVATURE OF THE BACK W/CC"
+    price_aed: 37784
+    relative_weight: 4.4452
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081073"
+    category: IP
+    description: "SPINAL FUSION PROCEDURES EXCEPT FOR CURVATURE OF THE BACK W/MCC"
+    price_aed: 50093
+    relative_weight: 5.8933
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081101"
+    category: IP
+    description: "CRANIAL & FACIAL BONE RECONSTRUCTIVE PROCEDURES"
+    price_aed: 13332
+    relative_weight: 1.5685
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081102"
+    category: IP
+    description: "CRANIAL & FACIAL BONE RECONSTRUCTIVE PROCEDURES W/CC"
+    price_aed: 22804
+    relative_weight: 2.6828
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081103"
+    category: IP
+    description: "CRANIAL & FACIAL BONE RECONSTRUCTIVE PROCEDURES W/MCC"
+    price_aed: 26653
+    relative_weight: 3.1357
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081201"
+    category: IP
+    description: "HIP & FEMUR PROCEDURES EXCEPT MAJOR JOINT"
+    price_aed: 12806
+    relative_weight: 1.5066
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081202"
+    category: IP
+    description: "HIP & FEMUR PROCEDURES EXCEPT MAJOR JOINT W/CC"
+    price_aed: 19964
+    relative_weight: 2.3487
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081203"
+    category: IP
+    description: "HIP & FEMUR PROCEDURES EXCEPT MAJOR JOINT W/MCC"
+    price_aed: 36846
+    relative_weight: 4.3348
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081301"
+    category: IP
+    description: "FOOT PROCEDURES"
+    price_aed: 7516
+    relative_weight: 0.8842
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081302"
+    category: IP
+    description: "FOOT PROCEDURES W/CC"
+    price_aed: 10057
+    relative_weight: 1.1832
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081303"
+    category: IP
+    description: "FOOT PROCEDURES W/MCC"
+    price_aed: 13732
+    relative_weight: 1.6155
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081401"
+    category: IP
+    description: "LOCAL EXCISION & REMOVAL OF INTERNAL FIXATION DEVICE"
+    price_aed: 4275
+    relative_weight: 0.5029
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081402"
+    category: IP
+    description: "LOCAL EXCISION & REMOVAL OF INTERNAL FIXATION DEVICE W/CC"
+    price_aed: 7368
+    relative_weight: 0.8668
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081403"
+    category: IP
+    description: "LOCAL EXCISION & REMOVAL OF INTERNAL FIXATION DEVICE W/MCC"
+    price_aed: 17710
+    relative_weight: 2.0835
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081501"
+    category: IP
+    description: "SOFT TISSUE PROCEDURES"
+    price_aed: 5168
+    relative_weight: 0.608
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081502"
+    category: IP
+    description: "SOFT TISSUE PROCEDURES W/CC"
+    price_aed: 13743
+    relative_weight: 1.6168
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081503"
+    category: IP
+    description: "SOFT TISSUE PROCEDURES W/MCC"
+    price_aed: 28730
+    relative_weight: 3.38
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081601"
+    category: IP
+    description: "OTHER MUSCULOSKELETEL SYSTEM & CONNECTIVE TISSUE PROCEDURES"
+    price_aed: 10905
+    relative_weight: 1.2829
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081602"
+    category: IP
+    description: "OTHER MUSCULOSKELETEL SYSTEM & CONNECTIVE TISSUE PROCEDURES W/CC"
+    price_aed: 17139
+    relative_weight: 2.0164
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081603"
+    category: IP
+    description: "OTHER MUSCULOSKELETEL SYSTEM & CONNECTIVE TISSUE PROCEDURES W/MCC"
+    price_aed: 42390
+    relative_weight: 4.987
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081701"
+    category: IP
+    description: "KNEE & LOWER LEG PROCEDURES EXCEPT FOOT"
+    price_aed: 8103
+    relative_weight: 0.9533
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081702"
+    category: IP
+    description: "KNEE & LOWER LEG PROCEDURES EXCEPT FOOT W/CC"
+    price_aed: 16126
+    relative_weight: 1.8972
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081703"
+    category: IP
+    description: "KNEE & LOWER LEG PROCEDURES EXCEPT FOOT W/MCC"
+    price_aed: 21023
+    relative_weight: 2.4733
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081801"
+    category: IP
+    description: "UPPER EXTREMITY PROCEDURES"
+    price_aed: 7064
+    relative_weight: 0.831
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081802"
+    category: IP
+    description: "UPPER EXTREMITY PROCEDURES W/CC"
+    price_aed: 18324
+    relative_weight: 2.1558
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "081803"
+    category: IP
+    description: "UPPER EXTREMITY PROCEDURES W/MCC"
+    price_aed: 21567
+    relative_weight: 2.5373
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084101"
+    category: IM
+    description: "FRACTURES OF FEMUR"
+    price_aed: 9767
+    relative_weight: 1.1491
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084102"
+    category: IM
+    description: "FRACTURES OF FEMUR W/CC"
+    price_aed: 20583
+    relative_weight: 2.4215
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084103"
+    category: IM
+    description: "FRACTURES OF FEMUR W/MCC"
+    price_aed: 44173
+    relative_weight: 5.1968
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084111"
+    category: IM
+    description: "FRACTURE OF PELVIS OR DISLOCATION OF HIP"
+    price_aed: 6695
+    relative_weight: 0.7876
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084112"
+    category: IM
+    description: "FRACTURE OF PELVIS OR DISLOCATION OF HIP W/CC"
+    price_aed: 10935
+    relative_weight: 1.2865
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084113"
+    category: IM
+    description: "FRACTURE OF PELVIS OR DISLOCATION OF HIP W/MCC"
+    price_aed: 23395
+    relative_weight: 2.7523
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084121"
+    category: IM
+    description: "FRACTURE OR DISLOCATION EXCEPT FEMUR & PELVIS"
+    price_aed: 3888
+    relative_weight: 0.4574
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084122"
+    category: IM
+    description: "FRACTURE OR DISLOCATION EXCEPT FEMUR & PELVIS W/CC"
+    price_aed: 10326
+    relative_weight: 1.2148
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084123"
+    category: IM
+    description: "FRACTURE OR DISLOCATION EXCEPT FEMUR & PELVIS W/MCC"
+    price_aed: 23049
+    relative_weight: 2.7117
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084131"
+    category: IM
+    description: "MUSCULOSKELETAL & CONNECTIVE TISSUE MALIGNANCY & PATHOLOGICAL FRACTURES"
+    price_aed: 10639
+    relative_weight: 1.2516
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084132"
+    category: IM
+    description: "MUSCULOSKELETAL & CONNECTIVE TISSUE MALIGNANCY & PATHOLOGICAL FRACTURES W/CC"
+    price_aed: 20580
+    relative_weight: 2.4212
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084133"
+    category: IM
+    description: "MUSCULOSKELETAL & CONNECTIVE TISSUE MALIGNANCY & PATHOLOGICAL FRACTURES W/MCC"
+    price_aed: 34031
+    relative_weight: 4.0037
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084141"
+    category: IM
+    description: "OSTEOMYELITIS"
+    price_aed: 9623
+    relative_weight: 1.1321
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084142"
+    category: IM
+    description: "OSTEOMYELITIS W/CC"
+    price_aed: 16070
+    relative_weight: 1.8906
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084143"
+    category: IM
+    description: "OSTEOMYELITIS W/MCC"
+    price_aed: 48243
+    relative_weight: 5.6756
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084151"
+    category: IM
+    description: "SEPTIC ARTHRITIS"
+    price_aed: 7960
+    relative_weight: 0.9365
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084152"
+    category: IM
+    description: "SEPTIC ARTHRITIS W/CC"
+    price_aed: 17762
+    relative_weight: 2.0897
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084153"
+    category: IM
+    description: "SEPTIC ARTHRITIS W/MCC"
+    price_aed: 25184
+    relative_weight: 2.9628
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084161"
+    category: IM
+    description: "CONNECTIVE TISSUE DISORDERS"
+    price_aed: 7580
+    relative_weight: 0.8918
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084162"
+    category: IM
+    description: "CONNECTIVE TISSUE DISORDERS W/CC"
+    price_aed: 10934
+    relative_weight: 1.2864
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084163"
+    category: IM
+    description: "CONNECTIVE TISSUE DISORDERS W/MCC"
+    price_aed: 26406
+    relative_weight: 3.1066
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084171"
+    category: IM
+    description: "MEDICAL BACK PROBLEMS"
+    price_aed: 4921
+    relative_weight: 0.5789
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084172"
+    category: IM
+    description: "MEDICAL BACK PROBLEMS W/CC"
+    price_aed: 9708
+    relative_weight: 1.1421
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084173"
+    category: IM
+    description: "MEDICAL BACK PROBLEMS W/MCC"
+    price_aed: 25541
+    relative_weight: 3.0048
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084181"
+    category: IM
+    description: "OTHER BONE & JOINT DISEASES"
+    price_aed: 5262
+    relative_weight: 0.619
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084182"
+    category: IM
+    description: "OTHER BONE & JOINT DISEASES W/CC"
+    price_aed: 9755
+    relative_weight: 1.1476
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084183"
+    category: IM
+    description: "OTHER BONE & JOINT DISEASES W/MCC"
+    price_aed: 17994
+    relative_weight: 2.1169
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084191"
+    category: IM
+    description: "MALFUNCTION, REACTION OR COMPLICATION OF ORTHOPEDIC DEVICE OR PROCEDURE"
+    price_aed: 12251
+    relative_weight: 1.4413
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084192"
+    category: IM
+    description: "MALFUNCTION, REACTION OR COMPLICATION OF ORTHOPEDIC DEVICE OR PROCEDURE W/CC"
+    price_aed: 15593
+    relative_weight: 1.8345
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084193"
+    category: IM
+    description: "MALFUNCTION, REACTION OR COMPLICATION OF ORTHOPEDIC DEVICE OR PROCEDURE W/MCC"
+    price_aed: 42475
+    relative_weight: 4.9971
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084201"
+    category: IM
+    description: "MUSCULOSKELETAL SIGNS, SYMPTOMS, SPRAINS & MINOR INFLAMMATIONS"
+    price_aed: 2618
+    relative_weight: 0.308
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084202"
+    category: IM
+    description: "MUSCULOSKELETAL SIGNS, SYMPTOMS, SPRAINS & MINOR INFLAMMATIONS W/CC"
+    price_aed: 4834
+    relative_weight: 0.5687
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084203"
+    category: IM
+    description: "MUSCULOSKELETAL SIGNS, SYMPTOMS, SPRAINS & MINOR INFLAMMATIONS W/MCC"
+    price_aed: 8572
+    relative_weight: 1.0085
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084211"
+    category: IM
+    description: "OTHER MUSCULOSKELETAL SYSTEM & CONNECTIVE TISSUE DIAGNOSES"
+    price_aed: 3031
+    relative_weight: 0.3566
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084212"
+    category: IM
+    description: "OTHER MUSCULOSKELETAL SYSTEM & CONNECTIVE TISSUE DIAGNOSES W/CC"
+    price_aed: 7771
+    relative_weight: 0.9142
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "084213"
+    category: IM
+    description: "OTHER MUSCULOSKELETAL SYSTEM & CONNECTIVE TISSUE DIAGNOSES W/MCC"
+    price_aed: 15047
+    relative_weight: 1.7702
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "091201"
+    category: IP
+    description: "SKIN GRAFT WITH BURNS"
+    price_aed: 12839
+    relative_weight: 1.5105
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "091202"
+    category: IP
+    description: "SKIN GRAFT WITH BURNS W/CC"
+    price_aed: 18050
+    relative_weight: 2.1235
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "091203"
+    category: IP
+    description: "SKIN GRAFT WITH BURNS W/MCC"
+    price_aed: 33280
+    relative_weight: 3.9153
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "091301"
+    category: IP
+    description: "SKIN GRAFT WITHOUT BURNS"
+    price_aed: 9735
+    relative_weight: 1.1453
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "091302"
+    category: IP
+    description: "SKIN GRAFT WITHOUT BURNS W/CC"
+    price_aed: 15445
+    relative_weight: 1.817
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "091303"
+    category: IP
+    description: "SKIN GRAFT WITHOUT BURNS W/MCC"
+    price_aed: 25665
+    relative_weight: 3.0194
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "091401"
+    category: IP
+    description: "OTHER SKIN, SUBCUTANEOUS TISSUE & BREAST PROCEDURES"
+    price_aed: 4761
+    relative_weight: 0.5601
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "091402"
+    category: IP
+    description: "OTHER SKIN, SUBCUTANEOUS TISSUE & BREAST PROCEDURES W/CC"
+    price_aed: 13230
+    relative_weight: 1.5565
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "091403"
+    category: IP
+    description: "OTHER SKIN, SUBCUTANEOUS TISSUE & BREAST PROCEDURES W/MCC"
+    price_aed: 18886
+    relative_weight: 2.2219
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "091501"
+    category: IP
+    description: "BREAST PROCEDURES"
+    price_aed: 6106
+    relative_weight: 0.7184
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "091502"
+    category: IP
+    description: "BREAST PROCEDURES W/CC"
+    price_aed: 10363
+    relative_weight: 1.2192
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "091503"
+    category: IP
+    description: "BREAST PROCEDURES W/MCC"
+    price_aed: 17405
+    relative_weight: 2.0477
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "094101"
+    category: IM
+    description: "MAJOR SKIN DISORDERS"
+    price_aed: 6398
+    relative_weight: 0.7527
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "094102"
+    category: IM
+    description: "MAJOR SKIN DISORDERS W/CC"
+    price_aed: 12427
+    relative_weight: 1.462
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "094103"
+    category: IM
+    description: "MAJOR SKIN DISORDERS W/MCC"
+    price_aed: 18814
+    relative_weight: 2.2134
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "094111"
+    category: IM
+    description: "MALIGNANT BREAST DISORDERS"
+    price_aed: 9343
+    relative_weight: 1.0992
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "094112"
+    category: IM
+    description: "MALIGNANT BREAST DISORDERS W/CC"
+    price_aed: 12543
+    relative_weight: 1.4757
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "094113"
+    category: IM
+    description: "MALIGNANT BREAST DISORDERS W/MCC"
+    price_aed: 21117
+    relative_weight: 2.4843
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "094121"
+    category: IM
+    description: "CELLULITIS"
+    price_aed: 3381
+    relative_weight: 0.3978
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "094122"
+    category: IM
+    description: "CELLULITIS W/CC"
+    price_aed: 5263
+    relative_weight: 0.6192
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "094123"
+    category: IM
+    description: "CELLULITIS W/MCC"
+    price_aed: 9720
+    relative_weight: 1.1435
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "094131"
+    category: IM
+    description: "TRAUMA TO THE SKIN, SUBCUTANEOUS TISSUE & BREAST"
+    price_aed: 3579
+    relative_weight: 0.421
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "094132"
+    category: IM
+    description: "TRAUMA TO THE SKIN, SUBCUTANEOUS TISSUE & BREAST W/CC"
+    price_aed: 4423
+    relative_weight: 0.5204
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "094133"
+    category: IM
+    description: "TRAUMA TO THE SKIN, SUBCUTANEOUS TISSUE & BREAST W/MCC"
+    price_aed: 11527
+    relative_weight: 1.3561
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "094141"
+    category: IM
+    description: "OTHER SKIN & BREAST DISORDERS"
+    price_aed: 2701
+    relative_weight: 0.3178
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "094142"
+    category: IM
+    description: "OTHER SKIN & BREAST DISORDERS W/CC"
+    price_aed: 4293
+    relative_weight: 0.505
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "094143"
+    category: IM
+    description: "OTHER SKIN & BREAST DISORDERS W/MCC"
+    price_aed: 12164
+    relative_weight: 1.4311
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "101011"
+    category: IP
+    description: "PITUITARY & PINEAL PROCEDURES"
+    price_aed: 15956
+    relative_weight: 1.8772
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "101012"
+    category: IP
+    description: "PITUITARY & PINEAL PROCEDURES W/CC"
+    price_aed: 21796
+    relative_weight: 2.5642
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "101013"
+    category: IP
+    description: "PITUITARY & PINEAL PROCEDURES W/MCC"
+    price_aed: 40707
+    relative_weight: 4.789
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "101101"
+    category: IP
+    description: "ADRENAL PROCEDURES"
+    price_aed: 9449
+    relative_weight: 1.1116
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "101102"
+    category: IP
+    description: "ADRENAL PROCEDURES W/CC"
+    price_aed: 12649
+    relative_weight: 1.4881
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "101103"
+    category: IP
+    description: "ADRENAL PROCEDURES W/MCC"
+    price_aed: 29099
+    relative_weight: 3.4234
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "101201"
+    category: IP
+    description: "THYROID, PARATHYROID & THYROGLOSSAL DUCT PROCEDURES"
+    price_aed: 7488
+    relative_weight: 0.8809
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "101202"
+    category: IP
+    description: "THYROID, PARATHYROID & THYROGLOSSAL DUCT PROCEDURES W/CC"
+    price_aed: 9509
+    relative_weight: 1.1187
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "101203"
+    category: IP
+    description: "THYROID, PARATHYROID & THYROGLOSSAL DUCT PROCEDURES W/MCC"
+    price_aed: 17405
+    relative_weight: 2.0476
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "104101"
+    category: IM
+    description: "DIABETES AND NUTRITIONAL & MISC METABOLIC DISORDERS"
+    price_aed: 3565
+    relative_weight: 0.4194
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "104102"
+    category: IM
+    description: "DIABETES AND NUTRITIONAL & MISC METABOLIC DISORDERS W/CC"
+    price_aed: 5972
+    relative_weight: 0.7026
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "104103"
+    category: IM
+    description: "DIABETES AND NUTRITIONAL & MISC METABOLIC DISORDERS W/MCC"
+    price_aed: 12547
+    relative_weight: 1.4761
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "104111"
+    category: IM
+    description: "HYPOVOLEMIA & ELECTROLYTE DISORDERS"
+    price_aed: 2052
+    relative_weight: 0.2414
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "104112"
+    category: IM
+    description: "HYPOVOLEMIA & ELECTROLYTE DISORDERS W/CC"
+    price_aed: 3865
+    relative_weight: 0.4547
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "104113"
+    category: IM
+    description: "HYPOVOLEMIA & ELECTROLYTE DISORDERS W/MCC"
+    price_aed: 6477
+    relative_weight: 0.762
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "104121"
+    category: IM
+    description: "INBORN ERRORS OF METABOLISM"
+    price_aed: 14131
+    relative_weight: 1.6625
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "104122"
+    category: IM
+    description: "INBORN ERRORS OF METABOLISM W/CC"
+    price_aed: 20128
+    relative_weight: 2.368
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "104123"
+    category: IM
+    description: "INBORN ERRORS OF METABOLISM W/MCC"
+    price_aed: 33273
+    relative_weight: 3.9145
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "104131"
+    category: IM
+    description: "OTHER ENDOCRINE DISORDERS"
+    price_aed: 4909
+    relative_weight: 0.5775
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "104132"
+    category: IM
+    description: "OTHER ENDOCRINE DISORDERS W/CC"
+    price_aed: 6821
+    relative_weight: 0.8025
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "104133"
+    category: IM
+    description: "OTHER ENDOCRINE DISORDERS W/MCC"
+    price_aed: 21725
+    relative_weight: 2.5559
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111011"
+    category: IP
+    description: "KIDNEY TRANSPLANTATION"
+    price_aed: 57643
+    relative_weight: 6.7815
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111012"
+    category: IP
+    description: "KIDNEY TRANSPLANTATION W/CC"
+    price_aed: 61013
+    relative_weight: 7.178
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111013"
+    category: IP
+    description: "KIDNEY TRANSPLANTATION W/MCC"
+    price_aed: 74809
+    relative_weight: 8.8011
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111111"
+    category: IP
+    description: "COMPLEX BLADDER PROCEDURES"
+    price_aed: 16147
+    relative_weight: 1.8996
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111112"
+    category: IP
+    description: "COMPLEX BLADDER PROCEDURES W/CC"
+    price_aed: 23767
+    relative_weight: 2.7961
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111113"
+    category: IP
+    description: "COMPLEX BLADDER PROCEDURES W/MCC"
+    price_aed: 48708
+    relative_weight: 5.7304
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111121"
+    category: IP
+    description: "CREATE, REVISE, REMOVE DIALYSIS DEVICE"
+    price_aed: 9770
+    relative_weight: 1.1494
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111122"
+    category: IP
+    description: "CREATE, REVISE, REMOVE DIALYSIS DEVICE W/CC"
+    price_aed: 16549
+    relative_weight: 1.9469
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111123"
+    category: IP
+    description: "CREATE, REVISE, REMOVE DIALYSIS DEVICE W/MCC"
+    price_aed: 21692
+    relative_weight: 2.552
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111201"
+    category: IP
+    description: "UPPER URINARY TRACT PROCEDURES"
+    price_aed: 7274
+    relative_weight: 0.8558
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111202"
+    category: IP
+    description: "UPPER URINARY TRACT PROCEDURES W/CC"
+    price_aed: 12829
+    relative_weight: 1.5093
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111203"
+    category: IP
+    description: "UPPER URINARY TRACT PROCEDURES W/MCC"
+    price_aed: 16737
+    relative_weight: 1.9691
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111301"
+    category: IP
+    description: "BLADDER & LOWER URINARY TRACT PROCEDURES"
+    price_aed: 7385
+    relative_weight: 0.8688
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111302"
+    category: IP
+    description: "BLADDER & LOWER URINARY TRACT PROCEDURES W/CC"
+    price_aed: 11343
+    relative_weight: 1.3345
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111303"
+    category: IP
+    description: "BLADDER & LOWER URINARY TRACT PROCEDURES W/MCC"
+    price_aed: 12816
+    relative_weight: 1.5078
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111401"
+    category: IP
+    description: "URETHRAL & TRANSURETHRAL PROCEDURES"
+    price_aed: 4819
+    relative_weight: 0.5669
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111402"
+    category: IP
+    description: "URETHRAL & TRANSURETHRAL PROCEDURES W/CC"
+    price_aed: 6874
+    relative_weight: 0.8087
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "111403"
+    category: IP
+    description: "URETHRAL & TRANSURETHRAL PROCEDURES W/MCC"
+    price_aed: 7076
+    relative_weight: 0.8325
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114101"
+    category: IM
+    description: "KIDNEY & URINARY TRACT MALIGNANCY & RENAL FAILURE"
+    price_aed: 5096
+    relative_weight: 0.5995
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114102"
+    category: IM
+    description: "KIDNEY & URINARY TRACT MALIGNANCY & RENAL FAILURE W/CC"
+    price_aed: 9042
+    relative_weight: 1.0638
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114103"
+    category: IM
+    description: "KIDNEY & URINARY TRACT MALIGNANCY & RENAL FAILURE W/MCC"
+    price_aed: 15460
+    relative_weight: 1.8188
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114111"
+    category: IM
+    description: "NEPHRITIS"
+    price_aed: 6083
+    relative_weight: 0.7156
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114112"
+    category: IM
+    description: "NEPHRITIS W/CC"
+    price_aed: 8855
+    relative_weight: 1.0418
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114113"
+    category: IM
+    description: "NEPHRITIS W/MCC"
+    price_aed: 13746
+    relative_weight: 1.6172
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114121"
+    category: IM
+    description: "KIDNEY & URINARY TRACT INFECTIONS"
+    price_aed: 4177
+    relative_weight: 0.4914
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114122"
+    category: IM
+    description: "KIDNEY & URINARY TRACT INFECTIONS W/CC"
+    price_aed: 7083
+    relative_weight: 0.8333
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114123"
+    category: IM
+    description: "KIDNEY & URINARY TRACT INFECTIONS W/MCC"
+    price_aed: 11849
+    relative_weight: 1.394
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114131"
+    category: IM
+    description: "URINARY STONES"
+    price_aed: 3206
+    relative_weight: 0.3772
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114132"
+    category: IM
+    description: "URINARY STONES W/CC"
+    price_aed: 5828
+    relative_weight: 0.6857
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114133"
+    category: IM
+    description: "URINARY STONES W/MCC"
+    price_aed: 6406
+    relative_weight: 0.7536
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114141"
+    category: IM
+    description: "MALFUNCTION, REACTION OR COMPLICATION OF URINARY TRACT DEVICE, GRAFT OR TRANSPLANTATION"
+    price_aed: 9537
+    relative_weight: 1.122
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114142"
+    category: IM
+    description: "MALFUNCTION, REACTION OR COMPLICATION OF URINARY TRACT DEVICE, GRAFT OR TRANSPLANTATION W/CC"
+    price_aed: 11339
+    relative_weight: 1.334
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114143"
+    category: IM
+    description: "MALFUNCTION, REACTION OR COMPLICATION OF URINARY TRACT DEVICE, GRAFT OR TRANSPLANTATION W/MCC"
+    price_aed: 18020
+    relative_weight: 2.12
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114151"
+    category: IM
+    description: "KIDNEY & URINARY TRACT SIGNS & SYMPTOMS"
+    price_aed: 2940
+    relative_weight: 0.3459
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114152"
+    category: IM
+    description: "KIDNEY & URINARY TRACT SIGNS & SYMPTOMS W/CC"
+    price_aed: 4797
+    relative_weight: 0.5643
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114153"
+    category: IM
+    description: "KIDNEY & URINARY TRACT SIGNS & SYMPTOMS W/MCC"
+    price_aed: 10396
+    relative_weight: 1.2231
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114161"
+    category: IM
+    description: "OTHER KIDNEY & URINARY TRACT DIAGNOSES"
+    price_aed: 2833
+    relative_weight: 0.3333
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114162"
+    category: IM
+    description: "OTHER KIDNEY & URINARY TRACT DIAGNOSES W/CC"
+    price_aed: 6828
+    relative_weight: 0.8033
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "114163"
+    category: IM
+    description: "OTHER KIDNEY & URINARY TRACT DIAGNOSES W/MCC"
+    price_aed: 14782
+    relative_weight: 1.7391
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121101"
+    category: IP
+    description: "COMPLEX PROSTATECTOMY PROCEDURES"
+    price_aed: 13132
+    relative_weight: 1.5449
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121102"
+    category: IP
+    description: "COMPLEX PROSTATECTOMY PROCEDURES W/CC"
+    price_aed: 15102
+    relative_weight: 1.7767
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121103"
+    category: IP
+    description: "COMPLEX PROSTATECTOMY PROCEDURES W/MCC"
+    price_aed: 16738
+    relative_weight: 1.9692
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121111"
+    category: IP
+    description: "PENIS PROCEDURES"
+    price_aed: 13872
+    relative_weight: 1.632
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121112"
+    category: IP
+    description: "PENIS PROCEDURES W/CC"
+    price_aed: 15798
+    relative_weight: 1.8586
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121113"
+    category: IP
+    description: "PENIS PROCEDURES W/MCC"
+    price_aed: 23143
+    relative_weight: 2.7227
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121121"
+    category: IP
+    description: "MODERATELY COMPLEX PROSTATE & SCROTAL CONTENTS PROCEDURES"
+    price_aed: 4506
+    relative_weight: 0.5301
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121122"
+    category: IP
+    description: "MODERATELY COMPLEX PROSTATE & SCROTAL CONTENTS PROCEDURES W/CC"
+    price_aed: 6744
+    relative_weight: 0.7934
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121123"
+    category: IP
+    description: "MODERATELY COMPLEX PROSTATE & SCROTAL CONTENTS PROCEDURES W/MCC"
+    price_aed: 11382
+    relative_weight: 1.3391
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121131"
+    category: IP
+    description: "NON-COMPLEX PROSTATE & SCROTAL CONTENTS PROCEDURES"
+    price_aed: 4939
+    relative_weight: 0.5811
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121132"
+    category: IP
+    description: "NON-COMPLEX PROSTATE & SCROTAL CONTENTS PROCEDURES W/CC"
+    price_aed: 9516
+    relative_weight: 1.1195
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121133"
+    category: IP
+    description: "NON-COMPLEX PROSTATE & SCROTAL CONTENTS PROCEDURES W/MCC"
+    price_aed: 17706
+    relative_weight: 2.0831
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121141"
+    category: IP
+    description: "TRANSURETHRAL PROSTATECTOMY"
+    price_aed: 8839
+    relative_weight: 1.0399
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121142"
+    category: IP
+    description: "TRANSURETHRAL PROSTATECTOMY W/CC"
+    price_aed: 9688
+    relative_weight: 1.1398
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121143"
+    category: IP
+    description: "TRANSURETHRAL PROSTATECTOMY W/MCC"
+    price_aed: 18116
+    relative_weight: 2.1313
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121151"
+    category: IP
+    description: "CIRCUMCISION"
+    price_aed: 1726
+    relative_weight: 0.2031
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121152"
+    category: IP
+    description: "CIRCUMCISION W/CC"
+    price_aed: 17049
+    relative_weight: 2.0058
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "121153"
+    category: IP
+    description: "CIRCUMCISION W/MCC"
+    price_aed: 22164
+    relative_weight: 2.6075
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "124101"
+    category: IM
+    description: "MALE REPRODUCTIVE SYSTEM MALIGNANCY"
+    price_aed: 9070
+    relative_weight: 1.067
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "124102"
+    category: IM
+    description: "MALE REPRODUCTIVE SYSTEM MALIGNANCY W/CC"
+    price_aed: 12220
+    relative_weight: 1.4376
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "124103"
+    category: IM
+    description: "MALE REPRODUCTIVE SYSTEM MALIGNANCY W/MCC"
+    price_aed: 15369
+    relative_weight: 1.8081
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "124111"
+    category: IM
+    description: "MALE REPRODUCTIVE SYSTEM DIAGNOSES EXCEPT MALIGNANCY"
+    price_aed: 3512
+    relative_weight: 0.4132
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "124112"
+    category: IM
+    description: "MALE REPRODUCTIVE SYSTEM DIAGNOSES EXCEPT MALIGNANCY W/CC"
+    price_aed: 6078
+    relative_weight: 0.7151
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "124113"
+    category: IM
+    description: "MALE REPRODUCTIVE SYSTEM DIAGNOSES EXCEPT MALIGNANCY W/MCC"
+    price_aed: 27932
+    relative_weight: 3.2861
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131011"
+    category: IP
+    description: "PELVIC EVISCERATION, RADICAL HYSTERECTECTOMY & RADICAL VULVECTOMY"
+    price_aed: 17097
+    relative_weight: 2.0114
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131012"
+    category: IP
+    description: "PELVIC EVISCERATION, RADICAL HYSTERECTECTOMY & RADICAL VULVECTOMY W/CC"
+    price_aed: 22545
+    relative_weight: 2.6524
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131013"
+    category: IP
+    description: "PELVIC EVISCERATION, RADICAL HYSTERECTECTOMY & RADICAL VULVECTOMY W/MCC"
+    price_aed: 32559
+    relative_weight: 3.8305
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131101"
+    category: IP
+    description: "ABORTION PROCEDURES"
+    price_aed: 5063
+    relative_weight: 0.5956
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131102"
+    category: IP
+    description: "ABORTION PROCEDURES W/CC"
+    price_aed: 6340
+    relative_weight: 0.7459
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131103"
+    category: IP
+    description: "ABORTION PROCEDURES W/MCC"
+    price_aed: 37098
+    relative_weight: 4.3645
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131111"
+    category: IP
+    description: "DILATION & CURETTAGE, INTRAUTERINE & CERVICAL PROCEDURES"
+    price_aed: 4036
+    relative_weight: 0.4748
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131112"
+    category: IP
+    description: "DILATION & CURETTAGE, INTRAUTERINE & CERVICAL PROCEDURES W/CC"
+    price_aed: 4866
+    relative_weight: 0.5725
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131113"
+    category: IP
+    description: "DILATION & CURETTAGE, INTRAUTERINE & CERVICAL PROCEDURES W/MCC"
+    price_aed: 11981
+    relative_weight: 1.4095
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131121"
+    category: IP
+    description: "OPEN TUBAL INTERRUPTION"
+    price_aed: 8601
+    relative_weight: 1.0119
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131122"
+    category: IP
+    description: "OPEN TUBAL INTERRUPTION W/CC"
+    price_aed: 9637
+    relative_weight: 1.1338
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131123"
+    category: IP
+    description: "OPEN TUBAL INTERRUPTION W/MCC"
+    price_aed: 10674
+    relative_weight: 1.2558
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131131"
+    category: IP
+    description: "ENDOSCOPIC TUBAL INTERRUPTION"
+    price_aed: 5766
+    relative_weight: 0.6784
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131132"
+    category: IP
+    description: "ENDOSCOPIC TUBAL INTERRUPTION W/CC"
+    price_aed: 6678
+    relative_weight: 0.7857
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131133"
+    category: IP
+    description: "ENDOSCOPIC TUBAL INTERRUPTION W/MCC"
+    price_aed: 9867
+    relative_weight: 1.1608
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131201"
+    category: IP
+    description: "UTERINE & ADNEXAL PROCEDURES"
+    price_aed: 6533
+    relative_weight: 0.7686
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131202"
+    category: IP
+    description: "UTERINE & ADNEXAL PROCEDURES W/CC"
+    price_aed: 9035
+    relative_weight: 1.0629
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131203"
+    category: IP
+    description: "UTERINE & ADNEXAL PROCEDURES W/MCC"
+    price_aed: 12101
+    relative_weight: 1.4236
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131301"
+    category: IP
+    description: "VAGINAL HYSTERECTOMY & OTHER VAGINAL ACCESS PROCEDURES"
+    price_aed: 4587
+    relative_weight: 0.5396
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131302"
+    category: IP
+    description: "VAGINAL HYSTERECTOMY & OTHER VAGINAL ACCESS PROCEDURES W/CC"
+    price_aed: 5534
+    relative_weight: 0.6511
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "131303"
+    category: IP
+    description: "VAGINAL HYSTERECTOMY & OTHER VAGINAL ACCESS PROCEDURES W/MCC"
+    price_aed: 9677
+    relative_weight: 1.1385
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134101"
+    category: IM
+    description: "FEMALE REPRODUCTIVE SYSTEM MALIGNANCY"
+    price_aed: 5502
+    relative_weight: 0.6473
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134102"
+    category: IM
+    description: "FEMALE REPRODUCTIVE SYSTEM MALIGNANCY W/CC"
+    price_aed: 18791
+    relative_weight: 2.2107
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134103"
+    category: IM
+    description: "FEMALE REPRODUCTIVE SYSTEM MALIGNANCY W/MCC"
+    price_aed: 28543
+    relative_weight: 3.358
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134111"
+    category: IM
+    description: "FEMALE REPRODUCTIVE SYSTEM INFECTIONS"
+    price_aed: 3532
+    relative_weight: 0.4155
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134112"
+    category: IM
+    description: "FEMALE REPRODUCTIVE SYSTEM INFECTIONS W/CC"
+    price_aed: 7815
+    relative_weight: 0.9194
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134113"
+    category: IM
+    description: "FEMALE REPRODUCTIVE SYSTEM INFECTIONS W/MCC"
+    price_aed: 17000
+    relative_weight: 2
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134121"
+    category: IM
+    description: "MENSTRUAL & OTHER FEMALE REPRODUCTIVE SYSTEM DISORDERS"
+    price_aed: 2884
+    relative_weight: 0.3393
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134122"
+    category: IM
+    description: "MENSTRUAL & OTHER FEMALE REPRODUCTIVE SYSTEM DISORDERS W/CC"
+    price_aed: 4740
+    relative_weight: 0.5577
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134123"
+    category: IM
+    description: "MENSTRUAL & OTHER FEMALE REPRODUCTIVE SYSTEM DISORDERS W/MCC"
+    price_aed: 11589
+    relative_weight: 1.3634
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134131"
+    category: IM
+    description: "ABORTION"
+    price_aed: 3192
+    relative_weight: 0.3755
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134132"
+    category: IM
+    description: "ABORTION W/CC"
+    price_aed: 4406
+    relative_weight: 0.5184
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134133"
+    category: IM
+    description: "ABORTION W/MCC"
+    price_aed: 8653
+    relative_weight: 1.018
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134141"
+    category: IM
+    description: "THREATENED ABORTION"
+    price_aed: 2514
+    relative_weight: 0.2958
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134142"
+    category: IM
+    description: "THREATENED ABORTION W/CC"
+    price_aed: 3462
+    relative_weight: 0.4073
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134143"
+    category: IM
+    description: "THREATENED ABORTION W/MCC"
+    price_aed: 6415
+    relative_weight: 0.7547
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134151"
+    category: IM
+    description: "FALSE LABOR"
+    price_aed: 2289
+    relative_weight: 0.2693
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134152"
+    category: IM
+    description: "FALSE LABOR W/CC"
+    price_aed: 2486
+    relative_weight: 0.2925
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134153"
+    category: IM
+    description: "FALSE LABOR W/MCC"
+    price_aed: 3788
+    relative_weight: 0.4456
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134161"
+    category: IM
+    description: "ANTEPARTUM DISORDERS"
+    price_aed: 2320
+    relative_weight: 0.2729
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134162"
+    category: IM
+    description: "ANTEPARTUM DISORDERS W/CC"
+    price_aed: 3132
+    relative_weight: 0.3685
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134163"
+    category: IM
+    description: "ANTEPARTUM DISORDERS W/MCC"
+    price_aed: 5042
+    relative_weight: 0.5932
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134171"
+    category: IM
+    description: "POSTPARTUM DISORDERS"
+    price_aed: 2639
+    relative_weight: 0.3105
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134172"
+    category: IM
+    description: "POSTPARTUM DISORDERS W/CC"
+    price_aed: 4502
+    relative_weight: 0.5297
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "134173"
+    category: IM
+    description: "POSTPARTUM DISORDERS W/MCC"
+    price_aed: 9044
+    relative_weight: 1.064
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "146101"
+    category: IP
+    description: "CESAREAN DELIVERY"
+    price_aed: 7020
+    relative_weight: 0.8259
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "146102"
+    category: IP
+    description: "CESAREAN DELIVERY W/CC"
+    price_aed: 7434
+    relative_weight: 0.8746
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "146103"
+    category: IP
+    description: "CESAREAN DELIVERY W/MCC"
+    price_aed: 8486
+    relative_weight: 0.9983
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "146111"
+    category: IP
+    description: "VAGINAL DELIVERY WITH STERILIZATION &/OR DILATION & CURETTAGE"
+    price_aed: 9883
+    relative_weight: 1.1627
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "146112"
+    category: IP
+    description: "VAGINAL DELIVERY WITH STERILIZATION &/OR DILATION & CURETTAGE W/CC"
+    price_aed: 11040
+    relative_weight: 1.2988
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "146113"
+    category: IP
+    description: "VAGINAL DELIVERY WITH STERILIZATION &/OR DILATION & CURETTAGE W/MCC"
+    price_aed: 17775
+    relative_weight: 2.0912
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "146121"
+    category: IP
+    description: "VAGINAL DELIVERY WITH PROCEDURE EXCEPT STERILIZATION &/OR DILATION & CURETTAGE"
+    price_aed: 6968
+    relative_weight: 0.8198
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "146122"
+    category: IP
+    description: "VAGINAL DELIVERY WITH PROCEDURE EXCEPT STERILIZATION &/OR DILATION & CURETTAGE W/CC"
+    price_aed: 8443
+    relative_weight: 0.9933
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "146123"
+    category: IP
+    description: "VAGINAL DELIVERY WITH PROCEDURE EXCEPT STERILIZATION &/OR DILATION & CURETTAGE W/MCC"
+    price_aed: 20873
+    relative_weight: 2.4556
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "146131"
+    category: IM
+    description: "VAGINAL DELIVERY"
+    price_aed: 5620
+    relative_weight: 0.6612
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "146132"
+    category: IM
+    description: "VAGINAL DELIVERY W/CC"
+    price_aed: 6712
+    relative_weight: 0.7897
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "146133"
+    category: IM
+    description: "VAGINAL DELIVERY W/MCC"
+    price_aed: 7713
+    relative_weight: 0.9074
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158011"
+    category: IP
+    description: "NEONATE, W ORGAN TRANSPLANTATION OR EXTRACORPOREAL MEMBRANE OXYGENATION"
+    price_aed: 107264
+    relative_weight: 12.6193
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158012"
+    category: IP
+    description: "NEONATE, W ORGAN TRANSPLANTATION OR EXTRACORPOREAL MEMBRANE OXYGENATION W/CC"
+    price_aed: 126397
+    relative_weight: 14.8702
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158013"
+    category: IP
+    description: "NEONATE, W ORGAN TRANSPLANTATION OR EXTRACORPOREAL MEMBRANE OXYGENATION W/MCC"
+    price_aed: 192630
+    relative_weight: 22.6623
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158021"
+    category: IP
+    description: "NEONATE, BIRTHWT <1000 GRAMS WITH MAJOR PROCEDURE"
+    price_aed: 205783
+    relative_weight: 24.2098
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158022"
+    category: IP
+    description: "NEONATE, BIRTHWT <1000 GRAMS WITH MAJOR PROCEDURE W/CC"
+    price_aed: 236054
+    relative_weight: 27.7711
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158023"
+    category: IP
+    description: "NEONATE, BIRTHWT <1000 GRAMS WITH MAJOR PROCEDURE W/MCC"
+    price_aed: 272164
+    relative_weight: 32.0193
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158031"
+    category: IP
+    description: "NEONATE, BIRTHWT <1000 GRAMS WITHOUT MAJOR PROCEDURE"
+    price_aed: 24112
+    relative_weight: 2.8367
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158032"
+    category: IP
+    description: "NEONATE, BIRTHWT <1000 GRAMS WITHOUT MAJOR PROCEDURE W/CC"
+    price_aed: 109521
+    relative_weight: 12.8848
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158033"
+    category: IP
+    description: "NEONATE, BIRTHWT <1000 GRAMS WITHOUT MAJOR PROCEDURE W/MCC"
+    price_aed: 198553
+    relative_weight: 23.3592
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158041"
+    category: IP
+    description: "NEONATE, BIRTHWT 1000-1499 GRAMS WITH MAJOR PROCEDURE"
+    price_aed: 101655
+    relative_weight: 11.9594
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158042"
+    category: IP
+    description: "NEONATE, BIRTHWT 1000-1499 GRAMS WITH MAJOR PROCEDURE W/CC"
+    price_aed: 131927
+    relative_weight: 15.5208
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158043"
+    category: IP
+    description: "NEONATE, BIRTHWT 1000-1499 GRAMS WITH MAJOR PROCEDURE W/MCC"
+    price_aed: 189749
+    relative_weight: 22.3234
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158051"
+    category: IP
+    description: "NEONATE, BIRTHWT 1500-1999 GRAMS WITH MAJOR PROCEDURE"
+    price_aed: 42342
+    relative_weight: 4.9814
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158052"
+    category: IP
+    description: "NEONATE, BIRTHWT 1500-1999 GRAMS WITH MAJOR PROCEDURE W/CC"
+    price_aed: 64626
+    relative_weight: 7.603
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158053"
+    category: IP
+    description: "NEONATE, BIRTHWT 1500-1999 GRAMS WITH MAJOR PROCEDURE W/MCC"
+    price_aed: 125508
+    relative_weight: 14.7656
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158061"
+    category: IP
+    description: "NEONATE, BIRTHWT 2000-2499 GRAMS WITH MAJOR PROCEDURE"
+    price_aed: 23333
+    relative_weight: 2.7451
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158062"
+    category: IP
+    description: "NEONATE, BIRTHWT 2000-2499 GRAMS WITH MAJOR PROCEDURE W/CC"
+    price_aed: 45850
+    relative_weight: 5.3941
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158063"
+    category: IP
+    description: "NEONATE, BIRTHWT 2000-2499 GRAMS WITH MAJOR PROCEDURE W/MCC"
+    price_aed: 83360
+    relative_weight: 9.8071
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158071"
+    category: IP
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITH MAJOR PROCEDURE"
+    price_aed: 14900
+    relative_weight: 1.7529
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158072"
+    category: IP
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITH MAJOR PROCEDURE W/CC"
+    price_aed: 39981
+    relative_weight: 4.7037
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158073"
+    category: IP
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITH MAJOR PROCEDURE W/MCC"
+    price_aed: 96705
+    relative_weight: 11.3771
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158081"
+    category: IP
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITH RESPIRATORY DISTRESS SYNDROME"
+    price_aed: 17901
+    relative_weight: 2.106
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158082"
+    category: IP
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITH RESPIRATORY DISTRESS SYNDROME W/CC"
+    price_aed: 27716
+    relative_weight: 3.2607
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158083"
+    category: IP
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITH RESPIRATORY DISTRESS SYNDROME W/MCC"
+    price_aed: 61831
+    relative_weight: 7.2742
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158101"
+    category: IM
+    description: "NEONATE, DIED OR TRANSFERRED TO A. CARE FAC. AGE < 5 DAYS AT DISCH"
+    price_aed: 2078
+    relative_weight: 0.2445
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158102"
+    category: IM
+    description: "NEONATE, DIED OR TRANSFERRED TO A. CARE FAC. AGE < 5 DAYS AT DISCH W/CC"
+    price_aed: 15334
+    relative_weight: 1.804
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158103"
+    category: IM
+    description: "NEONATE, DIED OR TRANSFERRED TO A. CARE FAC. AGE < 5 DAYS AT DISCH W/MCC"
+    price_aed: 40973
+    relative_weight: 4.8203
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158111"
+    category: IM
+    description: "NEONATE, BIRTHWT 1000-1499 GRAMS WITHOUT MAJOR PROCEDURE"
+    price_aed: 53959
+    relative_weight: 6.3481
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158112"
+    category: IM
+    description: "NEONATE, BIRTHWT 1000-1499 GRAMS WITHOUT MAJOR PROCEDURE W/CC"
+    price_aed: 85604
+    relative_weight: 10.071
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158113"
+    category: IM
+    description: "NEONATE, BIRTHWT 1000-1499 GRAMS WITHOUT MAJOR PROCEDURE W/MCC"
+    price_aed: 116262
+    relative_weight: 13.6779
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158121"
+    category: IM
+    description: "NEONATE, BIRTHWT 1500-1999 GRAMS WITHOUT MAJOR PROCEDURE"
+    price_aed: 23464
+    relative_weight: 2.7605
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158122"
+    category: IM
+    description: "NEONATE, BIRTHWT 1500-1999 GRAMS WITHOUT MAJOR PROCEDURE W/CC"
+    price_aed: 46001
+    relative_weight: 5.4119
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158123"
+    category: IM
+    description: "NEONATE, BIRTHWT 1500-1999 GRAMS WITHOUT MAJOR PROCEDURE W/MCC"
+    price_aed: 51987
+    relative_weight: 6.1161
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158131"
+    category: IM
+    description: "NEONATE, BIRTHWT 2000-2499 GRAMS WITHOUT MAJOR PROCEDURE"
+    price_aed: 3568
+    relative_weight: 0.4198
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158132"
+    category: IM
+    description: "NEONATE, BIRTHWT 2000-2499 GRAMS WITHOUT MAJOR PROCEDURE W/CC"
+    price_aed: 16700
+    relative_weight: 1.9647
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158133"
+    category: IM
+    description: "NEONATE, BIRTHWT 2000-2499 GRAMS WITHOUT MAJOR PROCEDURE W/MCC"
+    price_aed: 44638
+    relative_weight: 5.2515
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158141"
+    category: IM
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITH MAJOR ANOMALY OR HEREDITARY CONDITION"
+    price_aed: 11002
+    relative_weight: 1.2943
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158142"
+    category: IM
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITH MAJOR ANOMALY OR HEREDITARY CONDITION W/CC"
+    price_aed: 25392
+    relative_weight: 2.9873
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158143"
+    category: IM
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITH MAJOR ANOMALY OR HEREDITARY CONDITION W/MCC"
+    price_aed: 60735
+    relative_weight: 7.1453
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158151"
+    category: IM
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITH ASPIRATION SYNDROME"
+    price_aed: 5172
+    relative_weight: 0.6085
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158152"
+    category: IM
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITH ASPIRATION SYNDROME W/CC"
+    price_aed: 11479
+    relative_weight: 1.3505
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158153"
+    category: IM
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITH ASPIRATION SYNDROME W/MCC"
+    price_aed: 29695
+    relative_weight: 3.4935
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158161"
+    category: IM
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITH CONGENITAL/PERINATAL INFECTIONS"
+    price_aed: 13443
+    relative_weight: 1.5815
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158162"
+    category: IM
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITH CONGENITAL/PERINATAL INFECTIONS W/CC"
+    price_aed: 17111
+    relative_weight: 2.0131
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158163"
+    category: IM
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITH CONGENITAL/PERINATAL INFECTIONS W/MCC"
+    price_aed: 25332
+    relative_weight: 2.9802
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158171"
+    category: IM
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITHOUT MAJOR PROCEDURE"
+    price_aed: 1870
+    relative_weight: 0.22
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158172"
+    category: IM
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITHOUT MAJOR PROCEDURE W/CC"
+    price_aed: 9087
+    relative_weight: 1.0691
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "158173"
+    category: IM
+    description: "NEONATE, BIRTHWT >2499 GRAMS WITHOUT MAJOR PROCEDURE W/MCC"
+    price_aed: 18390
+    relative_weight: 2.1635
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "161101"
+    category: IP
+    description: "ALLOGENEIC BONE MARROW TRANSPLANTATION"
+    price_aed: 38308
+    relative_weight: 4.5068
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "161102"
+    category: IP
+    description: "ALLOGENEIC BONE MARROW TRANSPLANTATION W/CC"
+    price_aed: 75866
+    relative_weight: 8.9254
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "161103"
+    category: IP
+    description: "ALLOGENEIC BONE MARROW TRANSPLANTATION W/MCC"
+    price_aed: 102383
+    relative_weight: 12.045
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "161111"
+    category: IP
+    description: "AUTOLOGOUS BONE MARROW TRANSPLANTATION"
+    price_aed: 31034
+    relative_weight: 3.6511
+    effective_date: "2017-01-01"
+    expiry_date: null
+  - code: "161112"
+    category: IP
+    description: "AUTOLOGOUS BONE MARROW TRANSPLANTATION W/CC"
+    price_aed: 61636
+    relative_weight: 7.2513
+    effective_date: "2017-01-01"
+    expiry_date: null
+  - code: "161113"
+    category: IP
+    description: "AUTOLOGOUS BONE MARROW TRANSPLANTATION W/MCC"
+    price_aed: 81324
+    relative_weight: 9.5675
+    effective_date: "2017-01-01"
+    expiry_date: null
+  - code: "161121"
+    category: IP
+    description: "SPLEEN PROCEDURES"
+    price_aed: 11212
+    relative_weight: 1.319
+    effective_date: "2017-01-01"
+    expiry_date: null
+  - code: "161122"
+    category: IP
+    description: "SPLEEN PROCEDURES W/CC"
+    price_aed: 20808
+    relative_weight: 2.448
+    effective_date: "2017-01-01"
+    expiry_date: null
+  - code: "161123"
+    category: IP
+    description: "SPLEEN PROCEDURES W/MCC"
+    price_aed: 64116
+    relative_weight: 7.5431
+    effective_date: "2017-01-01"
+    expiry_date: null
+  - code: "161201"
+    category: IP
+    description: "OTHER PROCEDURES OF BLOOD & BLOOD FORMING ORGANS"
+    price_aed: 5805
+    relative_weight: 0.6829
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "161202"
+    category: IP
+    description: "OTHER PROCEDURES OF BLOOD & BLOOD FORMING ORGANS W/CC"
+    price_aed: 13294
+    relative_weight: 1.564
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "161203"
+    category: IP
+    description: "OTHER PROCEDURES OF BLOOD & BLOOD FORMING ORGANS W/MCC"
+    price_aed: 17168
+    relative_weight: 2.0198
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "164101"
+    category: IM
+    description: "AGRANULOCYTOSIS"
+    price_aed: 5994
+    relative_weight: 0.7052
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "164102"
+    category: IM
+    description: "AGRANULOCYTOSIS W/CC"
+    price_aed: 10129
+    relative_weight: 1.1917
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "164103"
+    category: IM
+    description: "AGRANULOCYTOSIS W/MCC"
+    price_aed: 15288
+    relative_weight: 1.7986
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "164111"
+    category: IM
+    description: "COAGULATION DISORDERS"
+    price_aed: 16931
+    relative_weight: 1.9919
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "164112"
+    category: IM
+    description: "COAGULATION DISORDERS W/CC"
+    price_aed: 20101
+    relative_weight: 2.3648
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "164113"
+    category: IM
+    description: "COAGULATION DISORDERS W/MCC"
+    price_aed: 26122
+    relative_weight: 3.0732
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "164121"
+    category: IM
+    description: "SICKLE CELL ANEMIA CRISIS"
+    price_aed: 5265
+    relative_weight: 0.6194
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "164122"
+    category: IM
+    description: "SICKLE CELL ANEMIA CRISIS W/CC"
+    price_aed: 5613
+    relative_weight: 0.6604
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "164123"
+    category: IM
+    description: "SICKLE CELL ANEMIA CRISIS W/MCC"
+    price_aed: 13845
+    relative_weight: 1.6288
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "164131"
+    category: IM
+    description: "RED BLOOD CELL DISORDERS EXCEPT SICKLE CELL ANEMIA CRISIS"
+    price_aed: 6312
+    relative_weight: 0.7426
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "164132"
+    category: IM
+    description: "RED BLOOD CELL DISORDERS EXCEPT SICKLE CELL ANEMIA CRISIS W/CC"
+    price_aed: 8316
+    relative_weight: 0.9783
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "164133"
+    category: IM
+    description: "RED BLOOD CELL DISORDERS EXCEPT SICKLE CELL ANEMIA CRISIS W/MCC"
+    price_aed: 11879
+    relative_weight: 1.3975
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "164141"
+    category: IM
+    description: "OTHER BLOOD & BLOOD FORMING ORGANS DISORDERS"
+    price_aed: 4796
+    relative_weight: 0.5642
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "164142"
+    category: IM
+    description: "OTHER BLOOD & BLOOD FORMING ORGANS DISORDERS W/CC"
+    price_aed: 6676
+    relative_weight: 0.7854
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "164143"
+    category: IM
+    description: "OTHER BLOOD & BLOOD FORMING ORGANS DISORDERS W/MCC"
+    price_aed: 11454
+    relative_weight: 1.3475
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "174101"
+    category: IM
+    description: "ACUTE LEUKEMIA"
+    price_aed: 9666
+    relative_weight: 1.1372
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "174102"
+    category: IM
+    description: "ACUTE LEUKEMIA W/CC"
+    price_aed: 34910
+    relative_weight: 4.107
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "174103"
+    category: IM
+    description: "ACUTE LEUKEMIA W/MCC"
+    price_aed: 103657
+    relative_weight: 12.1949
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "174111"
+    category: IM
+    description: "LYMPHOMA & NON-ACUTE LEUKEMIA"
+    price_aed: 13334
+    relative_weight: 1.5687
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "174112"
+    category: IM
+    description: "LYMPHOMA & NON-ACUTE LEUKEMIA W/CC"
+    price_aed: 18210
+    relative_weight: 2.1424
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "174113"
+    category: IM
+    description: "LYMPHOMA & NON-ACUTE LEUKEMIA W/MCC"
+    price_aed: 33618
+    relative_weight: 3.9551
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "174121"
+    category: IM
+    description: "RADIOTHERAPY"
+    price_aed: 5652
+    relative_weight: 0.6649
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "174122"
+    category: IM
+    description: "RADIOTHERAPY W/CC"
+    price_aed: 11869
+    relative_weight: 1.3963
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "174123"
+    category: IM
+    description: "RADIOTHERAPY W/MCC"
+    price_aed: 27708
+    relative_weight: 3.2598
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "174131"
+    category: IM
+    description: "CHEMOTHERAPY"
+    price_aed: 7611
+    relative_weight: 0.8954
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "174132"
+    category: IM
+    description: "CHEMOTHERAPY W/CC"
+    price_aed: 10853
+    relative_weight: 1.2768
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "174133"
+    category: IM
+    description: "CHEMOTHERAPY W/MCC"
+    price_aed: 17038
+    relative_weight: 2.0045
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "174141"
+    category: IM
+    description: "OTHER MYELOPROLIF DISORDERS & POORLY DIFFERENTIATED NEOPLASM DIAGNOSIS"
+    price_aed: 9959
+    relative_weight: 1.1717
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "174142"
+    category: IM
+    description: "OTHER MYELOPROLIF DISORDERS & POORLY DIFFERENTIATED NEOPLASM DIAGNOSIS W/CC"
+    price_aed: 10055
+    relative_weight: 1.1829
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "174143"
+    category: IM
+    description: "OTHER MYELOPROLIF DISORDERS & POORLY DIFFERENTIATED NEOPLASM DIAGNOSIS W/MCC"
+    price_aed: 26999
+    relative_weight: 3.1764
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184101"
+    category: IM
+    description: "SEPTICEMIA"
+    price_aed: 4862
+    relative_weight: 0.572
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184102"
+    category: IM
+    description: "SEPTICEMIA W/CC"
+    price_aed: 12866
+    relative_weight: 1.5136
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184103"
+    category: IM
+    description: "SEPTICEMIA W/MCC"
+    price_aed: 30654
+    relative_weight: 3.6064
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184111"
+    category: IM
+    description: "POST-OPERATIVE & POST-TRAUMATIC INFECTIONS"
+    price_aed: 5159
+    relative_weight: 0.6069
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184112"
+    category: IM
+    description: "POST-OPERATIVE & POST-TRAUMATIC INFECTIONS W/CC"
+    price_aed: 8575
+    relative_weight: 1.0088
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184113"
+    category: IM
+    description: "POST-OPERATIVE & POST-TRAUMATIC INFECTIONS W/MCC"
+    price_aed: 30240
+    relative_weight: 3.5577
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184121"
+    category: IM
+    description: "FEVER"
+    price_aed: 2696
+    relative_weight: 0.3172
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184122"
+    category: IM
+    description: "FEVER W/CC"
+    price_aed: 4236
+    relative_weight: 0.4983
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184123"
+    category: IM
+    description: "FEVER W/MCC"
+    price_aed: 4645
+    relative_weight: 0.5465
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184131"
+    category: IM
+    description: "NON-BACTERIAL INFECTIONS"
+    price_aed: 4073
+    relative_weight: 0.4792
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184132"
+    category: IM
+    description: "NON-BACTERIAL INFECTIONS W/CC"
+    price_aed: 5401
+    relative_weight: 0.6354
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184133"
+    category: IM
+    description: "NON-BACTERIAL INFECTIONS W/MCC"
+    price_aed: 10167
+    relative_weight: 1.1961
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184141"
+    category: IM
+    description: "OTHER BACTERIAL & PARASITIC DISEASES"
+    price_aed: 3447
+    relative_weight: 0.4055
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184142"
+    category: IM
+    description: "OTHER BACTERIAL & PARASITIC DISEASES W/CC"
+    price_aed: 5356
+    relative_weight: 0.6301
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184143"
+    category: IM
+    description: "OTHER BACTERIAL & PARASITIC DISEASES W/MCC"
+    price_aed: 9559
+    relative_weight: 1.1246
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184151"
+    category: IM
+    description: "HUMAN IMMUNODEFICIENCY VIRUS INFECTION"
+    price_aed: 6123
+    relative_weight: 0.7204
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184152"
+    category: IM
+    description: "HUMAN IMMUNODEFICIENCY VIRUS INFECTION W/CC"
+    price_aed: 11149
+    relative_weight: 1.3117
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "184153"
+    category: IM
+    description: "HUMAN IMMUNODEFICIENCY VIRUS INFECTION W/MCC"
+    price_aed: 64773
+    relative_weight: 7.6204
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194101"
+    category: IM
+    description: "SCHIZOPHRENIA"
+    price_aed: 14807
+    relative_weight: 1.742
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194102"
+    category: IM
+    description: "SCHIZOPHRENIA W/CC"
+    price_aed: 29209
+    relative_weight: 3.4364
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194103"
+    category: IM
+    description: "SCHIZOPHRENIA W/MCC"
+    price_aed: 39828
+    relative_weight: 4.6857
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194111"
+    category: IM
+    description: "MAJOR DEPRESSION"
+    price_aed: 13900
+    relative_weight: 1.6353
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194112"
+    category: IM
+    description: "MAJOR DEPRESSION W/CC"
+    price_aed: 27420
+    relative_weight: 3.2259
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194113"
+    category: IM
+    description: "MAJOR DEPRESSION W/MCC"
+    price_aed: 39658
+    relative_weight: 4.6656
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194121"
+    category: IM
+    description: "PERSONALITY & IMPULSE CONTROL DISORDERS"
+    price_aed: 8113
+    relative_weight: 0.9545
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194122"
+    category: IM
+    description: "PERSONALITY & IMPULSE CONTROL DISORDERS W/CC"
+    price_aed: 14657
+    relative_weight: 1.7243
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194123"
+    category: IM
+    description: "PERSONALITY & IMPULSE CONTROL DISORDERS W/MCC"
+    price_aed: 37352
+    relative_weight: 4.3943
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194131"
+    category: IM
+    description: "BIPOLAR DISORDERS"
+    price_aed: 20654
+    relative_weight: 2.4299
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194132"
+    category: IM
+    description: "BIPOLAR DISORDERS W/CC"
+    price_aed: 40744
+    relative_weight: 4.7934
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194133"
+    category: IM
+    description: "BIPOLAR DISORDERS W/MCC"
+    price_aed: 56846
+    relative_weight: 6.6878
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194141"
+    category: IM
+    description: "DEPRESSION"
+    price_aed: 11340
+    relative_weight: 1.3341
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194142"
+    category: IM
+    description: "DEPRESSION W/CC"
+    price_aed: 22369
+    relative_weight: 2.6317
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194143"
+    category: IM
+    description: "DEPRESSION W/MCC"
+    price_aed: 33650
+    relative_weight: 3.9588
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194151"
+    category: IM
+    description: "NEUROSES EXCEPT DEPRESSION"
+    price_aed: 8666
+    relative_weight: 1.0195
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194152"
+    category: IM
+    description: "NEUROSES EXCEPT DEPRESSION W/CC"
+    price_aed: 10604
+    relative_weight: 1.2475
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194153"
+    category: IM
+    description: "NEUROSES EXCEPT DEPRESSION W/MCC"
+    price_aed: 19135
+    relative_weight: 2.2512
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194161"
+    category: IM
+    description: "ORGANIC DISTURBANCES & MENTAL RETARDATION"
+    price_aed: 8648
+    relative_weight: 1.0174
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194162"
+    category: IM
+    description: "ORGANIC DISTURBANCES & MENTAL RETARDATION W/CC"
+    price_aed: 16034
+    relative_weight: 1.8864
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194163"
+    category: IM
+    description: "ORGANIC DISTURBANCES & MENTAL RETARDATION W/MCC"
+    price_aed: 24997
+    relative_weight: 2.9408
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194171"
+    category: IM
+    description: "CHILDHOOD ONSET MENTAL DISORDERS"
+    price_aed: 9076
+    relative_weight: 1.0678
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194172"
+    category: IM
+    description: "CHILDHOOD ONSET MENTAL DISORDERS W/CC"
+    price_aed: 17905
+    relative_weight: 2.1065
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194173"
+    category: IM
+    description: "CHILDHOOD ONSET MENTAL DISORDERS W/MCC"
+    price_aed: 25509
+    relative_weight: 3.001
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194181"
+    category: IM
+    description: "COMPULSIVE NUTRITION DISORDERS"
+    price_aed: 9540
+    relative_weight: 1.1223
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194182"
+    category: IM
+    description: "COMPULSIVE NUTRITION DISORDERS W/CC"
+    price_aed: 18817
+    relative_weight: 2.2138
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194183"
+    category: IM
+    description: "COMPULSIVE NUTRITION DISORDERS W/MCC"
+    price_aed: 28628
+    relative_weight: 3.368
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194191"
+    category: IM
+    description: "OTHER MENTAL DISORDERS"
+    price_aed: 9566
+    relative_weight: 1.1254
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194192"
+    category: IM
+    description: "OTHER MENTAL DISORDERS W/CC"
+    price_aed: 18870
+    relative_weight: 2.22
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "194193"
+    category: IM
+    description: "OTHER MENTAL DISORDERS W/MCC"
+    price_aed: 25884
+    relative_weight: 3.0452
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "201101"
+    category: IP
+    description: "ALCOHOL & DRUG REHABILITATION &/OR DETOXIFICATION THERAPY"
+    price_aed: 3455
+    relative_weight: 0.4065
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "201102"
+    category: IP
+    description: "ALCOHOL & DRUG REHABILITATION &/OR DETOXIFICATION THERAPY W/CC"
+    price_aed: 4706
+    relative_weight: 0.5537
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "201103"
+    category: IP
+    description: "ALCOHOL & DRUG REHABILITATION &/OR DETOXIFICATION THERAPY W/MCC"
+    price_aed: 8421
+    relative_weight: 0.9907
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "204101"
+    category: IM
+    description: "DRUG & ALCOHOL ABUSE & DEPENDENCE, LEFT AGAINST MEDICAL ADVICE"
+    price_aed: 3168
+    relative_weight: 0.3727
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "204102"
+    category: IM
+    description: "DRUG & ALCOHOL ABUSE & DEPENDENCE, LEFT AGAINST MEDICAL ADVICE W/CC"
+    price_aed: 3827
+    relative_weight: 0.4502
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "204103"
+    category: IM
+    description: "DRUG & ALCOHOL ABUSE & DEPENDENCE, LEFT AGAINST MEDICAL ADVICE W/MCC"
+    price_aed: 5494
+    relative_weight: 0.6464
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "204111"
+    category: IM
+    description: "ALCOHOL, OPIOID & COCAINE ABUSE & DEPENDENCE"
+    price_aed: 8282
+    relative_weight: 0.9744
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "204112"
+    category: IM
+    description: "ALCOHOL, OPIOID & COCAINE ABUSE & DEPENDENCE W/CC"
+    price_aed: 13240
+    relative_weight: 1.5576
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "204113"
+    category: IM
+    description: "ALCOHOL, OPIOID & COCAINE ABUSE & DEPENDENCE W/MCC"
+    price_aed: 16597
+    relative_weight: 1.9526
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "204121"
+    category: IM
+    description: "OTHER DRUG ABUSE & DEPENDENCE"
+    price_aed: 4559
+    relative_weight: 0.5364
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "204122"
+    category: IM
+    description: "OTHER DRUG ABUSE & DEPENDENCE W/CC"
+    price_aed: 7133
+    relative_weight: 0.8392
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "204123"
+    category: IM
+    description: "OTHER DRUG ABUSE & DEPENDENCE W/MCC"
+    price_aed: 8730
+    relative_weight: 1.027
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214101"
+    category: IM
+    description: "INJURIES TO UNSPECIFIED OR MULTIPLE SITES"
+    price_aed: 4760
+    relative_weight: 0.56
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214102"
+    category: IM
+    description: "INJURIES TO UNSPECIFIED OR MULTIPLE SITES W/CC"
+    price_aed: 6795
+    relative_weight: 0.7994
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214103"
+    category: IM
+    description: "INJURIES TO UNSPECIFIED OR MULTIPLE SITES W/MCC"
+    price_aed: 9529
+    relative_weight: 1.1211
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214111"
+    category: IM
+    description: "ALLERGIC REACTIONS"
+    price_aed: 2079
+    relative_weight: 0.2446
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214112"
+    category: IM
+    description: "ALLERGIC REACTIONS W/CC"
+    price_aed: 4100
+    relative_weight: 0.4823
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214113"
+    category: IM
+    description: "ALLERGIC REACTIONS W/MCC"
+    price_aed: 9279
+    relative_weight: 1.0916
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214121"
+    category: IM
+    description: "POISONING & TOXIC EFFECTS OF DRUGS"
+    price_aed: 2136
+    relative_weight: 0.2513
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214122"
+    category: IM
+    description: "POISONING & TOXIC EFFECTS OF DRUGS W/CC"
+    price_aed: 3891
+    relative_weight: 0.4578
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214123"
+    category: IM
+    description: "POISONING & TOXIC EFFECTS OF DRUGS W/MCC"
+    price_aed: 9308
+    relative_weight: 1.0951
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214131"
+    category: IM
+    description: "COMPLICATIONS OF TREATMENT"
+    price_aed: 3974
+    relative_weight: 0.4675
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214132"
+    category: IM
+    description: "COMPLICATIONS OF TREATMENT W/CC"
+    price_aed: 7932
+    relative_weight: 0.9332
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214133"
+    category: IM
+    description: "COMPLICATIONS OF TREATMENT W/MCC"
+    price_aed: 21539
+    relative_weight: 2.534
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214141"
+    category: IM
+    description: "CHILD OR ADULT MALTREATMENT SYNDROME"
+    price_aed: 3211
+    relative_weight: 0.3778
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214142"
+    category: IM
+    description: "CHILD OR ADULT MALTREATMENT SYNDROME W/CC"
+    price_aed: 6489
+    relative_weight: 0.7634
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214143"
+    category: IM
+    description: "CHILD OR ADULT MALTREATMENT SYNDROME W/MCC"
+    price_aed: 10369
+    relative_weight: 1.2199
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214151"
+    category: IM
+    description: "BURNS, TRANSFERRED TO ANOTHER ACUTE CARE FACILITY"
+    price_aed: 4865
+    relative_weight: 0.5723
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214152"
+    category: IM
+    description: "BURNS, TRANSFERRED TO ANOTHER ACUTE CARE FACILITY W/CC"
+    price_aed: 7749
+    relative_weight: 0.9117
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214153"
+    category: IM
+    description: "BURNS, TRANSFERRED TO ANOTHER ACUTE CARE FACILITY W/MCC"
+    price_aed: 10460
+    relative_weight: 1.2306
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214161"
+    category: IM
+    description: "BURNS"
+    price_aed: 3747
+    relative_weight: 0.4408
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214162"
+    category: IM
+    description: "BURNS W/CC"
+    price_aed: 5636
+    relative_weight: 0.663
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214163"
+    category: IM
+    description: "BURNS W/MCC"
+    price_aed: 18194
+    relative_weight: 2.1405
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214171"
+    category: IM
+    description: "OTHER INJURY, POISONING & TOXIC EFFECT DIAGNOSES"
+    price_aed: 2319
+    relative_weight: 0.2728
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214172"
+    category: IM
+    description: "OTHER INJURY, POISONING & TOXIC EFFECT DIAGNOSES W/CC"
+    price_aed: 6015
+    relative_weight: 0.7077
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "214173"
+    category: IM
+    description: "OTHER INJURY, POISONING & TOXIC EFFECT DIAGNOSES W/MCC"
+    price_aed: 13852
+    relative_weight: 1.6296
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "224101"
+    category: IM
+    description: "REHABILITATION"
+    price_aed: 8500
+    relative_weight: 1
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "224102"
+    category: IM
+    description: "REHABILITATION W/CC"
+    price_aed: 15347
+    relative_weight: 1.8055
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "224103"
+    category: IM
+    description: "REHABILITATION W/MCC"
+    price_aed: 22768
+    relative_weight: 2.6786
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "224111"
+    category: IM
+    description: "SIGNS & SYMPTOMS"
+    price_aed: 3369
+    relative_weight: 0.3964
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "224112"
+    category: IM
+    description: "SIGNS & SYMPTOMS W/CC"
+    price_aed: 6965
+    relative_weight: 0.8194
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "224113"
+    category: IM
+    description: "SIGNS & SYMPTOMS W/MCC"
+    price_aed: 18319
+    relative_weight: 2.1552
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "224121"
+    category: IM
+    description: "OTHER FACTORS INFLUENCING HEALTH STATUS"
+    price_aed: 3881
+    relative_weight: 0.4566
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "224122"
+    category: IM
+    description: "OTHER FACTORS INFLUENCING HEALTH STATUS W/CC"
+    price_aed: 8690
+    relative_weight: 1.0224
+    effective_date: "2008-09-30"
+    expiry_date: null
+  - code: "224123"
+    category: IM
+    description: "OTHER FACTORS INFLUENCING HEALTH STATUS W/MCC"
+    price_aed: 19373
+    relative_weight: 2.2792
+    effective_date: "2008-09-30"
+    expiry_date: null

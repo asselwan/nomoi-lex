@@ -1,0 +1,186 @@
+# UAE DoH Service Codes (Inpatient Subset)
+# Source: DoH Claims and Adjudication Rules V2025.1
+#   Appendix 6.2.1 Table 1 Service Codes (pp 38 onward)
+#   Section 4.4.2.2.2 narrative (code 98 definition, pp 23 and 31)
+# Effective: 1 November 2025
+# Extracted: 2026-04-15
+#
+# Scope: only the service codes required for inpatient pre-submission
+# validation (engines 1 through 9). Outpatient, home healthcare, telemedicine,
+# dental, and ambulatory bundle codes are intentionally excluded.
+
+version: "V2025.1"
+effective_from: "2025-11-01"
+source_sections: ["4.4.2.2.2", "6.2.1"]
+
+# Room and board codes. Active entries only; retired entries noted in
+# the status field so the engine can optionally warn on their use.
+room_and_board:
+  - code: "17-01"
+    name: "Suite"
+    status: active
+    short_description: "Daily Room and Board charges for a single room plus one hall for guests"
+    applicable_to: inpatient
+
+  - code: "17-02"
+    name: "VIP Room"
+    status: active
+    short_description: "Daily Room and Board charges for a single room with exclusive measurements"
+    applicable_to: inpatient
+
+  - code: "17-03"
+    name: "First Class Room"
+    status: active
+    short_description: "Daily Room and Board charges for a single room with private amenities"
+    applicable_to: inpatient
+
+  - code: "17-04"
+    name: "Shared Room"
+    status: active
+    short_description: "Daily Room and Board charges for a room accommodating 2 single patient beds"
+    applicable_to: inpatient
+
+  - code: "17-05"
+    name: "Ward"
+    status: active
+    short_description: "Daily Room and Board charges for a single bed in a ward"
+    applicable_to: inpatient
+
+  - code: "17-06"
+    name: "Royal Suite"
+    status: active
+    short_description: "Daily Room and Board charges for a suite with one or more additional halls"
+    applicable_to: inpatient
+
+  - code: "17-08"
+    name: "Private Room Deluxe"
+    status: retired
+    short_description: "Retired room category, do not use on new claims"
+    applicable_to: inpatient
+
+  - code: "17-09"
+    name: "Private Room Standard Suite"
+    status: retired
+    short_description: "Retired room category, do not use on new claims"
+    applicable_to: inpatient
+
+  - code: "17-10"
+    name: "Isolation Room"
+    status: active
+    short_description: "Daily Room and Board charges for a single bed in an isolation room"
+    applicable_to: inpatient
+
+# PICU daily rates, tiered by day of stay.
+picu_room_and_board:
+  - code: "17-07"
+    name: "PICU Daily Rate Day 1 to 7"
+    status: active
+    short_description: "PICU all inclusive daily rate, day one through seven"
+    applicable_to: inpatient
+
+  - code: "17-07-01"
+    name: "PICU Daily Rate Day 8 to 14"
+    status: active
+    short_description: "PICU all inclusive daily rate, day eight through fourteen"
+    applicable_to: inpatient
+
+  - code: "17-07-02"
+    name: "PICU Daily Rate Day 15 to 21"
+    status: active
+    short_description: "PICU all inclusive daily rate, day fifteen through twenty one"
+    applicable_to: inpatient
+
+  - code: "17-07-03"
+    name: "PICU Daily Rate Day 22 and beyond"
+    status: active
+    short_description: "PICU all inclusive daily rate, day twenty two and beyond"
+    applicable_to: inpatient
+
+# Companion and escort accommodation relevant when an inpatient has an
+# authorized accompanying person.
+companion_accommodation:
+  - code: "26"
+    name: "Per Diem Companion Accommodation"
+    status: active
+    short_description: "Daily rate for a person accompanying a critically ill inpatient, or parent of a child under 10"
+    applicable_to: inpatient
+
+# DRG adjustment and outlier service codes. These are the codes the
+# validator engines key off of.
+drg_adjustment_codes:
+  - code: "98"
+    name: "HCPCS High Cost Add On Payment"
+    status: active
+    source: "Section 4.4.2.2.2 narrative (pp 23, 31)"
+    short_description: "HCPCS high cost add on payment line for inpatient claims"
+    applicable_to: inpatient
+    engine_usage: |
+      Engine 1 (submission_shape) permits nonzero Activity.Net on code 98.
+      Engine 4 (outlier) reads the code 98 line as the HCPCS add on
+      contribution to the base payment before computing the outlier delta.
+    requires:
+      - "Original HCPCS invoice attached to claim submission"
+
+  - code: "99"
+    name: "Outlier Payment"
+    status: active
+    source: "Appendix 6.2.1, p47"
+    short_description: "Outlier Payment for IR-DRG"
+    applicable_to: inpatient
+    engine_usage: |
+      Engine 4 (outlier) validates this line against the non mental health
+      outlier formula. Mental health encounters use code 99-02 instead.
+
+  - code: "99-01"
+    name: "LAMA Payment"
+    status: active
+    source: "Appendix 6.2.1, p47"
+    short_description: "Payment for Left Against Medical Advice"
+    applicable_to: inpatient
+    engine_usage: |
+      Engine 6 (lama) validates this line. Required when EncounterEndType
+      is 2 (discharged against advice). In advisory mode, the cap check
+      runs but the formula check defers until alos_trim_points.yaml lands.
+    encounter_end_type_trigger: 2
+
+  - code: "99-02"
+    name: "Outlier Payment HTLOS"
+    status: active
+    source: "Appendix 6.2.1, p47"
+    short_description: "Outlier Payment Based on High Trim Length of Stay"
+    applicable_to: inpatient
+    engine_usage: |
+      Engine 4 (outlier) validates this line for mental health encounters
+      only. Requires mental_health_drgs.yaml to confirm DRG eligibility;
+      operates in advisory mode until that file lands.
+    requires_mental_health_drg: true
+
+  - code: "99-03"
+    name: "CAHMS Adjustor Payment"
+    status: active
+    source: "Appendix 6.2.1, p47"
+    short_description: "Children and Adolescent Mental Health Services Adjustor Payment"
+    applicable_to: inpatient
+    engine_usage: |
+      Engine 5 (cahms) validates this line. Requires patient under 18 on
+      an MDC 19 mental health DRG. Operates in advisory mode until
+      mental_health_drgs.yaml lands.
+    age_limit: 18
+    requires_mental_health_drg: true
+
+# Activity types and the codes that are permitted to carry nonzero
+# Activity.Net for inpatient claims. Everything else must report
+# Activity.Net = 0 under the DRG inclusive pricing model.
+nonzero_net_permitted:
+  description: |
+    Under IR-DRG inpatient pricing, the DRG code carries the base payment
+    and all other service lines must be reported at Activity.Net = 0 unless
+    they fall into one of the adjustment categories below. This mirrors
+    section 4.4.2.1 and is enforced by engine 1 (submission_shape).
+  allowed_codes:
+    - drg_activity: "The IR-DRG code itself (type 9 activity)"
+    - "98"  # HCPCS high cost add-on
+    - "99"  # outlier
+    - "99-01"  # LAMA
+    - "99-02"  # mental health outlier (HTLOS)
+    - "99-03"  # CAHMS adjustor
