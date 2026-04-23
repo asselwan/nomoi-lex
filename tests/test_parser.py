@@ -84,7 +84,10 @@ class TestSingleClaimHappyPath:
     def test_activity_fields(self, mapping):
         df = _df_from_rows(_make_row())
         claims = parse_dataframe(df, mapping)
-        act = claims[0].encounters[0].activities[0]
+        # First real activity (synthesized DRG may also be present)
+        cpt_acts = [a for a in claims[0].encounters[0].activities if a.type == 3]
+        assert len(cpt_acts) >= 1
+        act = cpt_acts[0]
 
         assert act.id == "CHG-001"
         assert act.type == 3  # CPT
@@ -123,7 +126,10 @@ class TestMultiEncounterGrouping:
         claims = parse_dataframe(df, mapping)
 
         assert len(claims) == 1
-        assert len(claims[0].encounters[0].activities) == 2
+        # 2 CPT + 1 synthesized DRG
+        activities = claims[0].encounters[0].activities
+        cpt_acts = [a for a in activities if a.type == 3]
+        assert len(cpt_acts) == 2
 
     def test_two_claims(self, mapping):
         row1 = _make_row(**{"FIN": "FIN-001"})
@@ -338,3 +344,52 @@ class TestMRNFlowThrough:
         claims = parse_dataframe(df, mapping)
         enc = claims[0].encounters[0]
         assert enc.patient_id == "MRN-00000042"
+
+
+class TestDRGSynthesis:
+    def test_drg_synthesized_when_missing(self, mapping):
+        """No ACTIVITY_TYPE=DRG row but DRG_CODE populated -> synthesized."""
+        df = _df_from_rows(_make_row())  # CPT row only, DRG_CODE=011011
+        claims = parse_dataframe(df, mapping)
+        activities = claims[0].encounters[0].activities
+
+        drg_acts = [a for a in activities if a.type == 9]
+        assert len(drg_acts) == 1
+        assert drg_acts[0].id.startswith("SYNTH-DRG-")
+        assert drg_acts[0].code == "011011"
+        assert drg_acts[0].net == Decimal("0")
+
+    def test_drg_not_synthesized_when_present(self, mapping):
+        """Explicit DRG activity row present -> no synthesis."""
+        row1 = _make_row(**{"CHARGE_ITEM_ID": "CHG-001", "ACTIVITY_TYPE": "CPT", "CPT_CODE": "99213"})
+        row2 = _make_row(**{"CHARGE_ITEM_ID": "CHG-002", "ACTIVITY_TYPE": "DRG", "CPT_CODE": ""})
+        df = _df_from_rows(row1, row2)
+        claims = parse_dataframe(df, mapping)
+        activities = claims[0].encounters[0].activities
+
+        drg_acts = [a for a in activities if a.type == 9]
+        assert len(drg_acts) == 1
+        assert drg_acts[0].id == "CHG-002"  # the real one, not synthesized
+
+
+class TestEncounterFieldFirstNonNull:
+    def test_drg_code_resolved_from_later_row(self, mapping):
+        """DRG_CODE blank on first row, populated on second -> still resolved."""
+        row1 = _make_row(**{
+            "CHARGE_ITEM_ID": "CHG-001",
+            "ACTIVITY_TYPE": "Drug",
+            "CDMSCHEDPHARM_CODE": "MED-001",
+            "CPT_CODE": "",
+            "DRG_CODE": "",
+        })
+        row2 = _make_row(**{
+            "CHARGE_ITEM_ID": "CHG-002",
+            "ACTIVITY_TYPE": "CPT",
+            "CPT_CODE": "99213",
+            "DRG_CODE": "011011",
+        })
+        df = _df_from_rows(row1, row2)
+        claims = parse_dataframe(df, mapping)
+        rep = claims[0].encounters[0].reported
+
+        assert rep.drg_code == "011011"

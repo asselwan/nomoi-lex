@@ -5,6 +5,12 @@ mapping_version: 2
 target_engine_version: "0.1.0"
 row_granularity: activity
 
+parser_behavior:
+  # Synthesize a DRG activity (type=9, net=0) from encounter.reported.drg_code
+  # when no explicit DRG charge row exists.  Cerner itemized exports list
+  # chargemaster line items but not the DRG as its own activity.
+  auto_synthesize_drg_activity: true
+
 group_by:
   claim: FIN
   encounter: FIN                # one encounter per FIN in this HIS
