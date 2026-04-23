@@ -73,6 +73,7 @@ def parse_dataframe(
     mapping = mapping or load_mapping()
     fields = mapping["fields"]
     group_by = mapping["group_by"]
+    parser_behavior = mapping.get("parser_behavior", {})
 
     claim_key_col = _resolve_column_name(fields["claim.id"], df)
     encounter_key_col = _resolve_encounter_key(group_by, fields, df)
@@ -80,7 +81,9 @@ def parse_dataframe(
     claims: list[Claim] = []
 
     for claim_id, claim_rows in df.groupby(claim_key_col, sort=False):
-        claim = _build_claim(str(claim_id), claim_rows, fields, encounter_key_col)
+        claim = _build_claim(
+            str(claim_id), claim_rows, fields, encounter_key_col, parser_behavior,
+        )
         claims.append(claim)
 
     return claims
@@ -150,42 +153,46 @@ def _build_claim(
     rows: pd.DataFrame,
     fields: dict,
     encounter_key_col: str | None,
+    parser_behavior: dict,
 ) -> Claim:
-    """Build a single Claim from its grouped rows."""
-    first_row = rows.iloc[0]
+    """Build a single Claim from its grouped rows.
 
-    # Claim-level fields (taken from first row of the group)
+    Claim-level fields are resolved by scanning all rows in the group and
+    taking the first non-null value for each field.  This handles Cerner
+    exports where encounter-level metadata (HEALTH_PLAN, INSURANCE_ID, etc.)
+    may be populated only on specific charge rows.
+    """
     claim_data = {
         "id": claim_id,
-        "id_payer": _get_field_value(first_row, fields.get("claim.id_payer"), str, ""),
-        "member_id": _get_field_value(first_row, fields.get("claim.member_id"), str, ""),
-        "payer_id": _get_field_value(first_row, fields.get("claim.payer_id"), str, ""),
-        "provider_id": _get_field_value(first_row, fields.get("claim.provider_id"), str, ""),
-        "emirates_id": _get_field_value(first_row, fields.get("claim.emirates_id"), str, ""),
-        "gross": _get_decimal(first_row, fields.get("claim.gross"), Decimal("0")),
-        "patient_share": _get_decimal(first_row, fields.get("claim.patient_share"), Decimal("0")),
-        "net": _get_decimal(first_row, fields.get("claim.net"), Decimal("0")),
+        "id_payer": _first_non_null_field(rows, fields.get("claim.id_payer"), str, ""),
+        "member_id": _first_non_null_field(rows, fields.get("claim.member_id"), str, ""),
+        "payer_id": _first_non_null_field(rows, fields.get("claim.payer_id"), str, ""),
+        "provider_id": _first_non_null_field(rows, fields.get("claim.provider_id"), str, ""),
+        "emirates_id": _first_non_null_field(rows, fields.get("claim.emirates_id"), str, ""),
+        "gross": _first_non_null_decimal(rows, fields.get("claim.gross"), Decimal("0")),
+        "patient_share": _first_non_null_decimal(rows, fields.get("claim.patient_share"), Decimal("0")),
+        "net": _first_non_null_decimal(rows, fields.get("claim.net"), Decimal("0")),
     }
 
-    # Contract config
-    contract = _build_contract(first_row, fields)
+    # Contract config (use first-non-null across rows)
+    contract = _build_contract(rows, fields)
     claim_data["contract"] = contract
 
     # Encounters
-    encounters = _build_encounters(rows, fields, encounter_key_col)
+    encounters = _build_encounters(rows, fields, encounter_key_col, parser_behavior)
     claim_data["encounters"] = encounters
 
     return Claim(**claim_data)
 
 
-def _build_contract(row: pd.Series, fields: dict) -> ContractConfig:
-    """Build ContractConfig from claim-level fields."""
+def _build_contract(rows: pd.DataFrame, fields: dict) -> ContractConfig:
+    """Build ContractConfig from claim-level fields (first-non-null across rows)."""
     return ContractConfig(
-        base_rate_aed=_get_decimal(row, fields.get("claim.contract.base_rate_aed"), Decimal("8500")),
-        gap_aed=_get_decimal(row, fields.get("claim.contract.gap_aed"), Decimal("25000")),
-        marginal_pct=_get_decimal(row, fields.get("claim.contract.marginal_pct"), Decimal("0.60")),
-        product_name=_get_field_value(row, fields.get("claim.contract.product_name"), str, "Basic"),
-        lama_mode=_get_field_value(row, fields.get("claim.contract.lama_mode"), str, "advisory"),
+        base_rate_aed=_first_non_null_decimal(rows, fields.get("claim.contract.base_rate_aed"), Decimal("8500")),
+        gap_aed=_first_non_null_decimal(rows, fields.get("claim.contract.gap_aed"), Decimal("25000")),
+        marginal_pct=_first_non_null_decimal(rows, fields.get("claim.contract.marginal_pct"), Decimal("0.60")),
+        product_name=_first_non_null_field(rows, fields.get("claim.contract.product_name"), str, "Basic"),
+        lama_mode=_first_non_null_field(rows, fields.get("claim.contract.lama_mode"), str, "advisory"),
     )
 
 
@@ -193,6 +200,7 @@ def _build_encounters(
     rows: pd.DataFrame,
     fields: dict,
     encounter_key_col: str | None,
+    parser_behavior: dict,
 ) -> list[Encounter]:
     """Group rows into encounters and build Encounter objects."""
     if encounter_key_col and encounter_key_col in rows.columns:
@@ -202,30 +210,41 @@ def _build_encounters(
         groups = [(None, rows)]
 
     encounters: list[Encounter] = []
-    for _, enc_rows in groups:
-        enc = _build_single_encounter(enc_rows, fields)
+    for enc_key, enc_rows in groups:
+        enc = _build_single_encounter(enc_rows, fields, str(enc_key or "0"), parser_behavior)
         encounters.append(enc)
     return encounters
 
 
-def _build_single_encounter(rows: pd.DataFrame, fields: dict) -> Encounter:
-    """Build one Encounter from its rows."""
+def _build_single_encounter(
+    rows: pd.DataFrame,
+    fields: dict,
+    encounter_key: str,
+    parser_behavior: dict,
+) -> Encounter:
+    """Build one Encounter from its rows.
+
+    Encounter-level fields are resolved by scanning all rows in the group and
+    taking the first non-null value.  This handles Cerner exports where
+    encounter metadata (DRG_CODE, HEALTH_PLAN, etc.) may only be populated
+    on specific charge rows (e.g. not on pharmacy or supply lines).
+    """
     first_row = rows.iloc[0]
 
     enc_data: dict[str, Any] = {
-        "type": _get_mapped_int(first_row, fields.get("encounter.type"), 3),
-        "facility_id": _get_field_value(first_row, fields.get("encounter.facility_id"), str, ""),
-        "patient_id": _get_field_value(first_row, fields.get("encounter.patient_id"), str, ""),
+        "type": _first_non_null_mapped_int(rows, fields.get("encounter.type"), 3),
+        "facility_id": _first_non_null_field(rows, fields.get("encounter.facility_id"), str, ""),
+        "patient_id": _first_non_null_field(rows, fields.get("encounter.patient_id"), str, ""),
         "start": _get_datetime(first_row, fields.get("encounter.start")),
         "end": _get_datetime(first_row, fields.get("encounter.end")),
-        "start_type": _get_mapped_int(first_row, fields.get("encounter.start_type"), 0),
-        "end_type": _get_mapped_int(first_row, fields.get("encounter.end_type"), 0),
-        "transfer_source": _get_field_value(first_row, fields.get("encounter.transfer_source"), str, ""),
-        "transfer_destination": _get_field_value(first_row, fields.get("encounter.transfer_destination"), str, ""),
-        "patient_age_years": _get_optional_int(first_row, fields.get("encounter.patient_age_years")),
-        "patient_gender": _get_mapped_str(first_row, fields.get("encounter.patient_gender"), ""),
+        "start_type": _first_non_null_mapped_int(rows, fields.get("encounter.start_type"), 0),
+        "end_type": _first_non_null_mapped_int(rows, fields.get("encounter.end_type"), 0),
+        "transfer_source": _first_non_null_field(rows, fields.get("encounter.transfer_source"), str, ""),
+        "transfer_destination": _first_non_null_field(rows, fields.get("encounter.transfer_destination"), str, ""),
+        "patient_age_years": _first_non_null_optional_int(rows, fields.get("encounter.patient_age_years")),
+        "patient_gender": _first_non_null_mapped_str(rows, fields.get("encounter.patient_gender"), ""),
         "patient_date_of_birth": _get_date(first_row, fields.get("encounter.patient_date_of_birth")),
-        "regrouped_drg": _get_optional_str(first_row, fields.get("encounter.regrouped_drg")),
+        "regrouped_drg": _first_non_null_optional_str(rows, fields.get("encounter.regrouped_drg")),
     }
 
     # Actual LOS — may be a direct column or a computed field
@@ -233,10 +252,10 @@ def _build_single_encounter(rows: pd.DataFrame, fields: dict) -> Encounter:
     if los_spec and isinstance(los_spec, dict) and "computed" in los_spec:
         enc_data["actual_los"] = _compute_value(first_row, los_spec["computed"])
     else:
-        enc_data["actual_los"] = _get_optional_decimal(first_row, los_spec)
+        enc_data["actual_los"] = _first_non_null_optional_decimal(rows, los_spec)
 
-    # Reported values
-    enc_data["reported"] = _build_reported(first_row, fields)
+    # Reported values (first-non-null across rows)
+    enc_data["reported"] = _build_reported(rows, fields)
 
     # Split payer
     enc_data["split_payer"] = _build_split_payer(first_row, fields)
@@ -245,7 +264,29 @@ def _build_single_encounter(rows: pd.DataFrame, fields: dict) -> Encounter:
     enc_data["diagnoses"] = _build_diagnoses(first_row, fields, rows)
 
     # Activities (one per row in activity granularity)
-    enc_data["activities"] = _build_activities(rows, fields)
+    activities = _build_activities(rows, fields)
+
+    # Synthesize DRG activity if missing and drg_code is populated
+    if parser_behavior.get("auto_synthesize_drg_activity", False):
+        has_drg_activity = any(a.type == 9 for a in activities)
+        drg_code = enc_data["reported"].drg_code
+        if not has_drg_activity and drg_code:
+            synthesized = Activity(
+                id=f"SYNTH-DRG-{encounter_key}",
+                start=enc_data["start"],
+                type=9,
+                code=drg_code,
+                quantity=Decimal("1"),
+                net=Decimal("0"),
+            )
+            activities.append(synthesized)
+            logger.info(
+                "Synthesized DRG activity for FIN %s from reported.drg_code=%s",
+                encounter_key,
+                drg_code,
+            )
+
+    enc_data["activities"] = activities
 
     return Encounter(**enc_data)
 
@@ -496,14 +537,15 @@ def _build_diagnoses_wide(
 # ---------------------------------------------------------------------------
 
 
-def _build_reported(row: pd.Series, fields: dict) -> ReportedValues:
+def _build_reported(rows: pd.DataFrame, fields: dict) -> ReportedValues:
+    """Build ReportedValues using first-non-null across all rows."""
     return ReportedValues(
-        drg_code=_get_optional_str(row, fields.get("encounter.reported.drg_code")),
-        drg_base_payment=_get_optional_decimal(row, fields.get("encounter.reported.drg_base_payment")),
-        outlier_payment=_get_optional_decimal(row, fields.get("encounter.reported.outlier_payment")),
-        lama_payment=_get_optional_decimal(row, fields.get("encounter.reported.lama_payment")),
-        cahms_adjustor=_get_optional_decimal(row, fields.get("encounter.reported.cahms_adjustor")),
-        total_claim_net=_get_optional_decimal(row, fields.get("encounter.reported.total_claim_net")),
+        drg_code=_first_non_null_optional_str(rows, fields.get("encounter.reported.drg_code")),
+        drg_base_payment=_first_non_null_optional_decimal(rows, fields.get("encounter.reported.drg_base_payment")),
+        outlier_payment=_first_non_null_optional_decimal(rows, fields.get("encounter.reported.outlier_payment")),
+        lama_payment=_first_non_null_optional_decimal(rows, fields.get("encounter.reported.lama_payment")),
+        cahms_adjustor=_first_non_null_optional_decimal(rows, fields.get("encounter.reported.cahms_adjustor")),
+        total_claim_net=_first_non_null_optional_decimal(rows, fields.get("encounter.reported.total_claim_net")),
     )
 
 
@@ -593,7 +635,120 @@ def _build_observations(row: pd.Series, fields: dict) -> list[Observation]:
 
 
 # ---------------------------------------------------------------------------
-# Value extraction helpers
+# First-non-null row scanners
+# ---------------------------------------------------------------------------
+# These iterate all rows in a group and return the first non-null/non-empty
+# value found.  This handles Cerner exports where encounter-level metadata
+# (DRG_CODE, HEALTH_PLAN, etc.) may only appear on specific charge rows.
+
+
+def _first_non_null_field(
+    rows: pd.DataFrame,
+    spec: dict | str | None,
+    cast: type,
+    default: Any,
+) -> Any:
+    """Scan rows for the first non-null value matching a field spec."""
+    if spec is None:
+        return default
+    for _, row in rows.iterrows():
+        result = _get_field_value(row, spec, cast, None)
+        if result is not None:
+            return result
+    # All rows null — fall back to spec default or caller default
+    if isinstance(spec, dict):
+        return spec.get("default", default)
+    return default
+
+
+def _first_non_null_decimal(
+    rows: pd.DataFrame,
+    spec: dict | str | None,
+    default: Decimal,
+) -> Decimal:
+    if spec is None:
+        return default
+    for _, row in rows.iterrows():
+        result = _get_decimal(row, spec, None)
+        if result is not None:
+            return result
+    if isinstance(spec, dict):
+        sd = spec.get("default", default)
+        return Decimal(str(sd)) if sd is not None else default
+    return default
+
+
+def _first_non_null_mapped_int(
+    rows: pd.DataFrame,
+    spec: dict | None,
+    default: int,
+) -> int:
+    if spec is None:
+        return default
+    for _, row in rows.iterrows():
+        result = _get_mapped_int(row, spec, None)
+        if result is not None:
+            return result
+    sd = spec.get("default", default)
+    return sd if sd is not None else default
+
+
+def _first_non_null_mapped_str(
+    rows: pd.DataFrame,
+    spec: dict | None,
+    default: str,
+) -> str:
+    if spec is None:
+        return default
+    for _, row in rows.iterrows():
+        result = _get_mapped_str(row, spec, None)
+        if result is not None:
+            return result
+    sd = spec.get("default", default)
+    return sd if sd is not None else default
+
+
+def _first_non_null_optional_str(
+    rows: pd.DataFrame,
+    spec: dict | None,
+) -> str | None:
+    if spec is None:
+        return None
+    for _, row in rows.iterrows():
+        result = _get_optional_str(row, spec)
+        if result is not None:
+            return result
+    return None
+
+
+def _first_non_null_optional_int(
+    rows: pd.DataFrame,
+    spec: dict | None,
+) -> int | None:
+    if spec is None:
+        return None
+    for _, row in rows.iterrows():
+        result = _get_optional_int(row, spec)
+        if result is not None:
+            return result
+    return None
+
+
+def _first_non_null_optional_decimal(
+    rows: pd.DataFrame,
+    spec: dict | None,
+) -> Decimal | None:
+    if spec is None:
+        return None
+    for _, row in rows.iterrows():
+        result = _get_optional_decimal(row, spec)
+        if result is not None:
+            return result
+    return None
+
+
+# ---------------------------------------------------------------------------
+# Value extraction helpers (single-row)
 # ---------------------------------------------------------------------------
 
 
