@@ -20,7 +20,7 @@ def mapping():
 def _make_row(**overrides) -> dict:
     """Minimal valid row with all required columns for one activity."""
     base = {
-        "Claim ID": "CLM-001",
+        "FIN": "CLM-001",
         "Payer Claim Ref": "PAY-001",
         "Member ID": "MEM-100",
         "Payer Code": "INS-01",
@@ -131,8 +131,8 @@ class TestMultiEncounterGrouping:
         assert len(claims[0].encounters[0].activities) == 2
 
     def test_two_claims(self, mapping):
-        row1 = _make_row(**{"Claim ID": "CLM-001"})
-        row2 = _make_row(**{"Claim ID": "CLM-002"})
+        row1 = _make_row(**{"FIN": "CLM-001"})
+        row2 = _make_row(**{"FIN": "CLM-002"})
         df = _df_from_rows(row1, row2)
         claims = parse_dataframe(df, mapping)
 
@@ -261,10 +261,18 @@ class TestObservations:
 
 
 class TestMissingRequiredColumn:
-    def test_missing_claim_id_raises(self, mapping):
+    def test_missing_fin_raises(self, mapping):
         row = _make_row()
-        del row["Claim ID"]
+        del row["FIN"]
         df = _df_from_rows(row)
 
-        with pytest.raises(ColumnNotFoundError, match="Claim ID"):
+        with pytest.raises(ColumnNotFoundError, match="FIN"):
             parse_dataframe(df, mapping)
+
+
+class TestMRNFlowThrough:
+    def test_mrn_maps_to_encounter_patient_id(self, mapping):
+        df = _df_from_rows(_make_row(**{"MRN": "MRN-00000042"}))
+        claims = parse_dataframe(df, mapping)
+        enc = claims[0].encounters[0]
+        assert enc.patient_id == "MRN-00000042"

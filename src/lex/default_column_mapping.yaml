@@ -11,14 +11,24 @@ row_granularity: activity
 
 # Grouping keys — rows sharing these values are merged into one Claim/Encounter.
 group_by:
-  claim: claim_id           # column mapped to Claim.id
+  claim: FIN                # column mapped to Claim.id
   encounter: encounter_key  # column mapped to a synthetic encounter grouping key
 
 # Column-to-field mapping. Keys are canonical engine field names (dot-path).
 # Values are either a column header string or a transform object.
+#
+# Identifier terminology (UAE HIS conventions):
+#   FIN  (Financial Identification Number) — per-visit identifier assigned by
+#        the HIS at registration.  Maps to the engine's Claim.id.  "Claim ID"
+#        in the Pydantic model is a naming artifact from the DoH XSD; before
+#        payer submission no real claim ID exists, so the FIN fills the role.
+#   MRN  (Medical Record Number) — per-patient identifier, stable across all
+#        visits for the same patient.  Maps to Encounter.patient_id.
+#   Emirates ID — national identifier (784-YYYY-NNNNNNN-N).  Maps to
+#        Claim.emirates_id.
 fields:
   # --- Claim-level (one value per claim group) ---
-  claim.id:             { column: "Claim ID" }
+  claim.id:             { column: "FIN" }
   claim.id_payer:       { column: "Payer Claim Ref", default: "" }
   claim.member_id:      { column: "Member ID" }
   claim.payer_id:       { column: "Payer Code" }
@@ -48,7 +58,7 @@ fields:
       "4": 4
 
   encounter.facility_id:       { column: "Facility ID", default: "" }
-  encounter.patient_id:        { column: "MRN", default: "" }
+  encounter.patient_id:        { column: "MRN" }
   encounter.start:             { column: "Admission Date", format: "%d/%m/%Y %H:%M" }
   encounter.end:               { column: "Discharge Date", format: "%d/%m/%Y %H:%M" }
   encounter.start_type:        { column: "Admission Source", default: 0 }
