@@ -1,7 +1,19 @@
-"""Parse flat CSV/Excel data into validator Claim objects using column mapping."""
+"""Parse flat CSV/Excel data into validator Claim objects using column mapping.
+
+Supports three mapping features beyond simple column-to-field:
+
+- **Multi-column coalesce** (``columns_by_activity_type``): picks the activity
+  code column based on the resolved activity type, with ordered fallback.
+- **Long-format diagnoses** (``mode: long_format``): collects one diagnosis per
+  row across all rows for a FIN, deduplicates, and infers principal from first
+  occurrence when no explicit flag column is provided.
+- **Computed fields** (``computed``): derives a value from a formula applied to
+  other columns (e.g. ``days_between`` for LOS calculation).
+"""
 
 from __future__ import annotations
 
+import logging
 from datetime import date, datetime
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
@@ -20,6 +32,8 @@ from validator.models.claim import (
     ReportedValues,
     SplitPayerInfo,
 )
+
+logger = logging.getLogger(__name__)
 
 _MAPPING_PATH = Path(__file__).parent / "default_column_mapping.yaml"
 
@@ -110,8 +124,11 @@ def _resolve_encounter_key(
     enc_field_key = f"encounter.{enc_key}" if not enc_key.startswith("encounter.") else enc_key
     if enc_field_key in fields:
         spec = fields[enc_field_key]
-        col = spec["column"] if isinstance(spec, dict) else spec
-        if col in df.columns:
+        if isinstance(spec, dict):
+            col = spec.get("column")
+        else:
+            col = spec
+        if col and col in df.columns:
             return col
 
     # Direct column name
@@ -208,9 +225,15 @@ def _build_single_encounter(rows: pd.DataFrame, fields: dict) -> Encounter:
         "patient_age_years": _get_optional_int(first_row, fields.get("encounter.patient_age_years")),
         "patient_gender": _get_mapped_str(first_row, fields.get("encounter.patient_gender"), ""),
         "patient_date_of_birth": _get_date(first_row, fields.get("encounter.patient_date_of_birth")),
-        "actual_los": _get_optional_decimal(first_row, fields.get("encounter.actual_los")),
         "regrouped_drg": _get_optional_str(first_row, fields.get("encounter.regrouped_drg")),
     }
+
+    # Actual LOS — may be a direct column or a computed field
+    los_spec = fields.get("encounter.actual_los")
+    if los_spec and isinstance(los_spec, dict) and "computed" in los_spec:
+        enc_data["actual_los"] = _compute_value(first_row, los_spec["computed"])
+    else:
+        enc_data["actual_los"] = _get_optional_decimal(first_row, los_spec)
 
     # Reported values
     enc_data["reported"] = _build_reported(first_row, fields)
@@ -218,7 +241,7 @@ def _build_single_encounter(rows: pd.DataFrame, fields: dict) -> Encounter:
     # Split payer
     enc_data["split_payer"] = _build_split_payer(first_row, fields)
 
-    # Diagnoses (from first row — they are encounter-level)
+    # Diagnoses (dispatched by mode — wide or long format)
     enc_data["diagnoses"] = _build_diagnoses(first_row, fields, rows)
 
     # Activities (one per row in activity granularity)
@@ -227,28 +250,123 @@ def _build_single_encounter(rows: pd.DataFrame, fields: dict) -> Encounter:
     return Encounter(**enc_data)
 
 
-def _build_reported(row: pd.Series, fields: dict) -> ReportedValues:
-    return ReportedValues(
-        drg_code=_get_optional_str(row, fields.get("encounter.reported.drg_code")),
-        drg_base_payment=_get_optional_decimal(row, fields.get("encounter.reported.drg_base_payment")),
-        outlier_payment=_get_optional_decimal(row, fields.get("encounter.reported.outlier_payment")),
-        lama_payment=_get_optional_decimal(row, fields.get("encounter.reported.lama_payment")),
-        cahms_adjustor=_get_optional_decimal(row, fields.get("encounter.reported.cahms_adjustor")),
-        total_claim_net=_get_optional_decimal(row, fields.get("encounter.reported.total_claim_net")),
-    )
+# ---------------------------------------------------------------------------
+# Computed fields
+# ---------------------------------------------------------------------------
+
+# Formula registry — add new formulas here as plain functions.
+_FORMULA_REGISTRY: dict[str, Any] = {}
 
 
-def _build_split_payer(row: pd.Series, fields: dict) -> SplitPayerInfo | None:
-    days = _get_optional_int(row, fields.get("encounter.split_payer.payer_1_days"))
-    total = _get_optional_int(row, fields.get("encounter.split_payer.total_days"))
-    if days is None or total is None:
+def _register_formula(name: str):
+    """Decorator to register a computed-field formula."""
+    def decorator(fn):
+        _FORMULA_REGISTRY[name] = fn
+        return fn
+    return decorator
+
+
+@_register_formula("days_between")
+def _formula_days_between(
+    row: pd.Series,
+    *,
+    from_column: str,
+    to_column: str,
+    round_decimals: int = 2,
+    **_kwargs: Any,
+) -> Decimal | None:
+    """Compute fractional days between two datetime columns."""
+    from_raw = _clean_cell(row.get(from_column)) if from_column in row.index else None
+    to_raw = _clean_cell(row.get(to_column)) if to_column in row.index else None
+
+    if from_raw is None or to_raw is None:
         return None
-    return SplitPayerInfo(
-        payer_1_days=days,
-        total_days=total,
-        payer_1_id=_get_field_value(row, fields.get("encounter.split_payer.payer_1_id"), str, ""),
-        payer_2_id=_get_field_value(row, fields.get("encounter.split_payer.payer_2_id"), str, ""),
-    )
+
+    dt_from = _parse_flexible_datetime(from_raw)
+    dt_to = _parse_flexible_datetime(to_raw)
+    if dt_from is None or dt_to is None:
+        return None
+
+    delta = dt_to - dt_from
+    days = delta.total_seconds() / 86400
+    return Decimal(str(round(days, round_decimals)))
+
+
+def _parse_flexible_datetime(raw: str) -> datetime | None:
+    """Try several common datetime formats, return None on failure."""
+    for fmt in ("%Y-%m-%d %H:%M:%S", "%Y-%m-%dT%H:%M:%S", "%d/%m/%Y %H:%M"):
+        try:
+            return datetime.strptime(raw, fmt)
+        except ValueError:
+            continue
+    try:
+        return datetime.fromisoformat(raw)
+    except ValueError:
+        return None
+
+
+def _compute_value(row: pd.Series, computed_spec: dict) -> Decimal | None:
+    """Dispatch a computed field to its registered formula."""
+    formula_name = computed_spec["formula"]
+    fn = _FORMULA_REGISTRY.get(formula_name)
+    if fn is None:
+        logger.warning("Unknown computed formula: %s", formula_name)
+        return None
+    params = {k: v for k, v in computed_spec.items() if k != "formula"}
+    return fn(row, **params)
+
+
+# ---------------------------------------------------------------------------
+# Multi-column activity code coalesce
+# ---------------------------------------------------------------------------
+
+
+def _resolve_activity_code(
+    row: pd.Series,
+    code_spec: dict | str | None,
+    activity_type: int,
+) -> str:
+    """Resolve activity code, supporting ``columns_by_activity_type`` coalesce.
+
+    When the spec contains ``columns_by_activity_type``, the parser picks the
+    column mapped to the resolved activity type.  If the type is not in the map
+    or the mapped column is null, it falls through to ``fallback_columns`` in
+    order and takes the first non-null value.
+    """
+    if code_spec is None:
+        return ""
+
+    # Simple column spec (string or dict with "column" key)
+    if isinstance(code_spec, str):
+        val = _clean_cell(row.get(code_spec)) if code_spec in row.index else None
+        return val or ""
+    if "column" in code_spec:
+        return _get_field_value(row, code_spec, str, "")
+
+    # Multi-column coalesce
+    type_map = code_spec.get("columns_by_activity_type", {})
+    fallback = code_spec.get("fallback_columns", [])
+
+    # Try the type-specific column first
+    mapped_col = type_map.get(activity_type) or type_map.get(str(activity_type))
+    if mapped_col and mapped_col in row.index:
+        val = _clean_cell(row.get(mapped_col))
+        if val:
+            return val
+
+    # Fall through to fallback columns
+    for col in fallback:
+        if col in row.index:
+            val = _clean_cell(row.get(col))
+            if val:
+                return val
+
+    return ""
+
+
+# ---------------------------------------------------------------------------
+# Diagnosis builders
+# ---------------------------------------------------------------------------
 
 
 def _build_diagnoses(
@@ -256,11 +374,82 @@ def _build_diagnoses(
     fields: dict,
     rows: pd.DataFrame,
 ) -> list[Diagnosis]:
-    """Build diagnosis list from repeated columns."""
+    """Build diagnosis list — dispatches by mode (repeated_columns or long_format)."""
     dx_spec = fields.get("encounter.diagnoses")
     if dx_spec is None:
         return []
 
+    mode = dx_spec.get("mode", "repeated_columns")
+
+    if mode == "long_format":
+        return _build_diagnoses_long(rows, dx_spec)
+    return _build_diagnoses_wide(first_row, dx_spec)
+
+
+def _build_diagnoses_long(
+    rows: pd.DataFrame,
+    dx_spec: dict,
+) -> list[Diagnosis]:
+    """Build diagnoses from long-format data (one diagnosis per charge row).
+
+    Collects unique (code) values across all rows for the encounter.  When
+    ``principal_flag_column`` is null the first unique code encountered is
+    treated as the principal diagnosis.  This is a heuristic — callers that
+    need deterministic assignment should provide a principal flag column.
+    """
+    code_col = dx_spec.get("code_column")
+    poa_col = dx_spec.get("poa_column")
+    principal_flag_col = dx_spec.get("principal_flag_column")
+
+    if not code_col:
+        return []
+
+    seen_codes: set[str] = set()
+    diagnoses: list[Diagnosis] = []
+    principal_assigned = False
+
+    for _, row in rows.iterrows():
+        if code_col not in row.index:
+            continue
+        code = _clean_cell(row.get(code_col))
+        if not code or code in seen_codes:
+            continue
+        seen_codes.add(code)
+
+        poa = ""
+        if poa_col and poa_col in row.index:
+            poa = _clean_cell(row.get(poa_col)) or ""
+
+        # Determine type
+        if principal_flag_col and principal_flag_col in row.index:
+            flag = _clean_cell(row.get(principal_flag_col))
+            if flag and flag.upper() in ("Y", "1", "TRUE", "YES"):
+                dx_type = "Principal"
+                principal_assigned = True
+            else:
+                dx_type = "Secondary"
+        elif not principal_assigned:
+            dx_type = "Principal"
+            principal_assigned = True
+        else:
+            dx_type = "Secondary"
+
+        diagnoses.append(Diagnosis(type=dx_type, code=code, poa=poa))
+
+    if not principal_flag_col and diagnoses:
+        logger.warning(
+            "Principal diagnosis inferred from first occurrence; "
+            "provide a principal flag column for deterministic assignment."
+        )
+
+    return diagnoses
+
+
+def _build_diagnoses_wide(
+    first_row: pd.Series,
+    dx_spec: dict,
+) -> list[Diagnosis]:
+    """Build diagnoses from wide-format repeated columns (original mode)."""
     diagnoses: list[Diagnosis] = []
 
     # Principal diagnosis
@@ -302,22 +491,54 @@ def _build_diagnoses(
     return diagnoses
 
 
+# ---------------------------------------------------------------------------
+# Reported values, split payer, activities, observations
+# ---------------------------------------------------------------------------
+
+
+def _build_reported(row: pd.Series, fields: dict) -> ReportedValues:
+    return ReportedValues(
+        drg_code=_get_optional_str(row, fields.get("encounter.reported.drg_code")),
+        drg_base_payment=_get_optional_decimal(row, fields.get("encounter.reported.drg_base_payment")),
+        outlier_payment=_get_optional_decimal(row, fields.get("encounter.reported.outlier_payment")),
+        lama_payment=_get_optional_decimal(row, fields.get("encounter.reported.lama_payment")),
+        cahms_adjustor=_get_optional_decimal(row, fields.get("encounter.reported.cahms_adjustor")),
+        total_claim_net=_get_optional_decimal(row, fields.get("encounter.reported.total_claim_net")),
+    )
+
+
+def _build_split_payer(row: pd.Series, fields: dict) -> SplitPayerInfo | None:
+    days = _get_optional_int(row, fields.get("encounter.split_payer.payer_1_days"))
+    total = _get_optional_int(row, fields.get("encounter.split_payer.total_days"))
+    if days is None or total is None:
+        return None
+    return SplitPayerInfo(
+        payer_1_days=days,
+        total_days=total,
+        payer_1_id=_get_field_value(row, fields.get("encounter.split_payer.payer_1_id"), str, ""),
+        payer_2_id=_get_field_value(row, fields.get("encounter.split_payer.payer_2_id"), str, ""),
+    )
+
+
 def _build_activities(rows: pd.DataFrame, fields: dict) -> list[Activity]:
     """Build activity list — one Activity per row."""
     activities: list[Activity] = []
+    code_spec = fields.get("activity.code")
 
     for _, row in rows.iterrows():
         act_id = _get_field_value(row, fields.get("activity.id"), str, "")
         if not act_id:
             continue
 
+        activity_type = _get_mapped_int(row, fields.get("activity.type"), 3)
+        code = _resolve_activity_code(row, code_spec, activity_type)
         observations = _build_observations(row, fields)
 
         activity = Activity(
             id=act_id,
             start=_get_datetime(row, fields.get("activity.start")),
-            type=_get_mapped_int(row, fields.get("activity.type"), 3),
-            code=_get_field_value(row, fields.get("activity.code"), str, ""),
+            type=activity_type,
+            code=code,
             quantity=_get_decimal(row, fields.get("activity.quantity"), Decimal("1")),
             net=_get_decimal(row, fields.get("activity.net"), Decimal("0")),
             clinician=_get_field_value(row, fields.get("activity.clinician"), str, ""),
@@ -343,7 +564,7 @@ def _build_observations(row: pd.Series, fields: dict) -> list[Observation]:
         obs_type = entry["type"]
 
         if "code_pattern" in entry:
-            # Pattern-matched (e.g., Modifier 1, Modifier 2, ...)
+            # Pattern-matched (e.g., MODIFIER_1, MODIFIER_2, ...)
             pattern = entry["code_pattern"]
             max_n = entry.get("max_n", 4)
             for n in range(1, max_n + 1):
@@ -404,10 +625,15 @@ def _get_field_value(
     """Extract a field value, apply cast, fall back to default."""
     if spec is None:
         return default
-    col = spec["column"] if isinstance(spec, dict) else spec
-    spec_default = spec.get("default", default) if isinstance(spec, dict) else default
 
-    if col not in row.index:
+    if isinstance(spec, dict):
+        col = spec.get("column")
+        spec_default = spec.get("default", default)
+    else:
+        col = spec
+        spec_default = default
+
+    if col is None or col not in row.index:
         return spec_default
 
     raw = _clean_cell(row.get(col))
@@ -428,7 +654,7 @@ def _get_mapped_int(row: pd.Series, spec: dict | None, default: int) -> int:
     value_map = spec.get("value_map")
     spec_default = spec.get("default", default)
 
-    if col not in row.index:
+    if not col or col not in row.index:
         return spec_default if spec_default is not None else default
 
     raw = _clean_cell(row.get(col))
@@ -453,7 +679,7 @@ def _get_mapped_str(row: pd.Series, spec: dict | None, default: str) -> str:
     value_map = spec.get("value_map")
     spec_default = spec.get("default", default)
 
-    if col not in row.index:
+    if not col or col not in row.index:
         return spec_default if spec_default is not None else default
 
     raw = _clean_cell(row.get(col))
@@ -470,10 +696,15 @@ def _get_decimal(row: pd.Series, spec: dict | str | None, default: Decimal) -> D
     """Extract a Decimal value."""
     if spec is None:
         return default
-    col = spec["column"] if isinstance(spec, dict) else spec
-    spec_default = spec.get("default", default) if isinstance(spec, dict) else default
 
-    if col not in row.index:
+    if isinstance(spec, dict):
+        col = spec.get("column")
+        spec_default = spec.get("default", default)
+    else:
+        col = spec
+        spec_default = default
+
+    if col is None or col not in row.index:
         return Decimal(str(spec_default)) if spec_default is not None else default
 
     raw = _clean_cell(row.get(col))
@@ -491,7 +722,7 @@ def _get_optional_decimal(row: pd.Series, spec: dict | None) -> Decimal | None:
     if spec is None:
         return None
     col = spec.get("column", "")
-    if col not in row.index:
+    if not col or col not in row.index:
         return None
     raw = _clean_cell(row.get(col))
     if raw is None:
@@ -507,7 +738,7 @@ def _get_optional_int(row: pd.Series, spec: dict | None) -> int | None:
     if spec is None:
         return None
     col = spec.get("column", "")
-    if col not in row.index:
+    if not col or col not in row.index:
         return None
     raw = _clean_cell(row.get(col))
     if raw is None:
@@ -523,7 +754,7 @@ def _get_optional_str(row: pd.Series, spec: dict | None) -> str | None:
     if spec is None:
         return None
     col = spec.get("column", "")
-    if col not in row.index:
+    if not col or col not in row.index:
         return None
     return _clean_cell(row.get(col))
 
@@ -559,7 +790,7 @@ def _get_date(row: pd.Series, spec: dict | None) -> date | None:
     col = spec.get("column", "") if isinstance(spec, dict) else spec
     fmt = spec.get("format", "%d/%m/%Y") if isinstance(spec, dict) else "%d/%m/%Y"
 
-    if col not in row.index:
+    if not col or col not in row.index:
         return None
 
     raw = _clean_cell(row.get(col))
