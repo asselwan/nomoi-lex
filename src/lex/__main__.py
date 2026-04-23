@@ -8,7 +8,7 @@ from collections import Counter
 
 from lex.parser import load_mapping, parse_file
 
-_TYPE_LABELS = {
+_ACT_TYPE_LABELS = {
     3: "CPT",
     4: "HCPCS",
     5: "Drug",
@@ -16,6 +16,11 @@ _TYPE_LABELS = {
     8: "Service",
     9: "DRG",
     10: "Scientific",
+}
+
+_ENC_TYPE_LABELS = {
+    3: "IP (no ER)",
+    4: "IP (with ER)",
 }
 
 
@@ -36,7 +41,7 @@ def _diagnose(path: str) -> None:
             print(f"  provider_id: {claim.provider_id}")
             print(f"  gross:       {claim.gross}")
             print()
-            print(f"  enc.type:     {enc.type} ({_TYPE_LABELS.get(enc.type, '?')})")
+            print(f"  enc.type:     {enc.type} ({_ENC_TYPE_LABELS.get(enc.type, '?')})")
             print(f"  enc.start:    {enc.start}")
             print(f"  enc.end:      {enc.end}")
             print(f"  enc.end_type: {enc.end_type}")
@@ -63,7 +68,7 @@ def _diagnose(path: str) -> None:
             print()
             print(f"  Activities ({len(enc.activities)} total):")
             for t in sorted(type_counts):
-                label = _TYPE_LABELS.get(t, f"type-{t}")
+                label = _ACT_TYPE_LABELS.get(t, f"type-{t}")
                 count = type_counts[t]
                 marker = ""
                 if t == 9 and synth_count:
