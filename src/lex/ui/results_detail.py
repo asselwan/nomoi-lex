@@ -27,7 +27,7 @@ def render_results_detail(
 
     Results are grouped by severity (ERROR first, then WARNING, then INFO).
     """
-    st.subheader(f"Claim Detail — {hash_claim_id(claim_id)}")
+    st.subheader(f"FIN Detail — {hash_claim_id(claim_id)}")
 
     if not report.results:
         st.success("No validation findings for this claim.")

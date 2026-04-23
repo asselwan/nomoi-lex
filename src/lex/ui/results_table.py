@@ -19,7 +19,7 @@ def render_results_table(
 ) -> None:
     """Render the master results table with row selection.
 
-    Columns: Claim ID (hashed), Encounter Type, DRG Code, DRG Description,
+    Columns: FIN (hashed), Encounter Type, DRG Code, DRG Description,
     Errors, Warnings, Info, Estimated Impact AED, Status.
     """
     state = get_state()
@@ -88,7 +88,7 @@ def _build_table_rows(
         impact = _estimate_impact(report)
 
         rows.append({
-            "Claim ID": hash_claim_id(cid),
+            "FIN": hash_claim_id(cid),
             "Enc. Type": enc_type,
             "DRG Code": drg_code,
             "DRG Description": drg_desc,
