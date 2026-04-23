@@ -90,14 +90,18 @@ These create the `lex` schema with `validation_runs` and `claim_outcomes` tables
 
 ## Data Format
 
-Your uploaded CSV must contain at minimum these identifier columns:
+The default column mapping targets SSMC's Cerner/Oracle Health itemized charge export. Your uploaded CSV must contain at minimum these columns:
 
 | Column | Description |
 |--------|-------------|
 | **FIN** | Financial Identification Number — per-visit identifier from the HIS |
 | **MRN** | Medical Record Number — per-patient identifier, stable across visits |
-| **Emirates ID** | National identifier (`784-YYYY-NNNNNNN-N`) |
+| **EMIRATES_ID** | National identifier (`784-YYYY-NNNNNNN-N`) — required for full validation |
+| **DRG_CODE** | The encounter's DRG code |
+| **CHARGE_ITEM_ID** | Per-charge-line identifier |
+| **ACTIVITY_TYPE** | CPT, HCPCS, Drug, DRG, etc. |
+| **DIAGNOSIS** | One diagnosis code per charge row (long format) |
 
 FIN is your HIS's per-visit identifier. MRN is the per-patient record number. Emirates ID is the national 784-YYYY-NNNNNNN-N code.
 
-See `src/lex/default_column_mapping.yaml` for the full column-to-field mapping and optional columns with defaults.
+See `src/lex/default_column_mapping.yaml` for the full column-to-field mapping and `docs/SSMC_DATA_REQUIREMENTS.md` for columns that are currently missing from the default Cerner export.

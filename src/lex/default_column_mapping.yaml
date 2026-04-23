@@ -1,78 +1,82 @@
-# default_column_mapping.yaml — maps provider spreadsheet columns to engine Claim fields.
-# The parser uses this to construct Claim objects from flat tabular data.
+# default_column_mapping.yaml — maps Cerner/Oracle Health charge export columns
+# to engine Claim fields.  Tailored for SSMC's itemized charge report.
 
-mapping_version: 1
+mapping_version: 2
 target_engine_version: "0.1.0"
-
-# What each row in the uploaded file represents.
-# "activity" = one row per line item (most common RCM export)
-# "encounter" = one row per encounter (activities in sub-columns or second sheet)
 row_granularity: activity
 
-# Grouping keys — rows sharing these values are merged into one Claim/Encounter.
 group_by:
-  claim: FIN                # column mapped to Claim.id
-  encounter: encounter_key  # column mapped to a synthetic encounter grouping key
+  claim: FIN
+  encounter: FIN                # one encounter per FIN in this HIS
 
-# Column-to-field mapping. Keys are canonical engine field names (dot-path).
-# Values are either a column header string or a transform object.
-#
-# Identifier terminology (UAE HIS conventions):
-#   FIN  (Financial Identification Number) — per-visit identifier assigned by
-#        the HIS at registration.  Maps to the engine's Claim.id.  "Claim ID"
-#        in the Pydantic model is a naming artifact from the DoH XSD; before
-#        payer submission no real claim ID exists, so the FIN fills the role.
-#   MRN  (Medical Record Number) — per-patient identifier, stable across all
-#        visits for the same patient.  Maps to Encounter.patient_id.
-#   Emirates ID — national identifier (784-YYYY-NNNNNNN-N).  Maps to
-#        Claim.emirates_id.
+# Identifier terminology (Cerner / UAE HIS conventions):
+#   FIN  — Financial Identification Number.  Per-visit identifier assigned at
+#          registration by the HIS.  Maps to the engine's Claim.id.  "Claim ID"
+#          in the Pydantic model is a naming artifact from the DoH XSD; before
+#          payer submission no real claim ID exists, so the FIN fills the role.
+#   MRN  — Medical Record Number.  Per-patient identifier, stable across all
+#          visits for the same patient.  Maps to Encounter.patient_id.
+#   CLAIM_ID — Cerner's internal billing system reference (populated
+#          post-submission).  Pre-submission this may be blank or a draft ID;
+#          we map it to claim.id_payer as metadata.
+
 fields:
-  # --- Claim-level (one value per claim group) ---
-  claim.id:             { column: "FIN" }
-  claim.id_payer:       { column: "Payer Claim Ref", default: "" }
-  claim.member_id:      { column: "Member ID" }
-  claim.payer_id:       { column: "Payer Code" }
-  claim.provider_id:    { column: "Facility License" }
-  claim.emirates_id:    { column: "Emirates ID" }
-  claim.gross:          { column: "Gross Amount" }
-  claim.patient_share:  { column: "Patient Share" }
-  claim.net:            { column: "Net Amount" }
+  # --- Claim-level identity and totals ---
+  claim.id:             { column: FIN }
+  claim.id_payer:       { column: CLAIM_ID, default: "" }
+  claim.member_id:      { column: INSURANCE_ID }
+  claim.payer_id:       { column: HEALTH_PLAN }
+  claim.provider_id:    { column: BE }
+  claim.emirates_id:    { column: EMIRATES_ID, default: "" }  # not in default export — see docs/SSMC_DATA_REQUIREMENTS.md
+  claim.gross:          { column: CLAIM_GROSS }
+  claim.patient_share:  { column: PATIENT_SHARE }
+  claim.net:            { column: CLAIM_GROSS }  # net computed downstream; stored raw here
 
-  # --- Contract config (optional — defaults from ContractConfig if absent) ---
-  claim.contract.base_rate_aed:  { column: "Base Rate", default: 8500 }
-  claim.contract.gap_aed:        { column: "GAP Threshold", default: 25000 }
-  claim.contract.marginal_pct:   { column: "Marginal %", default: 0.60 }
-  claim.contract.product_name:   { column: "Product", default: "Basic" }
-  claim.contract.lama_mode:      { column: "LAMA Mode", default: "advisory" }
+  # --- Contract (defaults apply per Basic Product unless HIS export provides overrides) ---
+  claim.contract.base_rate_aed: { default: 8500 }
+  claim.contract.gap_aed:       { default: 25000 }
+  claim.contract.marginal_pct:  { default: 0.60 }
+  claim.contract.product_name:  { column: FIN_CLASS, default: "Basic" }
+  claim.contract.lama_mode:     { default: "advisory" }
 
-  # --- Encounter-level (one value per encounter group) ---
+  # --- Encounter-level ---
+  encounter.facility_id: { column: LOCATION, default: "" }
+  encounter.patient_id:  { column: MRN }
+
   encounter.type:
-    column: "Encounter Type"
+    column: ENCOUNTER_TYPE
     value_map:
       "Inpatient": 3
       "Inpatient No ER": 3
+      "Inpatient with ER": 4
       "Inpatient With ER": 4
       "IP": 3
       "IP-ER": 4
+      "Emergency Inpatient": 4
       "3": 3
       "4": 4
 
-  encounter.facility_id:       { column: "Facility ID", default: "" }
-  encounter.patient_id:        { column: "MRN" }
-  encounter.start:             { column: "Admission Date", format: "%d/%m/%Y %H:%M" }
-  encounter.end:               { column: "Discharge Date", format: "%d/%m/%Y %H:%M" }
-  encounter.start_type:        { column: "Admission Source", default: 0 }
+  encounter.start: { column: ADMIT_DATE, format: "%Y-%m-%d %H:%M:%S" }
+  encounter.end:   { column: DISCHARGE_DATE, format: "%Y-%m-%d %H:%M:%S" }
 
   encounter.end_type:
-    column: "Discharge Status"
+    column: DISCHARGE_DISPOSITION
     default: 0
     value_map:
+      "Home": 1
+      "Home Health": 1
       "Discharged": 1
+      "Routine Discharge": 1
+      "Against Medical Advice": 2
+      "AMA": 2
       "LAMA": 2
-      "Discharged Against Advice": 2
+      "Left Against Medical Advice": 2
       "AWOL": 3
       "Absent Without Leave": 3
+      "Eloped": 3
       "Transferred": 4
+      "Transferred to Another Facility": 4
+      "Expired": 5
       "Deceased": 5
       "1": 1
       "2": 2
@@ -80,61 +84,52 @@ fields:
       "4": 4
       "5": 5
 
-  encounter.transfer_source:       { column: "Transfer Source", default: "" }
-  encounter.transfer_destination:  { column: "Transfer Destination", default: "" }
-  encounter.patient_age_years:     { column: "Patient Age" }
+  encounter.transfer_destination: { column: DISCH_TO_LOCATION, default: "" }
 
+  # Patient demographics — not visible in default Cerner export.  Flag when missing.
+  encounter.patient_age_years:     { column: PATIENT_AGE, default: null }
   encounter.patient_gender:
-    column: "Gender"
+    column: PATIENT_GENDER
+    default: ""
     value_map:
       "Male": "M"
       "Female": "F"
       "M": "M"
       "F": "F"
+  encounter.patient_date_of_birth: { column: PATIENT_DOB, format: "%Y-%m-%d", default: null }
 
-  encounter.patient_date_of_birth: { column: "DOB", format: "%d/%m/%Y" }
-  encounter.actual_los:            { column: "Actual LOS", default: null }
-  encounter.regrouped_drg:         { column: "Regrouped DRG", default: null }
+  # LOS computed from admit/discharge since Cerner doesn't export it directly
+  encounter.actual_los:
+    computed:
+      formula: days_between
+      from_column: ADMIT_DATE
+      to_column: DISCHARGE_DATE
+      round_decimals: 2
 
-  # --- Reported values (provider's DRG/payment assertions) ---
-  encounter.reported.drg_code:          { column: "DRG Code" }
-  encounter.reported.drg_base_payment:  { column: "DRG Base Payment" }
-  encounter.reported.outlier_payment:   { column: "Outlier Payment", default: null }
-  encounter.reported.lama_payment:      { column: "LAMA Payment", default: null }
-  encounter.reported.cahms_adjustor:    { column: "CAHMS Adjustor", default: null }
-  encounter.reported.total_claim_net:   { column: "Total Claim Net", default: null }
+  encounter.regrouped_drg: { column: REGROUPED_DRG, default: null }
 
-  # --- Split payer (optional) ---
-  encounter.split_payer.payer_1_days:  { column: "Split Payer 1 Days", default: null }
-  encounter.split_payer.total_days:    { column: "Split Total Days", default: null }
-  encounter.split_payer.payer_1_id:    { column: "Split Payer 1 ID", default: "" }
-  encounter.split_payer.payer_2_id:    { column: "Split Payer 2 ID", default: "" }
+  # --- Reported values ---
+  encounter.reported.drg_code:         { column: DRG_CODE }
+  encounter.reported.drg_base_payment: { column: DRG_BASE_PAYMENT, default: null }
+  encounter.reported.outlier_payment:  { column: OUTLIER_PAYMENT, default: null }
+  encounter.reported.lama_payment:     { column: LAMA_PAYMENT, default: null }
+  encounter.reported.cahms_adjustor:   { column: CAHMS_ADJUSTOR, default: null }
+  encounter.reported.total_claim_net:  { column: CLAIM_GROSS, default: null }
 
-  # --- Diagnosis (repeated; parser collects all diagnosis columns per encounter) ---
-  encounter.diagnoses:
-    mode: repeated_columns
-    principal:
-      code: { column: "Principal Dx" }
-      poa:  { column: "Principal Dx POA", default: "" }
-    admitting:
-      code: { column: "Admitting Dx", default: null }
-      poa:  { column: "Admitting Dx POA", default: "" }
-    secondary:
-      code_pattern: "Secondary Dx {n}"
-      poa_pattern:  "Secondary Dx {n} POA"
-      max_n: 20
-
-  # --- Activity (one per row when row_granularity=activity) ---
-  activity.id:                       { column: "Activity ID" }
-  activity.start:                    { column: "Service Date", format: "%d/%m/%Y %H:%M" }
+  # --- Activity-level ---
+  activity.id:    { column: CHARGE_ITEM_ID }
+  activity.start: { column: CHARGE_UPDATE_DT_TM, format: "%Y-%m-%d %H:%M:%S" }
 
   activity.type:
-    column: "Activity Type"
+    column: ACTIVITY_TYPE
     value_map:
       "CPT": 3
       "HCPCS": 4
       "Drug": 5
+      "Pharmacy": 5
+      "PHARM": 5
       "Dental": 6
+      "Service": 8
       "Service Code": 8
       "DRG": 9
       "Scientific Code": 10
@@ -146,29 +141,35 @@ fields:
       "9": 9
       "10": 10
 
-  activity.code:                     { column: "Activity Code" }
-  activity.quantity:                 { column: "Qty", default: 1 }
-  activity.net:                      { column: "Activity Net" }
-  activity.clinician:                { column: "Clinician License", default: "" }
-  activity.ordering_clinician:       { column: "Ordering Clinician", default: "" }
-  activity.prior_authorization_id:   { column: "Auth Number", default: "" }
+  activity.code:
+    columns_by_activity_type:
+      3: CPT_CODE
+      4: HCPCS
+      5: CDMSCHEDPHARM_CODE
+      8: CDM_CODE
+      9: DRG_CODE
+    fallback_columns: [CPT_CODE, HCPCS, CDMSCHEDPHARM_CODE, CDM_CODE, DRG_CODE]
 
-  # --- Observations on activities (pattern-matched columns) ---
+  activity.quantity:                { column: QUANTITY, default: 1 }
+  activity.net:                     { column: ACTIVITY_NET_AMT }
+  activity.clinician:               { column: PERFORMING_PHYS_USERNAME, default: "" }
+  activity.ordering_clinician:      { column: ORDERING_PHYS_USERNAME, default: "" }
+  activity.prior_authorization_id:  { column: GENERAL_PREAUTH_NBR, default: "" }
+
+  # --- Diagnoses in long format (one DIAGNOSIS value per charge row) ---
+  encounter.diagnoses:
+    mode: long_format
+    code_column: DIAGNOSIS
+    poa_column: DX_POA               # not in default export — see docs/SSMC_DATA_REQUIREMENTS.md
+    principal_flag_column: null      # inferred from first occurrence until SSMC adds a flag
+
+  # --- Observations: modifiers if present as MODIFIER_1..MODIFIER_4 ---
   activity.observations:
     mode: paired_columns
     entries:
-      - type: "Tooth"
-        code_column: "Tooth Number"
-        value_column: null
-      - type: "ActivityCost"
-        code_column: "Activity Cost"
-        value_column: null
-      - type: "DRG-NotCovered"
-        code_column: "DRG Not Covered"
-        value_column: null
-      - type: "Weight"
-        code_column: "Observation Code"
-        value_column: "Observation Value"
       - type: "Modifier"
-        code_pattern: "Modifier {n}"
+        code_pattern: "MODIFIER_{n}"
         max_n: 4
+      - type: "Revenue"
+        code_column: REVENUE_CODE
+        value_column: null
